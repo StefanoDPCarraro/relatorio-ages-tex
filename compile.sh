@@ -2,6 +2,10 @@
 
 # Script para compilar o projeto LaTeX com abntex2 e biblatex
 
+# Remover Zone.Identifiers antes de compilar
+echo "Limpando Zone.Identifier files..."
+find . -name '*Zone.Identifier' -type f -delete
+
 echo "Iniciando compilação..."
 
 # 1ª rodada de pdflatex
