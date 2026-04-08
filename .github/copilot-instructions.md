@@ -9,17 +9,24 @@ Build notes for this workspace:
 
 ## Build Scripts
 
-Two shell scripts are available in the project root for compilation workflow:
+Three shell scripts are available in the project root for compilation workflow:
 
 - **`clean.sh`**: Removes all generated LaTeX compilation files (`.aux`, `.bbl`, `.bcf`, `.blg`, `.fdb_latexmk`, `.fls`, `.lof`, `.lot`, `.log`, `.run.xml`, `.toc`, `.pdf`) from root and subdirectories.
-- **`compile.sh`**: Runs the complete compile sequence (3x `pdflatex`, 1x `biber`). Automatically removes Zone.Identifier files before compiling. Use after `clean.sh` for a fresh build.
+- **`compile.sh`**: Runs the **complete** compile sequence (3x `pdflatex`, 1x `biber`). Use when changing references, bibliography, or document structure. Automatically removes Zone.Identifier files before compiling.
+- **`compile-fast.sh`**: Runs **incremental** compilation (2x `pdflatex` only, no biber). Faster option when changing **only text content**. Skip this if you modified references or bibliography.
 
 Usage:
 ```bash
 ./clean.sh                    # Clean build artifacts
-./compile.sh                  # Compile project (auto-removes Zone.Identifiers)
+./compile.sh                  # Full compile (references + bibliography)
+./compile-fast.sh             # Fast compile (text changes only)
 ./clean.sh && ./compile.sh    # Full clean rebuild
 ```
+
+**When to use which:**
+- First build or structural changes → `./clean.sh && ./compile.sh`
+- After editing text only → `./compile-fast.sh`
+- Changed any `.bib` files or references → `./compile.sh` (or clean + compile)
 
 ## Project Cleanup
 
