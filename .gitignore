@@ -1,0 +1,27 @@
+# LaTeX compilation files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.log
+*.run.xml
+*.toc
+
+# Output PDF
+*.pdf
+
+# Windows metadata
+*Zone.Identifier
+Zone.Identifier
+
+# Editor and OS files
+.DS_Store
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
