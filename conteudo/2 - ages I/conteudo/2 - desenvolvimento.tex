@@ -1,30 +1,74 @@
 \section[Desenvolvimento do Projeto]{Desenvolvimento do Projeto}
-Nesta seção, são fornecidas informações relativas ao desenvolvimento do projeto, abrangendo a localização do código-fonte e documentação, a arquitetura e as tecnologias utilizadas, bem como os protótipos de tela desenvolvidos. Além disso, são apresentados os artefatos desenvolvidos ao longo do semestre em que o projeto foi realizado. 
 
 \subsection{Repositório do Código Fonte do Projeto}
-  Seguem os repositórios do código fonte, eles foram divididos entre front-end e
-back-end, utilizando de scripts com um Linter para garantir que o código
-permanecesse formatado.
+    O código-fonte de minha AGES I foi organizado no grupo do projeto na plataforma AGES,
+com separação entre os repositórios de front-end e back-end. Essa divisão
+facilitou a manutenção, a evolução paralela das funcionalidades e a definição de
+responsabilidades técnicas ao longo do semestre.
 
-Além disso foram utilizados padrões de commit, no back-end era feat/USnº/nome, já no front era feat/pagina/função.
+Plataforma do projeto:
 
-Front-end:
+\urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novos-colaboradores}
 
-https://tools.ages.pucrs.br/plataforma-onboarding-para-novoscolaboradores/decola-frontend
+Repositório Front-end (interface web):
 
-Back-end:
+\urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novoscolaboradores/decola-frontend}
 
-https://tools.ages.pucrs.br/plataforma-onboarding-para-novoscolaboradores/decola-api
+Repositório Back-end (API e regras de negócio):
+
+\urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novoscolaboradores/decola-api}
+
+Durante o desenvolvimento, foram adotados scripts de lint para manter a
+padronização do código e convenções de commits para rastreabilidade das entregas
+em cada repositório.
+
+Além da separação por responsabilidade técnica, a organização dos repositórios
+também contribuiu para a clareza do processo de desenvolvimento. As demandas
+funcionais puderam ser implementadas de forma incremental, com histórico de
+alterações associado a cada entrega e maior facilidade para revisar evoluções do
+produto ao longo das sprints.
+
+No repositório de front-end, foram concentradas as implementações relacionadas à
+experiência do usuário, componentes de interface e integração com os serviços da
+\ac{api}. Já no repositório de back-end, ficaram centralizadas as regras de negócio,
+estratégias de autenticação, validações e comunicação com a base de dados. Essa
+distribuição favoreceu a modularidade do projeto e reduziu o acoplamento entre as
+camadas da aplicação.
+
+Como prática de qualidade, as contribuições seguiram padrões de nomenclatura e
+versionamento, permitindo identificar rapidamente o contexto de cada alteração.
+Com isso, foi possível manter um fluxo de trabalho mais previsível, facilitar a
+resolução de inconsistências e apoiar a continuidade do projeto por diferentes
+integrantes da equipe.
 
 \subsection{Banco de Dados Utilizado}
-  O banco de dados escolhido foi o PostgreSQL, um banco de dados da categoria
-relacional, tendo em vista a facilidade e robustez que este tipo de banco oferece, ainda
-mais levando em conta que o esquema a ser implementado teria diversas entidades,
-tabelas e relações.
-Além disso foi usado um mapeador, chamado TypeORM para facilitar a
-implementação das funções do banco de dados.
+    Para o projeto Decola, foi adotado o PostgreSQL como \ac{sgbd} relacional,
+considerando sua robustez, estabilidade e bom suporte a consultas envolvendo
+múltiplos relacionamentos. Como camada de acesso a dados, utilizou-se o TypeORM,
+que permitiu mapear entidades da aplicação para tabelas relacionais e padronizar
+operações de criação, consulta e atualização no back-end.
 
-https://tools.ages.pucrs.br/plataforma-onboarding-para-novos-colaboradores/decola-wiki/-/wikis/database
+    A modelagem foi estruturada para representar os principais domínios da
+plataforma de onboarding: contas e usuários, organização de conteúdo formativo e
+acompanhamento de progresso. Nesse contexto, a base contempla entidades como
+Account, User e Area, além do núcleo educacional formado por Course, Module,
+Activity, Quiz, Question e Alternative. Essa organização tornou possível manter uma
+separação clara entre dados cadastrais, conteúdo pedagógico e dados de execução
+das atividades.
+
+    Também foram definidas tabelas de associação para suportar relacionamentos e
+controle de evolução do usuário, como UserCourse, UserModule e
+UserModuleActivity, bem como estruturas de composição e ordenação de conteúdo,
+como AreaCourse e ModuleActivity. Com isso, o sistema passou a registrar quais
+cursos, módulos e atividades foram concluídos, permitindo monitoramento contínuo
+do progresso dos colaboradores e maior visibilidade para administradores e equipes
+de \ac{rh}.
+
+    Por fim, a presença de tipos enumerados para papéis de usuário, tipo de conta,
+grupo de curso e tipo de atividade reforçou as regras de negócio no nível de dados,
+reduzindo inconsistências e facilitando a evolução do esquema ao longo das sprints.
+
+\urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novos-colaboradores/decola-wiki/-/wikis/database}
   \begin{figure}[H]
     \centering
     \small
@@ -68,7 +112,7 @@ anteriores.
         \label{fig:jwt-decola}
 \end{figure}
 
-https://tools.ages.pucrs.br/plataforma-onboarding-para-novos-colaboradores/decola-wiki/-/wikis/arquitetura
+\urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novos-colaboradores/decola-wiki/-/wikis/arquitetura}
 
 \subsection{Protótipos das Telas Desenvolvidas}
     Foram desenvolvidas cerca de 20 telas diferentes, todas passando pelo
@@ -94,15 +138,6 @@ https://tools.ages.pucrs.br/plataforma-onboarding-para-novos-colaboradores/decol
         \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-login.png}
         Fonte: Wiki do Projeto
         \label{fig:login-mockup-decola}
-\end{figure}
-
-    \begin{figure}[H]
-        \centering
-        \small
-        \caption{Mockup Tela Inicial do RH - Decola}
-        \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-rh-inicial.png}
-        Fonte: Wiki do Projeto
-        \label{fig:rh-inicial-mockup-decola}
 \end{figure}
 
     \begin{figure}[H]
@@ -272,6 +307,6 @@ em nada do \ac{css}, já que após compilado vira \ac{css}, ainda assim facilita
 iniciantes com sintaxes mais simples.
 
   Já na parte do back-end foi utilizado o framework NestJS com a linguagem
-TypeScript, para a criação de uma \ac{rest} API. Além disso, como tecnologia de
+TypeScript, para a criação de uma \ac{rest} \ac{api}. Além disso, como tecnologia de
 mapeamento relacional foi usado o TypeORM, responsável por facilitar a
 comunicação entre back-end e banco de dados.
