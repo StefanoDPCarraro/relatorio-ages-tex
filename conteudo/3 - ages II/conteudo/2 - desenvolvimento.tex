@@ -58,11 +58,49 @@ dois.
 
 \clearpage
 \subsection{Arquitetura Utilizada}
-  Deverão ser apresentados os links da Wiki, com uma breve descrição.
+  Como mostrado na imagem abaixo, o fluxo de informações no aplicativo
+começa pela parte do usuário, que interage com o front-end, ele por sua vez
+transforma esta interação em uma requisição HTTP que é enviada para o back-end,
+responsável por tratar o request e transformar em uma query de SQL com ajuda do
+SQLAlchemy, chegando, portanto, no banco de dados. A partir disso é percorrido o
+caminho reverso, com o banco retornando o resultado de uma query ao back-end,
+que transforma esta query em um payload JSON, recebido pelo front-end e
+finalmente atualizando a interface do usuário.
+
+  A ideia da implementação de tal arquitetura, tem como intuito uma separação
+nítida das responsabilidades que cada parte do sistema desempenhará, deixando ao
+Angular no front-end a responsabilidade visual, ao FastAPI no backend restrições de
+negócios e processamento de dados e finalmente ao PostgreSQL no banco de
+dados a persistência dos mesmos.
+
+  \begin{figure}[H]
+    \centering
+    \small
+    \caption{Diagrama de Sistema - Industria Digital}
+    \includegraphics[width=1\linewidth]{conteudo//3 - ages II//conteudo//figures/industria-digital-sys-diagram.png}
+    Fonte: Wiki do Projeto
+    \label{fig:system-diagram-industria-digital}
+\end{figure}
 
 \clearpage
 \subsection{Protótipos das Telas Desenvolvidas}
-  Deverão ser apresentados os links da Wiki, com uma breve descrição.
+  Foi feito um protótipo no Figma para definir o design das telas a serem
+desenvolvidas, nele houve 3 versões diferentes, apresentadas ao cliente e por fim
+atualizadas conforme o feedback.
+
+  O desenvolvimento dos protótipos começou pela definição de uma identidade
+visual para o projeto. Devido à existência de uma identidade visual no logo de
+nossos stakeholder, decidimos manter as cores lá presentes, complementando com
+uma variação mais leve de azul.
+
+  \begin{figure}[H]
+    \centering
+    \small
+    \caption{Diagrama de Sistema - Industria Digital}
+    \includegraphics[width=1\linewidth]{conteudo//3 - ages II//conteudo//figures/mockup-industria-digital-identity.png}
+    Fonte: Wiki do Projeto
+    \label{fig:system-diagram-industria-digital}
+\end{figure}
 
 \clearpage
 \subsection{Tecnologias Utilizadas}
