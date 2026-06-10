@@ -6,15 +6,16 @@
 determinado um padrão de commit estruturado da seguinte maneira, tipo(id user
 story): descrição, sendo que a mensagem pode conter no máximo 75 caracteres
 para incentivar resumos. O padrão adotado, segue o do Conventional Commits que
-busca padronizar e manter relevantes como histórico os commits de um repositório.
+busca padronizar e manter relevantes como histórico os commits de um repositório
+\cite{conventionalcommits}.
 Já as branches seguem um padrão inspirado no GitFlow, aprendido na aula
 de Gerenciamento e Configuração de Software, estruturados ao redor das branches
 main e develop, com cada branch nova seguindo a estrutura tipo/id-task/nome,
-garantindo melhor organização na parte do versionamento.
+garantindo melhor organização na parte do versionamento \cite{atlassian-gitflow}.
 Além disso é notório o uso de Linters, para forçar que a equipe siga estes
 padrões, tanto na parte das branches quanto dos commits.
 
-Repositório Back-end (API e regras de negócio):
+Repositório Back-end (\ac{api} e regras de negócio):
 
 \urlref{https://tools.ages.pucrs.br/industria-digital/industria-digital-backend}
 
@@ -29,7 +30,7 @@ convencionalidade de iniciar o projeto a partir de um banco de dados relacional 
 existente da receita, o time optou de primeira mão por continuar no caminho dos
 bancos de dados relacionais.
 
-Dentre eles o PostgreSQL foi a nossa escolha, sendo influenciada por fatores
+Dentre eles o PostgreSQL foi a nossa escolha \cite{postgresql-docs}, sendo influenciada por fatores
 como, domínio do mercado, facilidade de escrita e similaridade com as sintaxes
 aprendidas nas matérias de Banco de Dados. Além disso a robustez e capacidade
 de lidar com volumes imensos de dados, são características essenciais para nosso
@@ -48,7 +49,7 @@ projeto, disponibilizadas pelo PostgreSQL.
 parte com apenas parcela do banco de dados da receita, portanto foi fundamental
 que a equipe deixasse salvo todo script rodado que modifica o banco de dados, já
 que eles precisavam ser rodados novamente a cada troca de banco. Exemplos de
-modificações que viraram scripts são, conversões de tipo, como cnpj e id que foram
+modificações que viraram scripts são, conversões de tipo, como \ac{cnpj} e id que foram
 passados de número para string, criação de campos novos, como uma chave
 primária estabelecimento\_id, para substituir a chave composta que antes era
 utilizada e remoção de campos irrelevantes para o projeto, como fax e ente
@@ -56,7 +57,7 @@ federativo responsável, para deixar o banco mais leve. Além disso colocamos uf
 como um atributo da tabela municípios para facilitar a busca.
 
 Além disso para conversa do back-end com o banco de dados, estamos
-utilizando o ORM, SQLAlchemy, responsável por facilitar a comunicação entre os
+utilizando o \ac{orm} SQLAlchemy \cite{sqlalchemy-docs}, responsável por facilitar a comunicação entre os
 dois.
 
 \urlref{https://tools.ages.pucrs.br/industria-digital/wiki/-/wikis/Banco\%20de\%20dados}
@@ -65,16 +66,17 @@ dois.
 \subsection{Arquitetura Utilizada}
   Como mostrado na imagem abaixo, o fluxo de informações no aplicativo
 começa pela parte do usuário, que interage com o front-end, ele por sua vez
-transforma esta interação em uma requisição HTTP que é enviada para o back-end,
+transforma esta interação em uma requisição \ac{http} que é enviada para o back-end,
 responsável por tratar o request e transformar em uma query de SQL com ajuda do
 SQLAlchemy, chegando, portanto, no banco de dados. A partir disso é percorrido o
 caminho reverso, com o banco retornando o resultado de uma query ao back-end,
-que transforma esta query em um payload JSON, recebido pelo front-end e
+que transforma esta query em um payload \ac{json}, recebido pelo front-end e
 finalmente atualizando a interface do usuário.
 
   A ideia da implementação de tal arquitetura, tem como intuito uma separação
 nítida das responsabilidades que cada parte do sistema desempenhará, deixando ao
-Angular no front-end a responsabilidade visual, ao FastAPI no backend restrições de
+Angular \cite{angular-docs} no front-end a responsabilidade visual, ao FastAPI
+\cite{fastapi-docs} no backend restrições de
 negócios e processamento de dados e finalmente ao PostgreSQL no banco de
 dados a persistência dos mesmos.
 
@@ -89,7 +91,7 @@ dados a persistência dos mesmos.
 
 \clearpage
 \subsection{Protótipos das Telas Desenvolvidas}
-  Foi feito um protótipo no Figma para definir o design das telas a serem
+  Foi feito um protótipo no Figma \cite{figma-help} para definir o design das telas a serem
 desenvolvidas, nele houve 3 versões diferentes, apresentadas ao cliente e por fim
 atualizadas conforme o feedback.
 
@@ -170,15 +172,15 @@ ficam carregados.
 \subsection{Tecnologias Utilizadas}
   
   Era especificação do termo de abertura de projeto que o cliente gostaria que
-fosse usada a linguagem Python para o desenvolvimento do back-end do projeto,
-mais especificamente Django, ainda assim, após votação e pesquisa feitas em sala
+fosse usada a linguagem Python \cite{python-docs} para o desenvolvimento do back-end do projeto,
+mais especificamente Django \cite{django-docs}, ainda assim, após votação e pesquisa feitas em sala
 de aula, decidimos que gostaríamos de usar Python, no entanto com uso da
 FastAPI, visto aspectos como simplicidade, modernidade e principalmente
 performance disponibilizados pelo framework. Sendo assim conversamos com o
 cliente e ele permitiu o uso da tecnologia, principalmente visto ao consenso e
 convicção que o time tinha quanto à importância do FastAPI.
 
-Além disso, para realizar queries, adicionamos o ORM SQLAlchemy,
+Além disso, para realizar queries, adicionamos o \ac{orm} SQLAlchemy,
 responsável por facilitar o processo de comunicação entre banco e back-end, visto à
 compatibilidade que ele tem com PostgreSQL e Python.
 
@@ -191,5 +193,5 @@ em um aprendizado gigantesco por parte dos que não sabiam, combinado com um
 conforto de saber que em momentos de pânicos temos desenvolvedores com
 conhecimento bastante para resolver.
 
-Por fim, junto com o Angular, utilizamos TypeScript para lógica, Html puro
-para linguagem de marcação e Css puro para a estilização da página.
+Por fim, junto com o Angular, utilizamos TypeScript \cite{typescript-docs} para lógica, \ac{html} puro
+para linguagem de marcação e \ac{css} puro para a estilização da página.
