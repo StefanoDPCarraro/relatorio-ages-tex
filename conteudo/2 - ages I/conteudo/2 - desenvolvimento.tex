@@ -15,7 +15,7 @@ Repositório Front-end (interface web):
 
 \urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novoscolaboradores/decola-frontend}
 
-Repositório Back-end (API e regras de negócio):
+Repositório Back-end (\ac{api} e regras de negócio):
 
 \urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novoscolaboradores/decola-api}
 
@@ -44,9 +44,10 @@ integrantes da equipe.
 
 \clearpage
 \subsection{Banco de Dados Utilizado}
-    Para o projeto Decola, foi adotado o PostgreSQL como \ac{sgbd} relacional,
+    Para o projeto Decola, foi adotado o PostgreSQL \cite{postgresql-docs} como \ac{sgbd} relacional,
 considerando sua robustez, estabilidade e bom suporte a consultas envolvendo
-múltiplos relacionamentos. Como camada de acesso a dados, utilizou-se o TypeORM,
+múltiplos relacionamentos. Como camada de acesso a dados, utilizou-se o TypeORM
+\cite{typeorm-docs},
 que permitiu mapear entidades da aplicação para tabelas relacionais e padronizar
 operações de criação, consulta e atualização no back-end.
 
@@ -82,11 +83,12 @@ reduzindo inconsistências e facilitando a evolução do esquema ao longo das sp
 
 \clearpage
 \subsection{Arquitetura Utilizada}
-  O modelo de arquitetura escolhido foi o \ac{mvc}, onde o usuário interage com a
+  O modelo de arquitetura escolhido foi o \ac{mvc} \cite{mdn-mvc}, onde o usuário interage com a
 parte de view, o banco de dados interage com o model e o controller integra as duas
 anteriores.
 
-    Também faz parte da arquitetura o uso do padrão aberto de segurança \ac{jwt}, que provê mais segurança para aplicativos e sistemas, através de sistemas de autenticação e autorização, garantindo que apenas usuários autorizados acessem o site.
+    Também faz parte da arquitetura o uso do padrão aberto de segurança \ac{jwt}
+    \cite{jwt-rfc}, que provê mais segurança para aplicativos e sistemas, através de sistemas de autenticação e autorização, garantindo que apenas usuários autorizados acessem o site.
 
     \begin{figure}[H]
         \centering
@@ -120,7 +122,7 @@ anteriores.
 \clearpage
 \subsection{Protótipos das Telas Desenvolvidas}
     Foram desenvolvidas cerca de 20 telas diferentes, todas passando pelo
-    processo de prototipação no Figma e com diferentes versões, incluindo protótipos de
+    processo de prototipação no Figma \cite{figma-help} e com diferentes versões, incluindo protótipos de
     baixa, média e alta fidelidade, além disso foi utilizada componentização no Figma,
     além de padrões de fontes, variáveis de cores e outros recursos. Seguem abaixo os
     protótipos de alta fidelidade.
@@ -273,18 +275,18 @@ anteriores.
 
 \clearpage
 \subsection{Tecnologias Utilizadas}
-  Na parte do front-end foi utilizado TypeScript devido à organização e robustez
+  Na parte do front-end foi utilizado TypeScript \cite{typescript-docs} devido à organização e robustez
 que a linguagem oferece em relação ao concorrente JavaScript, como biblioteca foi
-utilizado o React, para poder tirar um ótimo proveito dos ganchos que ela proporciona,
+utilizado o React \cite{react-docs}, para poder tirar um ótimo proveito dos ganchos que ela proporciona,
 além disso a organização de código \ac{html} e TypeScript na mesma página facilita a
 compreensão de iniciantes no desenvolvimento web.
 
-  Já para estilização foi utilizado o Sass, uma extensão de \ac{css} que simplifica operações lógicas, como criação de
+  Já para estilização foi utilizado o Sass \cite{sass-docs}, uma extensão de \ac{css} que simplifica operações lógicas, como criação de
 variáveis, aninhamento hierárquico de código, do ponto de vista técnico ele não difere
 em nada do \ac{css}, já que após compilado vira \ac{css}, ainda assim facilita muito a vida de
 iniciantes com sintaxes mais simples.
 
-  Já na parte do back-end foi utilizado o framework NestJS com a linguagem
+  Já na parte do back-end foi utilizado o framework NestJS \cite{nestjs-docs} com a linguagem
 TypeScript, para a criação de uma \ac{rest} \ac{api}. Além disso, como tecnologia de
-mapeamento relacional foi usado o TypeORM, responsável por facilitar a
+mapeamento relacional foi usado o TypeORM \cite{typeorm-docs}, responsável por facilitar a
 comunicação entre back-end e banco de dados.
