@@ -36,8 +36,8 @@ Repositório \textit{Front-end} (aplicativo móvel):
 \clearpage
 \subsection{Banco de Dados Utilizado}
   Quanto ao banco de dados, ficamos em dúvida entre o relacional e o não-
-relacional, a princípio a escolha do relacional conversava muito bem com o escopo
-definido que planejávamos ter, no entanto, utilizando Python e até considerando
+relacional. A princípio, a escolha do relacional conversava muito bem com o escopo
+definido que planejávamos ter; no entanto, utilizando Python e até considerando
 utilizar serviços do Firebase, ficamos muito inclinados no começo a utilizar um banco
 de dados não-relacional, seja ele um MongoDB pela fácil integração com Python ou
 o Cloud Firestore do Firebase pela facilidade da nuvem e pelo atrito inicial reduzido
@@ -45,9 +45,9 @@ pelo fato do time já ter criado uma conta do Firebase.
 
   Ainda assim, pela naturalidade dos tipos de dados que tínhamos e pela
 forma como planejamos trabalhar com um escopo definido e relações bem
-claras entre entidades, decidimos por utilizar um banco relacional. A partir disto
+claras entre entidades, decidimos utilizar um banco relacional. A partir disto,
 tínhamos que decidir entre as opções disponíveis no mercado. A primeira ideia é
-sempre o PostgreSQL, visto a modernidade e ascensão recente do banco, devido ao
+sempre o PostgreSQL, visto a modernidade e a ascensão recente do banco, devido ao
 suporte a \ac{json} e outras \textit{features} avançadas. O domínio do PostgreSQL também
 pode ser visto nas pesquisas de desenvolvedores do StackOverflow de 2025, onde
 por mais um ano, continua na liderança em adesão geral e principalmente em
@@ -58,7 +58,7 @@ adesão por profissionais.
 encontramos motivos mais válidos ainda para consolidar nossa escolha. Elencamos
 como um bônus um banco que pudesse trabalhar de maneira performática com
 geolocalização, visto que essa parece ser uma das prioridades dos \textit{stakeholders}
-para quando o desenvolvimento passar para eles. Sendo assim achamos uma
+para quando o desenvolvimento passar para eles. Sendo assim, achamos uma
 extensão de Postgres, chamada PostGIS, voltada a recursos de \ac{gis}, que permite o uso de campos de latitude e
 longitude que se comportam de forma otimizada, permitindo essa fácil migração no
 caso da necessidade de melhorar a performance no futuro.
@@ -72,9 +72,9 @@ caso da necessidade de melhorar a performance no futuro.
     \label{fig:vango-database}
 \end{figure}
 
-  Na modelagem destaca-se a presença de rastreabilidade em quase todas as
+  Na modelagem, destaca-se a presença de rastreabilidade em quase todas as
 tabelas, com a presença dos campos \texttt{created\_at} e \texttt{updated\_at}, na maioria das
-entidades que permitem criação e edição por parte do usuário. Além disso campos
+entidades que permitem criação e edição por parte do usuário. Além disso, campos
 interessantes são o de \texttt{photo\_url} que é usado para sincronizar com o \textit{bucket} que
 guarda os \textit{uploads} e o \texttt{password\_hash} que possui um nome bem descritivo,
 ressaltando o uso da biblioteca bcrypt na criptografia da senha do usuário.
@@ -106,14 +106,14 @@ dependências, o método mais adequado é o uso da classe \texttt{UserDependenci
     \label{fig:vango-backend-architecture}
 \end{figure}
 
-  Já no \textit{Front-end} conseguimos ver uma separação de camadas, que isola em
+  Já no \textit{Front-end}, conseguimos ver uma separação de camadas, que isola em
 arquivos diferentes \textit{Layout}, \textit{Hooks}, \textit{Services} e \ac{api}. Esse isolamento permite uma
 arquitetura híbrida, onde \textit{Services} e \ac{api} falam a mesma linguagem do \textit{Back-end},
 agindo de maneira orientada a domínio, enquanto \textit{Layout} e \textit{Hooks} conversam de
 maneira orientada aos casos de uso da aplicação do \textit{Front-end}. Sendo assim, a
 tradução ocorre entre as camadas de \textit{Hooks} e \textit{Services}.
 
-  Podemos observar na imagem abaixo a retratação de uma \textit{feature} simples do
+  Podemos observar na imagem abaixo a representação de uma \textit{feature} simples do
 \textit{Front-end}, a de criar dependente. Vale notar o modo como a arquitetura integra
 ferramentas como TanStack, zod e react-hook-form com a arquitetura base para
 garantir maior confiabilidade, validação e principalmente o uso devido da \textit{cache},
@@ -140,7 +140,7 @@ com a vontade de aprender dos mais novatos para entregar diversas telas
 padronizadas, seguindo um \textit{Design System} customizado e muito bem escolhido.
 
   Escolhemos o uso da cor amarela e especificamente nesta tonalidade a
-pedido dos \textit{stakeholders} que especificaram o desejo de adotar na identidade visual a
+pedido dos \textit{stakeholders}, que especificaram o desejo de adotar na identidade visual a
 cor amarela na tonalidade presente nas vans escolares. Junto a isso, trouxemos a
 cor azul escura como um complementar à cor amarela escolhida e o branco para
 uma tonalidade mais neutra e limpa, além de algumas outras cores complementares,
@@ -209,16 +209,16 @@ seleção de quem participará do trajeto e pelo preenchimento do endereço da p
 \subsection{Tecnologias Utilizadas}
   
   Após realizarmos uma pesquisa com os novatos, principalmente para definir
-linguagem de \textit{Back-end} com que eles tinham familiaridade, o Python surgiu como um forte
-candidato, perdendo apenas para o Java devido ao posterior ser ensinado por
+uma linguagem de \textit{Back-end} com que eles tinham familiaridade, o Python surgiu como um forte
+candidato, perdendo apenas para o Java, devido ao fato de este ser ensinado por
 padrão no currículo atual da \ac{pucrs}. Ainda assim, visando integrações mais
-complexas que desejávamos fazer a escolha de Python parecia óbvia e se fez mais
+complexas que desejávamos fazer, a escolha de Python parecia óbvia e se fez mais
 ainda a partir do momento que validamos o uso da linguagem com o \textit{stakeholder}.
 
   Quanto ao \textit{framework}, tínhamos uma escolha entre Django, Flask e FastAPI,
-na qual a maioria dominava melhor o FastAPI e apesar da minha insatisfação parcial
+na qual a maioria dominava melhor o FastAPI e, apesar da minha insatisfação parcial
 com a tecnologia, visto que minha última experiência com o FastAPI que foi a \ac{ages}
-2 deixou um pouco a desejar, fui voto vencido e portanto tive que seguir no FastAPI,
+2 deixou um pouco a desejar, fui voto vencido e, portanto, tive que seguir no FastAPI,
 até pensando em um senso de coletividade e trabalho em equipe creio que foi a
 melhor decisão mesmo.
 
@@ -227,7 +227,7 @@ de \textit{migrations}, para as quais fizemos uma boa pesquisa. No que diz respe
 \ac{orm}, escolhemos o SQLAlchemy, mesmo tendo uma experiência negativa com ele
 em meu projeto passado, resolvi dar uma nova chance, tendo em vista que a
 tecnologia deve estar mais madura atualmente, tendo em vista que o mesmo lançou
-muito perto da data daquela \ac{ages} e portanto ainda faltavam \textit{features} e a
+muito perto da data daquela \ac{ages} e, portanto, ainda faltavam \textit{features} e a
 documentação ainda pecava um pouco.
 
   Já para \textit{migrations}, o Alembic se mostrou uma das melhores opções,
