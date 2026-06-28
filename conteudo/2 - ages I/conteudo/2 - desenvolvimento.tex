@@ -92,9 +92,10 @@ claras.
     Também faz parte da arquitetura o uso do padrão aberto de segurança \ac{jwt}
     \cite{jwt-rfc}, que provê mais segurança para aplicativos e sistemas, por meio de sistemas de autenticação e autorização, garantindo que apenas usuários autorizados acessem o site.
 
-    A seguir são apresentadas as principais representações arquiteturais usadas no
-    projeto: a separação geral em \ac{mvc}, a organização do \textit{front-end} e o fluxo de
-    autenticação com \ac{jwt}.
+    A primeira representação arquitetural, apresentada na Figura \ref{fig:mvc-decola},
+    mostra a separação geral do sistema em \ac{mvc}. Ela foi útil para visualizar como
+    as responsabilidades do projeto ficavam distribuídas entre interface, controle da
+    aplicação e acesso aos dados.
 
     \begin{figure}[H]
         \centering
@@ -105,6 +106,11 @@ claras.
         \label{fig:mvc-decola}
 \end{figure}
 
+    A Figura \ref{fig:arch-front-decola} detalha a organização do \textit{front-end},
+    evidenciando a divisão entre páginas, componentes, serviços e demais partes
+    responsáveis pela comunicação e pela apresentação da interface. Essa estrutura
+    ajudou a manter o código visual mais organizado e facilitou a evolução das telas.
+
     \begin{figure}[H]
         \centering
         \small
@@ -113,6 +119,11 @@ claras.
         Fonte: Wiki do Projeto
         \label{fig:arch-front-decola}
 \end{figure}
+
+    Por fim, a Figura \ref{fig:jwt-decola} apresenta o fluxo de autenticação com
+    \ac{jwt}, demonstrando como o usuário autenticado recebe um \textit{token} e o utiliza
+    nas requisições seguintes. Essa representação complementa a arquitetura ao mostrar
+    como o controle de acesso foi pensado no sistema.
 
     \begin{figure}[H]
         \centering
