@@ -85,16 +85,22 @@ reduzindo inconsistências e facilitando a evolução do esquema ao longo das \t
 \subsection{Arquitetura Utilizada}
   O modelo de arquitetura escolhido foi o \ac{mvc} \cite{mdn-mvc}, em que o usuário interage com a
 parte de \textit{view}, o banco de dados interage com o \textit{model} e o \textit{controller} integra as duas
-anteriores.
+anteriores. Essa separação ajudou a organizar as responsabilidades do sistema,
+mantendo a interface, as regras de negócio e o acesso aos dados em camadas mais
+claras.
 
     Também faz parte da arquitetura o uso do padrão aberto de segurança \ac{jwt}
     \cite{jwt-rfc}, que provê mais segurança para aplicativos e sistemas, por meio de sistemas de autenticação e autorização, garantindo que apenas usuários autorizados acessem o site.
+
+    A seguir são apresentadas as principais representações arquiteturais usadas no
+    projeto: a separação geral em \ac{mvc}, a organização do \textit{front-end} e o fluxo de
+    autenticação com \ac{jwt}.
 
     \begin{figure}[H]
         \centering
         \small
         \caption{Representação MVC - Decola}
-        \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/decola-mvc.jpg}
+        \includegraphics[width=0.92\linewidth]{conteudo//2 - ages I//conteudo//figures/decola-mvc.jpg}
         Fonte: Wiki do Projeto
         \label{fig:mvc-decola}
 \end{figure}
@@ -103,7 +109,7 @@ anteriores.
         \centering
         \small
         \caption{Arquitetura \textit{Front-end} - Decola}
-        \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/decola-front-arch.png}
+        \includegraphics[width=0.82\linewidth]{conteudo//2 - ages I//conteudo//figures/decola-front-arch.png}
         Fonte: Wiki do Projeto
         \label{fig:arch-front-decola}
 \end{figure}
@@ -112,7 +118,7 @@ anteriores.
         \centering
         \small
         \caption{Fluxo de autenticação com JWT - Decola}
-        \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/decola-jwt-auth.png}
+        \includegraphics[width=0.86\linewidth]{conteudo//2 - ages I//conteudo//figures/decola-jwt-auth.png}
         Fonte: Wiki do Projeto
         \label{fig:jwt-decola}
 \end{figure}
@@ -124,8 +130,8 @@ anteriores.
     Foram desenvolvidas cerca de 20 telas diferentes, todas passando pelo
     processo de prototipação no Figma \cite{figma-help} e com diferentes versões, incluindo protótipos de
     baixa, média e alta fidelidade. Além disso, foi utilizada componentização no Figma,
-    além de padrões de fontes, variáveis de cores e outros recursos. Seguem abaixo os
-    protótipos de alta fidelidade.
+    além de padrões de fontes, variáveis de cores e outros recursos. A seguir são
+    apresentados alguns protótipos representativos de alta fidelidade.
 
     A tela de \textit{login} foi projetada para simplificar o primeiro contato do colaborador com
     a plataforma, com foco em clareza visual e baixo atrito de acesso. O layout separa
@@ -137,7 +143,7 @@ anteriores.
         \centering
         \small
         \caption{Mockup Login - Decola}
-        \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-login.png}
+        \includegraphics[width=0.92\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-login.png}
         Fonte: Wiki do Projeto
         \label{fig:login-mockup-decola}
 \end{figure}
@@ -152,7 +158,7 @@ anteriores.
         \centering
         \small
         \caption{Mockup Tela Dashboard do Administrador - Decola}
-        \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-admin-dashboard.png}
+        \includegraphics[width=0.78\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-admin-dashboard.png}
         Fonte: Wiki do Projeto
         \label{fig:admin-dashboard-mockup-decola}
 \end{figure}
@@ -167,7 +173,7 @@ anteriores.
         \centering
         \small
         \caption{Mockup Tela de Áreas do RH - Decola}
-        \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-rh-areas.png}
+        \includegraphics[width=0.9\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-rh-areas.png}
         Fonte: Wiki do Projeto
         \label{fig:rh-areas-mockup-decola}
 \end{figure}
@@ -182,7 +188,7 @@ anteriores.
         \centering
         \small
         \caption{Mockup Tela de Módulos do RH - Decola}
-        \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-rh-modulos.png}
+        \includegraphics[width=0.9\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-rh-modulos.png}
         Fonte: Wiki do Projeto
         \label{fig:rh-modulos-mockup-decola}
 \end{figure}
@@ -197,7 +203,7 @@ anteriores.
         \centering
         \small
         \caption{Mockup Perguntas de Múltipla Escolha do RH - Decola}
-        \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-rh-single-choice.png}
+        \includegraphics[width=0.9\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-rh-single-choice.png}
         Fonte: Wiki do Projeto
         \label{fig:rh-single-choice-mockup-decola}
 \end{figure}
@@ -212,7 +218,7 @@ anteriores.
         \centering
         \small
         \caption{Mockup Perguntas de Checkbox do RH - Decola}
-        \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-rh-checkbox.png}
+        \includegraphics[width=0.9\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-rh-checkbox.png}
         Fonte: Wiki do Projeto
         \label{fig:rh-checkbox-mockup-decola}
 \end{figure}
@@ -227,7 +233,7 @@ anteriores.
         \centering
         \small
         \caption{Mockup Página de Cursos do Colaborador - Decola}
-        \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-colab-cursos.png}
+        \includegraphics[width=0.9\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-colab-cursos.png}
         Fonte: Wiki do Projeto
         \label{fig:colab-cursos-mockup-decola}
 \end{figure}
@@ -242,7 +248,7 @@ anteriores.
         \centering
         \small
         \caption{Mockup Página de Conteúdo Externo do Colaborador - Decola}
-        \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-colab-external-content.png}
+        \includegraphics[width=0.9\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-colab-external-content.png}
         Fonte: Wiki do Projeto
         \label{fig:colab-external-content-mockup-decola}
 \end{figure}
@@ -257,7 +263,7 @@ anteriores.
         \centering
         \small
         \caption{Mockup Modal de Criação de Conta - Decola}
-        \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-popup-create-account.png}
+        \includegraphics[width=0.78\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-popup-create-account.png}
         Fonte: Wiki do Projeto
         \label{fig:popup-create-account-mockup-decola}
 \end{figure}
@@ -268,7 +274,7 @@ anteriores.
         \centering
         \small
         \caption{Estilização - Decola}
-        \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/styling-decola.png}
+        \includegraphics[width=0.92\linewidth]{conteudo//2 - ages I//conteudo//figures/styling-decola.png}
         Fonte: Wiki do Projeto
         \label{fig:styling-decola}
 \end{figure}
