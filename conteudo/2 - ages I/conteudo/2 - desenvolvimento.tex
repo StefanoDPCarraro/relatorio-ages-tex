@@ -3,7 +3,7 @@
 
 \subsection{Repositório do Código Fonte do Projeto}
     O código-fonte de minha AGES I foi organizado no grupo do projeto na plataforma AGES,
-com separação entre os repositórios de front-end e back-end. Essa divisão
+com separação entre os repositórios de \textit{front-end} e \textit{back-end}. Essa divisão
 facilitou a manutenção, a evolução paralela das funcionalidades e a definição de
 responsabilidades técnicas ao longo do semestre.
 
@@ -11,27 +11,27 @@ Plataforma do projeto:
 
 \urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novos-colaboradores}
 
-Repositório Front-end (interface web):
+Repositório \textit{front-end} (interface \textit{web}):
 
 \urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novoscolaboradores/decola-frontend}
 
-Repositório Back-end (\ac{api} e regras de negócio):
+Repositório \textit{back-end} (\ac{api} e regras de negócio):
 
 \urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novoscolaboradores/decola-api}
 
-Durante o desenvolvimento, foram adotados scripts de lint para manter a
-padronização do código e convenções de commits para rastreabilidade das entregas
+Durante o desenvolvimento, foram adotados \textit{scripts} de \textit{lint} para manter a
+padronização do código e convenções de \textit{commits} para rastreabilidade das entregas
 em cada repositório.
 
 Além da separação por responsabilidade técnica, a organização dos repositórios
 também contribuiu para a clareza do processo de desenvolvimento. As demandas
 funcionais puderam ser implementadas de forma incremental, com histórico de
 alterações associado a cada entrega e maior facilidade para revisar evoluções do
-produto ao longo das sprints.
+produto ao longo das \textit{sprints}.
 
-No repositório de front-end, foram concentradas as implementações relacionadas à
+No repositório de \textit{front-end}, foram concentradas as implementações relacionadas à
 experiência do usuário, componentes de interface e integração com os serviços da
-\ac{api}. Já no repositório de back-end, ficaram centralizadas as regras de negócio,
+\ac{api}. Já no repositório de \textit{back-end}, ficaram centralizadas as regras de negócio,
 estratégias de autenticação, validações e comunicação com a base de dados. Essa
 distribuição favoreceu a modularidade do projeto e reduziu o acoplamento entre as
 camadas da aplicação.
@@ -49,10 +49,10 @@ considerando sua robustez, estabilidade e bom suporte a consultas envolvendo
 múltiplos relacionamentos. Como camada de acesso a dados, utilizou-se o TypeORM
 \cite{typeorm-docs},
 que permitiu mapear entidades da aplicação para tabelas relacionais e padronizar
-operações de criação, consulta e atualização no back-end.
+operações de criação, consulta e atualização no \textit{back-end}.
 
     A modelagem foi estruturada para representar os principais domínios da
-plataforma de onboarding: contas e usuários, organização de conteúdo formativo e
+plataforma de \textit{onboarding}: contas e usuários, organização de conteúdo formativo e
 acompanhamento de progresso. Nesse contexto, a base contempla entidades como
 Account, User e Area, além do núcleo educacional formado por Course, Module,
 Activity, Quiz, Question e Alternative. Essa organização tornou possível manter uma
@@ -69,7 +69,7 @@ de \ac{rh}.
 
     Por fim, a presença de tipos enumerados para papéis de usuário, tipo de conta,
 grupo de curso e tipo de atividade reforçou as regras de negócio no nível de dados,
-reduzindo inconsistências e facilitando a evolução do esquema ao longo das sprints.
+reduzindo inconsistências e facilitando a evolução do esquema ao longo das \textit{sprints}.
 
 \urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novos-colaboradores/decola-wiki/-/wikis/database}
   \begin{figure}[H]
@@ -83,12 +83,12 @@ reduzindo inconsistências e facilitando a evolução do esquema ao longo das sp
 
 \clearpage
 \subsection{Arquitetura Utilizada}
-  O modelo de arquitetura escolhido foi o \ac{mvc} \cite{mdn-mvc}, onde o usuário interage com a
-parte de view, o banco de dados interage com o model e o controller integra as duas
+  O modelo de arquitetura escolhido foi o \ac{mvc} \cite{mdn-mvc}, em que o usuário interage com a
+parte de \textit{view}, o banco de dados interage com o \textit{model} e o \textit{controller} integra as duas
 anteriores.
 
     Também faz parte da arquitetura o uso do padrão aberto de segurança \ac{jwt}
-    \cite{jwt-rfc}, que provê mais segurança para aplicativos e sistemas, através de sistemas de autenticação e autorização, garantindo que apenas usuários autorizados acessem o site.
+    \cite{jwt-rfc}, que provê mais segurança para aplicativos e sistemas, por meio de sistemas de autenticação e autorização, garantindo que apenas usuários autorizados acessem o site.
 
     \begin{figure}[H]
         \centering
@@ -102,7 +102,7 @@ anteriores.
     \begin{figure}[H]
         \centering
         \small
-        \caption{Arquitetura Frontend - Decola}
+        \caption{Arquitetura \textit{Front-end} - Decola}
         \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/decola-front-arch.png}
         Fonte: Wiki do Projeto
         \label{fig:arch-front-decola}
@@ -123,14 +123,14 @@ anteriores.
 \subsection{Protótipos das Telas Desenvolvidas}
     Foram desenvolvidas cerca de 20 telas diferentes, todas passando pelo
     processo de prototipação no Figma \cite{figma-help} e com diferentes versões, incluindo protótipos de
-    baixa, média e alta fidelidade, além disso foi utilizada componentização no Figma,
+    baixa, média e alta fidelidade. Além disso, foi utilizada componentização no Figma,
     além de padrões de fontes, variáveis de cores e outros recursos. Seguem abaixo os
     protótipos de alta fidelidade.
 
-    A tela de login foi projetada para simplificar o primeiro contato do colaborador com
+    A tela de \textit{login} foi projetada para simplificar o primeiro contato do colaborador com
     a plataforma, com foco em clareza visual e baixo atrito de acesso. O layout separa
     a área ilustrativa da área de autenticação, destacando os campos essenciais e a ação
-    principal de entrada. Também foram previstos ícones de apoio e feedback visual para
+    principal de entrada. Também foram previstos ícones de apoio e \textit{feedback} visual para
     reforçar entendimento rápido do formulário.
 
     \begin{figure}[H]
@@ -187,7 +187,7 @@ anteriores.
         \label{fig:rh-modulos-mockup-decola}
 \end{figure}
 
-    O mockup de múltipla escolha foi estruturado para atividades objetivas, em que cada
+    O \textit{mockup} de múltipla escolha foi estruturado para atividades objetivas, em que cada
     pergunta possui apenas uma alternativa correta. A divisão entre lista lateral de
     atividades e conteúdo principal favorece navegação linear e controle do progresso.
     Também foram planejados botões de edição e exclusão para apoiar manutenção contínua
@@ -202,7 +202,7 @@ anteriores.
         \label{fig:rh-single-choice-mockup-decola}
 \end{figure}
 
-    A tela de checkbox foi modelada para cenários em que o colaborador precisa marcar
+    A tela de \textit{checkbox} foi modelada para cenários em que o colaborador precisa marcar
     múltiplas opções na mesma atividade. O padrão visual mantém consistência com a tela
     de múltipla escolha, reduzindo curva de aprendizado e mantendo previsibilidade de
     uso. Na perspectiva de gestão de conteúdo, a interface também facilita criação,
@@ -218,7 +218,7 @@ anteriores.
 \end{figure}
 
     A página de cursos do colaborador foi desenhada como ponto de entrada para a trilha
-    de onboarding, com foco em orientação inicial e autonomia de navegação. Os cartões
+    de \textit{onboarding}, com foco em orientação inicial e autonomia de navegação. Os cartões
     destacam cada percurso formativo e evidenciam a ação principal de acesso ao curso.
     O indicador de progresso no topo complementa a experiência ao mostrar, de forma
     imediata, em que etapa da jornada o usuário se encontra.
@@ -233,7 +233,7 @@ anteriores.
 \end{figure}
 
     A tela de conteúdo externo foi planejada para concentrar materiais complementares,
-    como vídeos e recursos de apoio vinculados às atividades do módulo. O mockup mostra
+    como vídeos e recursos de apoio vinculados às atividades do módulo. O \textit{mockup} mostra
     a integração entre progresso da unidade e área de visualização do conteúdo,
     mantendo continuidade no fluxo de estudo. Esse desenho favorece consumo orientado de
     informação, sem exigir troca de contexto entre múltiplas páginas.
@@ -262,7 +262,7 @@ anteriores.
         \label{fig:popup-create-account-mockup-decola}
 \end{figure}
 
-    Por fim, abaixo segue o mockup de estilização, que apresenta a identidade visual da plataforma, com paleta de cores, tipografia e elementos gráficos alinhados à proposta de onboarding. O design busca transmitir uma atmosfera acolhedora e profissional, reforçando a missão de facilitar a integração dos colaboradores.
+    Por fim, abaixo segue o \textit{mockup} de estilização, que apresenta a identidade visual da plataforma, com paleta de cores, tipografia e elementos gráficos alinhados à proposta de \textit{onboarding}. O \textit{design} busca transmitir uma atmosfera acolhedora e profissional, reforçando a missão de facilitar a integração dos colaboradores.
 
     \begin{figure}[H]
         \centering
@@ -275,18 +275,18 @@ anteriores.
 
 \clearpage
 \subsection{Tecnologias Utilizadas}
-  Na parte do front-end foi utilizado TypeScript \cite{typescript-docs} devido à organização e robustez
-que a linguagem oferece em relação ao concorrente JavaScript, como biblioteca foi
+  Na parte do \textit{front-end}, foi utilizado TypeScript \cite{typescript-docs} devido à organização e robustez
+que a linguagem oferece em relação ao concorrente JavaScript. Como biblioteca, foi
 utilizado o React \cite{react-docs}, para poder tirar um ótimo proveito dos ganchos que ela proporciona,
-além disso a organização de código \ac{html} e TypeScript na mesma página facilita a
-compreensão de iniciantes no desenvolvimento web.
+além disso, a organização de código \ac{html} e TypeScript na mesma página facilita a
+compreensão de iniciantes no desenvolvimento \textit{web}.
 
-  Já para estilização foi utilizado o Sass \cite{sass-docs}, uma extensão de \ac{css} que simplifica operações lógicas, como criação de
-variáveis, aninhamento hierárquico de código, do ponto de vista técnico ele não difere
+  Já para estilização, foi utilizado o Sass \cite{sass-docs}, uma extensão de \ac{css} que simplifica operações lógicas, como criação de
+variáveis e aninhamento hierárquico de código. Do ponto de vista técnico, ele não difere
 em nada do \ac{css}, já que após compilado vira \ac{css}, ainda assim facilita muito a vida de
 iniciantes com sintaxes mais simples.
 
-  Já na parte do back-end foi utilizado o framework NestJS \cite{nestjs-docs} com a linguagem
+  Já na parte do \textit{back-end}, foi utilizado o \textit{framework} NestJS \cite{nestjs-docs} com a linguagem
 TypeScript, para a criação de uma \ac{rest} \ac{api}. Além disso, como tecnologia de
 mapeamento relacional foi usado o TypeORM \cite{typeorm-docs}, responsável por facilitar a
-comunicação entre back-end e banco de dados.
+comunicação entre \textit{back-end} e banco de dados.
