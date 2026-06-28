@@ -2,38 +2,37 @@
 \section[Desenvolvimento do Projeto]{Desenvolvimento do Projeto}
 
 \subsection{Repositório do Código Fonte do Projeto}
-  Os repositórios foram divididos entre front-end e back-end, em ambos foi
-determinado um padrão de commit estruturado da seguinte maneira, tipo(id user
-story): descrição, sendo que a mensagem pode conter no máximo 75 caracteres
-para incentivar resumos. O padrão adotado, segue o do Conventional Commits que
-busca padronizar e manter relevantes como histórico os commits de um repositório
+  Os repositórios foram divididos entre \textit{front-end} e \textit{back-end}. Em ambos, foi
+determinado um padrão de \textit{commit} estruturado da seguinte maneira: tipo(id \textit{user story}): descrição, sendo que a mensagem pode conter no máximo 75 caracteres
+para incentivar resumos. O padrão adotado segue o do Conventional Commits que
+busca padronizar e manter relevantes, como histórico, os \textit{commits} de um repositório
 \cite{conventionalcommits}.
-Já as branches seguem um padrão inspirado no GitFlow, aprendido na aula
-de Gerenciamento e Configuração de Software, estruturados ao redor das branches
-main e develop, com cada branch nova seguindo a estrutura tipo/id-task/nome,
+Já as \textit{branches} seguem um padrão inspirado no GitFlow, aprendido na aula
+de Gerenciamento e Configuração de Software, estruturado ao redor das \textit{branches}
+\textit{main} e \textit{develop}, com cada \textit{branch} nova seguindo a estrutura tipo/id-\textit{task}/nome,
 garantindo melhor organização na parte do versionamento \cite{atlassian-gitflow}.
-Além disso é notório o uso de Linters, para forçar que a equipe siga estes
-padrões, tanto na parte das branches quanto dos commits.
+Além disso, é notório o uso de \textit{linters} para forçar que a equipe siga esses
+padrões, tanto na parte das \textit{branches} quanto dos \textit{commits}.
 
-Repositório Back-end (\ac{api} e regras de negócio):
+Repositório \textit{back-end} (\ac{api} e regras de negócio):
 
 \urlref{https://tools.ages.pucrs.br/industria-digital/industria-digital-backend}
 
-Repositório Front-end (interface web):
+Repositório \textit{front-end} (interface \textit{web}):
 
 \urlref{https://tools.ages.pucrs.br/industria-digital/industria-digital-frontend}
 
 \clearpage
 \subsection{Banco de Dados Utilizado}
-  Por uma soma de fatores, como indicação dos stakeholders e
+  Por uma soma de fatores, como indicação dos \textit{stakeholders} e
 convencionalidade de iniciar o projeto a partir de um banco de dados relacional já
-existente da receita, o time optou de primeira mão por continuar no caminho dos
+existente da Receita, o time optou, de primeira mão, por continuar no caminho dos
 bancos de dados relacionais.
 
-Dentre eles o PostgreSQL foi a nossa escolha \cite{postgresql-docs}, sendo influenciada por fatores
-como, domínio do mercado, facilidade de escrita e similaridade com as sintaxes
-aprendidas nas matérias de Banco de Dados. Além disso a robustez e capacidade
-de lidar com volumes imensos de dados, são características essenciais para nosso
+Dentre eles, o PostgreSQL foi a nossa escolha \cite{postgresql-docs}, sendo influenciado por fatores
+como domínio do mercado, facilidade de escrita e similaridade com as sintaxes
+aprendidas nas matérias de Banco de Dados. Além disso, a robustez e capacidade
+de lidar com volumes imensos de dados são características essenciais para nosso
 projeto, disponibilizadas pelo PostgreSQL.
 
   \begin{figure}[H]
@@ -46,17 +45,17 @@ projeto, disponibilizadas pelo PostgreSQL.
 \end{figure}
 
   Como o trabalho tinha o intuito de ser uma prova de conceito, fizemos grande
-parte com apenas parcela do banco de dados da receita, portanto foi fundamental
-que a equipe deixasse salvo todo script rodado que modifica o banco de dados, já
+parte com apenas uma parcela do banco de dados da Receita. Portanto, foi fundamental
+que a equipe deixasse salvo todo \textit{script} rodado que modificava o banco de dados, já
 que eles precisavam ser rodados novamente a cada troca de banco. Exemplos de
-modificações que viraram scripts são, conversões de tipo, como \ac{cnpj} e id que foram
-passados de número para string, criação de campos novos, como uma chave
+modificações que viraram \textit{scripts} são conversões de tipo, como \ac{cnpj} e id, que foram
+passados de número para \textit{string}; criação de campos novos, como uma chave
 primária estabelecimento\_id, para substituir a chave composta que antes era
-utilizada e remoção de campos irrelevantes para o projeto, como fax e ente
-federativo responsável, para deixar o banco mais leve. Além disso colocamos uf
-como um atributo da tabela municípios para facilitar a busca.
+utilizada; e remoção de campos irrelevantes para o projeto, como fax e ente
+federativo responsável, para deixar o banco mais leve. Além disso, colocamos uf
+como um atributo da tabela de municípios para facilitar a busca.
 
-Além disso para conversa do back-end com o banco de dados, estamos
+Além disso, para a conversa do \textit{back-end} com o banco de dados, estamos
 utilizando o \ac{orm} SQLAlchemy \cite{sqlalchemy-docs}, responsável por facilitar a comunicação entre os
 dois.
 
@@ -65,20 +64,20 @@ dois.
 \clearpage
 \subsection{Arquitetura Utilizada}
   Como mostrado na imagem abaixo, o fluxo de informações no aplicativo
-começa pela parte do usuário, que interage com o front-end, ele por sua vez
-transforma esta interação em uma requisição \ac{http} que é enviada para o back-end,
-responsável por tratar o request e transformar em uma query de SQL com ajuda do
+começa pela parte do usuário, que interage com o \textit{front-end}; ele, por sua vez,
+transforma essa interação em uma requisição \ac{http} que é enviada para o \textit{back-end},
+responsável por tratar o \textit{request} e transformá-lo em uma \textit{query} de SQL com a ajuda do
 SQLAlchemy, chegando, portanto, no banco de dados. A partir disso é percorrido o
-caminho reverso, com o banco retornando o resultado de uma query ao back-end,
-que transforma esta query em um payload \ac{json}, recebido pelo front-end e
+caminho reverso, com o banco retornando o resultado de uma \textit{query} ao \textit{back-end},
+que transforma essa \textit{query} em um \textit{payload} \ac{json}, recebido pelo \textit{front-end} e
 finalmente atualizando a interface do usuário.
 
-  A ideia da implementação de tal arquitetura, tem como intuito uma separação
+  A ideia da implementação de tal arquitetura tem como intuito uma separação
 nítida das responsabilidades que cada parte do sistema desempenhará, deixando ao
-Angular \cite{angular-docs} no front-end a responsabilidade visual, ao FastAPI
-\cite{fastapi-docs} no backend restrições de
+Angular \cite{angular-docs}, no \textit{front-end}, a responsabilidade visual; ao FastAPI
+\cite{fastapi-docs}, no \textit{back-end}, as restrições de
 negócios e processamento de dados e finalmente ao PostgreSQL no banco de
-dados a persistência dos mesmos.
+dados, a persistência deles.
 
   \begin{figure}[H]
     \centering
@@ -91,13 +90,13 @@ dados a persistência dos mesmos.
 
 \clearpage
 \subsection{Protótipos das Telas Desenvolvidas}
-  Foi feito um protótipo no Figma \cite{figma-help} para definir o design das telas a serem
-desenvolvidas, nele houve 3 versões diferentes, apresentadas ao cliente e por fim
-atualizadas conforme o feedback.
+  Foi feito um protótipo no Figma \cite{figma-help} para definir o \textit{design} das telas a serem
+desenvolvidas. Nele, houve 3 versões diferentes, apresentadas ao cliente e, por fim,
+atualizadas conforme o \textit{feedback}.
 
   O desenvolvimento dos protótipos começou pela definição de uma identidade
-visual para o projeto. Devido à existência de uma identidade visual no logo de
-nossos stakeholder, decidimos manter as cores lá presentes, complementando com
+visual para o projeto. Devido à existência de uma identidade visual no \textit{logo} de
+nossos \textit{stakeholders}, decidimos manter as cores lá presentes, complementando com
 uma variação mais leve de azul.
 
   \begin{figure}[H]
@@ -109,9 +108,9 @@ uma variação mais leve de azul.
     \label{fig:mockup-identity-industria-digital}
 \end{figure}
 
-  Quanto às telas, foram criadas, uma landing page, três telas de dados e dois
-modais para filtros. A ideia do fluxo é que ao chegar, o usuário caia na landing page,
-onde é obrigado a escolher filtros para iniciar a pesquisa, ao selecionar os filtros
+  Quanto às telas, foram criadas uma \textit{landing page}, três telas de dados e dois
+modais para filtros. A ideia do fluxo é que, ao chegar, o usuário caia na \textit{landing page},
+onde é obrigado a escolher filtros para iniciar a pesquisa. Ao selecionar os filtros
 desejados, o usuário pode prosseguir para a pesquisa.
 
   \begin{figure}[H]
@@ -123,12 +122,12 @@ desejados, o usuário pode prosseguir para a pesquisa.
     \label{fig:mockup-landing-industria-digital}
 \end{figure}
 
-  No momento que o sistema terminar a pesquisa, o usuário cairá por padrão
-na página de Dashboard, onde ele pode visualizar gráfico de tipos diversos, como
-pizza, linhas e barras, a ideia é que estes filtros sejam dinâmicos em relação aos
-dados filtrados. Vale notar que os filtros disponibilizados na landing page continuam
+  No momento em que o sistema terminar a pesquisa, o usuário cairá, por padrão,
+na página de \textit{dashboard}, onde ele pode visualizar gráficos de tipos diversos, como
+pizza, linhas e barras. A ideia é que esses filtros sejam dinâmicos em relação aos
+dados filtrados. Vale notar que os filtros disponibilizados na \textit{landing page} continuam
 disponíveis para o usuário, mas agora mais compactos no canto esquerdo da tela,
-além disso é possível notar a presença de uma barra de navegação na parte
+além disso, é possível notar a presença de uma barra de navegação na parte
 superior da página, permitindo transitar entre esta e outras páginas de dados.
 
   \begin{figure}[H]
@@ -140,7 +139,7 @@ superior da página, permitindo transitar entre esta e outras páginas de dados.
     \label{fig:mockup-dashboard-industria-digital}
 \end{figure}
 
-  A partir de que caiu na página de Dashboard o usuário pode seguir para a
+  A partir do momento em que cai na página de \textit{dashboard}, o usuário pode seguir para a
 página do mapa, que fornece uma visualização interativa dos dados filtrados, com
 uma exibição em forma de mapa parecida com uma pesquisa de Google Maps.
 
@@ -153,8 +152,8 @@ uma exibição em forma de mapa parecida com uma pesquisa de Google Maps.
     \label{fig:mockup-maps-industria-digital}
 \end{figure}
 
-  A outra opção do usuário ao cair na página de Dashboard, é a de ir para a
-página de empresas, que, através da técnica de paginação, busca disponibilizar
+  A outra opção do usuário ao cair na página de \textit{dashboard} é a de ir para a
+página de empresas, que, por meio da técnica de paginação, busca disponibilizar
 todos os dados encontrados sobre as empresas que se encaixam nos filtros, sem
 que o excesso de dados seja um problema visto que apenas os presentes na página
 ficam carregados.
@@ -170,28 +169,28 @@ ficam carregados.
 
 \clearpage
 \subsection{Tecnologias Utilizadas}
-  
+
   Era especificação do termo de abertura de projeto que o cliente gostaria que
-fosse usada a linguagem Python \cite{python-docs} para o desenvolvimento do back-end do projeto,
-mais especificamente Django \cite{django-docs}, ainda assim, após votação e pesquisa feitas em sala
-de aula, decidimos que gostaríamos de usar Python, no entanto com uso da
-FastAPI, visto aspectos como simplicidade, modernidade e principalmente
-performance disponibilizados pelo framework. Sendo assim conversamos com o
-cliente e ele permitiu o uso da tecnologia, principalmente visto ao consenso e
+fosse usada a linguagem Python \cite{python-docs} para o desenvolvimento do \textit{back-end} do projeto,
+mais especificamente Django \cite{django-docs}. Ainda assim, após votação e pesquisa feitas em sala
+de aula, decidimos que gostaríamos de usar Python, no entanto com o uso da
+FastAPI, considerando aspectos como simplicidade, modernidade e principalmente
+\textit{performance} disponibilizados pelo \textit{framework}. Sendo assim, conversamos com o
+cliente e ele permitiu o uso da tecnologia, principalmente devido ao consenso e à
 convicção que o time tinha quanto à importância do FastAPI.
 
-Além disso, para realizar queries, adicionamos o \ac{orm} SQLAlchemy,
-responsável por facilitar o processo de comunicação entre banco e back-end, visto à
+Além disso, para realizar \textit{queries}, adicionamos o \ac{orm} SQLAlchemy,
+responsável por facilitar o processo de comunicação entre banco e \textit{back-end}, devido à
 compatibilidade que ele tem com PostgreSQL e Python.
 
-Já o front-end não era algo de total interesse do cliente, portanto, ele permitiu
+Já o \textit{front-end} não era algo de total interesse do cliente, portanto, ele permitiu
 que ficasse a nosso cargo a escolha. Em uma votação acirrada entre Next e
 Angular, decidimos pelo segundo, visto a disparidade de conhecimento em Angular
-por parte dos membros do time, já que muitos não sabiam, mas os pouco que
+por parte dos membros do time, já que muitos não sabiam, mas os poucos que
 sabiam dominavam a linguagem, permitindo uma troca de informações resultante
 em um aprendizado gigantesco por parte dos que não sabiam, combinado com um
-conforto de saber que em momentos de pânicos temos desenvolvedores com
-conhecimento bastante para resolver.
+conforto em saber que, em momentos de pânico, temos desenvolvedores com
+conhecimento suficiente para resolver.
 
 Por fim, junto com o Angular, utilizamos TypeScript \cite{typescript-docs} para lógica, \ac{html} puro
 para linguagem de marcação e \ac{css} puro para a estilização da página.
