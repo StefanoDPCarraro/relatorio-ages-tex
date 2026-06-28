@@ -1,3 +1,73 @@
 \subsection{Sprint 0}
 
-No mínimo uma página contendo tudo que o aluno fez na Sprint 0.
+    Para a sprint 0 a equipe definiu que faria toda a estrutura do projeto, deixando
+Ages 1 primariamente com o Design, Ages 2 com o banco, Ages 3 com repositórios,
+arquitetura, wiki e workflows e Ages 4 com a criação de um Board para atividades,
+bem como a gestão da equipe e definição do escopo previsto para cada sprint. Da
+minha parte me comprometi a ficar no Backend, teria então que definir tecnologia,
+iniciar os repositórios, definir alguma arquitetura e convidar os colegas para os
+repositórios.
+
+    Olhando no panorama de equipe, a sprint 0 foi muito satisfatória, todas as
+atividades previstas foram concluídas com sucesso, creio eu que fruto não apenas
+de um bom trabalho de equipe, mas também de uma ótima gestão dos Ages 4, dava
+para ver um engajamento geral da equipe. Da minha parte fiquei muito satisfeito
+também com as atividades concluídas, utilizando uma tecnologia conhecida de
+minha Ages 2, o FastAPI, fiz questão de proporcionar aos meus colegas uma
+experiência bem melhor do que minha anterior, fiz questão de configurar um Docker
+com compose e até a extensão de Dev Containers para garantir que não haja
+complicações na hora de configurar o repositório.
+
+    Além disso implementei um esqueleto de uma arquitetura híbrida, entre Clean e Camadas, para tentar aproveitar
+o melhor dos dois mundos, trazendo a flexibilidade dos contratos com bancos de
+dados da Clean, com uma complexidade de desenvolvimento semelhante à de
+camadas, sempre levando em conta que estou definindo uma arquitetura que o
+menos experiente dos programadores deve conseguir utilizar. Além disso adicionei
+debugger para facilitar o ambiente de desenvolvimento, MakeFile para poder criar
+alias, Alembic para migrations, SQLAlchemy para mapeamento de banco de dados e
+entre outros. Por fim consegui implementar um workflow do GitHub, que roda os
+testes ao abrir um pull request, a pedido de uma das Ages 4 que quer utilizar a
+técnica de TDD. Por fim adicionei dois readmes, um bem detalhado explicando como
+rodar o Backend, GitFlow e afins e o outro ensinando a adicionar uma feature do
+zero no projeto.
+
+    Depois de duas Ages, creio que posso dizer com confiança que esta foi uma
+das melhores sprints que já vi decorrer. Espero de verdade que o time continue
+assim, pois de momento não consigo identificar nenhum problema.
+
+    Gosto muito de olhar logo acima, para pessoas que estão uma fase na frente
+que eu fazendo um bom trabalho, como Ages 2 não tive tanto esta oportunidade e
+portanto tive que aprender em outros lugares já que tinha 2 Ages 3 e eles não foram
+tão participativos assim. Em compensação vejo que tenho muitas lições
+interessantes a aprender de meus Ages 4 este semestre. Desde o primeiro dia já
+chegaram com uma apresentação do termo de abertura pronto, além de algumas
+propostas de como seguir implementando. Além disso, boa parte do tempo das
+aulas está sendo ocupado em dinâmicas, onde o time discute muito o que entendeu
+de termos de abertura e reunião com stakeholder, creio que estas conversas de
+alinhamento facilitam o time a andar em sintonia.
+
+    Além disso creio que a divisão dos Ages 4 para cada um auxiliar uma tarefa (design, banco, arquitetura e gestão) nesta
+primeira sprint provou-se muito eficaz, pois apesar de ainda não ter muita conversa
+entre a equipe, os Ages 4 funcionaram como uma ponte entre as equipes. Além
+disso prevejo que esta proximidade de squads multinível que estamos prevendo,
+causará uma aproximação entre integrantes de diferentes níveis de Ages que
+melhorará ainda mais a comunicação da equipe.
+
+    Vejo que com a arquitetura pronta, wiki e todos os workflow bem
+implementados, fico muito dependendo de como a equipe anda, prevejo que terei de
+dar uma boa ajuda aos colegas Ages 1 e 2 para entenderem a arquitetura e talvez
+até alguma coisa de configuração de ambiente, que mesmo que tentei simplificar ao
+máximo, talvez seja necessário auxiliar no download do Docker que é um pouco
+mais complexo visto que no Windows precisa do WSL. A partir do momento que eu
+conseguir fixar a ideia de arquitetura nos Ages 1 e 2, irei me voltar aos Ages 3 do
+Frontend para entender como imaginam a integração.
+
+    Num caso do Backend atrasar o Front, não tenho medo de ajudar um pouco com código, mas espero que esta
+parte ande bem sozinha dado um tempo de aprendizado. No caso de tudo isso
+funcionar, minha preocupação final seria relacionada ao deploy, gostaria de validar o
+mais cedo possível que o Backend sobe na AWS e roda sem problemas, até para
+eliminar um possível bloqueador que pode dar uma grande dor de cabeça, já que
+por experiência própria, minhas 2 Ages passadas, falando com os Ages 3 perto do
+final da Ages eles ainda estavam se preocupando com problemas no deploy, talvez
+acabe entendendo eles, mas planejo tentar começar isso logo que possível para não
+ficar com prazos apertados.
