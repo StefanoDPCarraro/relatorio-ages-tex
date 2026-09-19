@@ -4,15 +4,15 @@
   Para o desenvolvimento do Hangy, adotamos o GitHub como plataforma primária
 de versionamento e mantemos os repositórios do GitLab da \ac{ages} atualizados
 por meio de \textit{mirrors}. Os \textit{workflows} do GitHub Actions replicam
-para o GitLab as alterações enviadas às \textit{branches} \texttt{main} e
-\texttt{develop}, além das \textit{tags}, preservando uma cópia sincronizada do
+para o GitLab as alterações enviadas às \textit{branches} \textit{main} e
+\textit{develop}, além das \textit{tags}, preservando uma cópia sincronizada do
 código disponibilizado pela disciplina.
 
-  A \textit{branch} \texttt{main} representa a versão estável do projeto,
-enquanto a \texttt{develop} concentra a integração das funcionalidades em
+  A \textit{branch} \textit{main} representa a versão estável do projeto,
+enquanto a \textit{develop} concentra a integração das funcionalidades em
 desenvolvimento. As atividades são implementadas em \textit{branches} próprias;
 no \textit{back-end}, um \textit{hook} local impede \textit{commits} em ramos
-que não sigam a convenção \texttt{tidXXX/descricao-da-tarefa}. Essa organização
+que não sigam a convenção \textit{tidXXX/descricao-da-tarefa}. Essa organização
 facilita a rastreabilidade das demandas e a revisão das alterações por meio de
 \textit{pull requests}.
 
@@ -36,23 +36,23 @@ Repositório \textit{front-end}:
 dados, com a extensão PostGIS para os recursos geoespaciais. A escolha por um
 banco relacional é adequada ao domínio da aplicação, que possui entidades com
 relações bem definidas, como usuários, eventos, tags, participações e
-notificações. O tipo \texttt{geography(Point,4326)} armazena as localizações de
+notificações. O tipo \textit{geography(Point,4326)} armazena as localizações de
 eventos e de perfis de negócio, possibilitando a evolução de funcionalidades que
 considerem proximidade geográfica. O banco é executado em contêiner durante o
 desenvolvimento, o que padroniza o ambiente da equipe e simplifica a aplicação
 das migrações.
 
-  A entidade \texttt{USER} é o núcleo do modelo e armazena as informações de
+  A entidade \textit{USER} é o núcleo do modelo e armazena as informações de
 autenticação e o tipo de conta. Os dados específicos de pessoas e de
-organizações ficam, respectivamente, em \texttt{PERSON\_PROFILE} e
-\texttt{BUSINESS\_PROFILE}, evitando campos não aplicáveis a um dos tipos de
+organizações ficam, respectivamente, em \textit{PERSON\_PROFILE} e
+\textit{BUSINESS\_PROFILE}, evitando campos não aplicáveis a um dos tipos de
 usuário. Os eventos são associados ao seu criador e utilizam as tabelas
-\texttt{EVENT\_TAG} e \texttt{EVENT\_PARTICIPANT} para representar suas
+\textit{EVENT\_TAG} e \textit{EVENT\_PARTICIPANT} para representar suas
 categorias e participantes. A estrutura também contempla conexões e seguidores
 entre usuários, experiências de eventos, denúncias e notificações, dando suporte
 às interações previstas na plataforma.
 
-  O modelo utiliza identificadores \textit{UUID} como chaves primárias e
+  O modelo utiliza identificadores \ac{uuid} como chaves primárias e
 estrangeiras, o que favorece a unicidade dos registros e a integração entre os
 componentes da aplicação. Os tipos enumerados restringem estados importantes,
 como a privacidade e a situação dos eventos, o status das participações e as
@@ -65,7 +65,7 @@ rastrear o ciclo de vida dos dados.
     \small
     \caption{Modelo de dados do projeto Hangy}
     \includegraphics[width=\linewidth]{conteudo//5 - ages IV//conteudo//figures/hangy-db.png}
-    \legend{Fonte: Wiki do Projeto}
+    \legend{Fonte: Wiki do projeto}
     \label{fig:hangy-database}
 \end{figure}
 
@@ -86,22 +86,22 @@ decisões de persistência.
     \small
     \caption{Visão geral da arquitetura do Hangy}
     \includegraphics[width=\linewidth]{conteudo//5 - ages IV//conteudo//figures/hangy-architecture-general.png}
-    \legend{Fonte: Wiki do Projeto}
+    \legend{Fonte: Wiki do projeto}
     \label{fig:hangy-architecture-general}
 \end{figure}
 
   No \textit{back-end}, adotamos uma arquitetura em camadas inspirada nos
-princípios de \textit{Clean Architecture}. A camada \texttt{presentation}
+princípios de \textit{Clean Architecture}. A camada \textit{presentation}
 recebe as requisições \ac{http}, define os contratos de entrada e saída por meio
-de DTOs e realiza as conversões necessárias. A camada \texttt{domain} contém as
+de \ac{dto}s e realiza as conversões necessárias. A camada \textit{domain} contém as
 entidades, enumerações e serviços que implementam as regras de negócio. Por fim,
-a camada \texttt{infrastructure} encapsula os detalhes técnicos de persistência,
+a camada \textit{infrastructure} encapsula os detalhes técnicos de persistência,
 como sessões, modelos SQLAlchemy e repositórios que acessam o PostgreSQL. Dessa
 forma, os serviços do domínio dependem de contratos de repositório, e não de uma
 implementação específica de banco de dados.
 
-  O \textit{front-end} organiza o código-fonte em \texttt{src/}. As telas e os
-layouts de navegação ficam em \texttt{src/app}, seguindo as convenções do Expo
+  O \textit{front-end} organiza o código-fonte em \textit{src/}. As telas e os
+layouts de navegação ficam em \textit{src/app}, seguindo as convenções do Expo
 Router; componentes reutilizáveis, \textit{hooks}, constantes e utilitários são
 mantidos em diretórios próprios. Essa estrutura separa a interface e a navegação
 da lógica de cada tela, além de centralizar elementos do \textit{design system}
@@ -109,14 +109,14 @@ e valores compartilhados pela aplicação.
 
   A comunicação entre os projetos ocorre por requisições \ac{http} no padrão
 \ac{rest}. No fluxo de autenticação, o aplicativo envia as credenciais ao
-endpoint de \textit{login}, recebe um JWT e armazena o token localmente com
+endpoint de \textit{login}, recebe um \ac{jwt} e armazena o token localmente com
 AsyncStorage. Nas requisições protegidas, o cliente encaminha o token no
-cabeçalho \texttt{Authorization: Bearer}; no \textit{back-end}, a assinatura e a
-expiração do JWT são verificadas antes do acesso aos recursos. As senhas são
+cabeçalho \textit{Authorization: Bearer}; no \textit{back-end}, a assinatura e a
+expiração do \ac{jwt} são verificadas antes do acesso aos recursos. As senhas são
 persistidas somente como \textit{hashes} Argon2, e as alterações estruturais do
 banco são versionadas com Alembic.
 
-  A combinação de camadas, DTOs, \textit{mappers}, \textit{assemblers},
+  A combinação de camadas, \ac{dto}s, \textit{mappers}, \textit{assemblers},
 repositórios e injeção de dependência do FastAPI favorece a testabilidade e a
 manutenção do sistema. A wiki do projeto complementa essa descrição com
 diagramas da visão geral, das camadas de cada aplicação e da sequência de
@@ -137,7 +137,7 @@ barra de navegação inferior fornece acesso rápido às áreas centrais do apli
     \small
     \caption{Tela inicial do aplicativo Hangy}
     \includegraphics[height=0.62\textheight]{conteudo//5 - ages IV//conteudo//figures/hangy-mockup-home.png}
-    \legend{Fonte: Figma do Projeto}
+    \legend{Fonte: Figma do projeto}
     \label{fig:hangy-mockup-home}
 \end{figure}
 
@@ -154,7 +154,7 @@ os dados necessários tanto para a descoberta quanto para a publicação de even
     \includegraphics[height=0.62\textheight]{conteudo//5 - ages IV//conteudo//figures/hangy-mockup-event-details.png}
     \hfill
     \includegraphics[height=0.62\textheight]{conteudo//5 - ages IV//conteudo//figures/hangy-mockup-create-event.png}
-    \legend{Fonte: Figma do Projeto}
+    \legend{Fonte: Figma do projeto}
     \label{fig:hangy-mockup-event-flows}
 \end{figure}
 
@@ -169,7 +169,7 @@ um aplicativo móvel em TypeScript, conectados por uma \ac{rest} \ac{api}.
 
   No \textit{back-end}, utilizamos Python 3.14 \cite{python-docs} e FastAPI
 \cite{fastapi-docs} para construir a \ac{api} e disponibilizar sua documentação
-OpenAPI. O Uvicorn executa a aplicação no padrão ASGI, enquanto o Pydantic
+\ac{openapi}. O Uvicorn executa a aplicação no padrão \ac{asgi}, enquanto o Pydantic
 valida os dados recebidos. A persistência é realizada no PostgreSQL
 \cite{postgresql-docs} por meio do \ac{orm} SQLAlchemy
 \cite{sqlalchemy-docs}; a extensão PostGIS \cite{postgis-docs} complementa o
@@ -177,8 +177,8 @@ banco com recursos geoespaciais. As migrações são versionadas com Alembic
 \cite{alembic-docs}, garantindo que a estrutura do banco possa acompanhar a
 evolução do código.
 
-  Para a autenticação, o projeto utiliza o fluxo OAuth2 Password, JWT
-\cite{jwt-rfc}, PyJWT e \texttt{pwdlib} com Argon2 para proteger as senhas. Os
+  Para a autenticação, o projeto utiliza o fluxo \ac{oauth} 2.0 Password, \ac{jwt}
+\cite{jwt-rfc}, PyJWT e \textit{pwdlib} com Argon2 para proteger as senhas. Os
 testes automatizados são executados com pytest e HTTPX, e o Ruff
 \cite{ruff-docs} é empregado para \textit{linting} e formatação. Docker,
 Docker Compose e Dev Containers \cite{docker-docs} padronizam a execução local
@@ -188,7 +188,7 @@ da \ac{api}, do PostgreSQL e das ferramentas de desenvolvimento.
 \cite{react-native-docs} e Expo \cite{expo-docs} para desenvolver um único
 aplicativo compatível com Android, iOS e \textit{web}. O Expo Router organiza a
 navegação a partir da estrutura de arquivos, enquanto o AsyncStorage mantém o
-JWT localmente. Bibliotecas do ecossistema Expo oferecem suporte a arquivos,
+\ac{jwt} localmente. Bibliotecas do ecossistema Expo oferecem suporte a arquivos,
 imagens, seleção de mídia e ligações externas; os ícones são providos por
 Lucide React Native. Dessa forma, o aplicativo reúne os recursos necessários
 para as telas, a navegação, a autenticação e as integrações móveis planejadas

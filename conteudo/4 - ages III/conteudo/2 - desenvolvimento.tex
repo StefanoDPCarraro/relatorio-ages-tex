@@ -6,11 +6,11 @@
 primária de desenvolvimento, mantendo a versão do GitLab atualizada sempre por
 meio de \textit{mirrors}. Para gerar um \textit{mirror} foi criado um \textit{token} do GitLab com permissão
 de modificar o conteúdo. A partir deste \textit{token}, criamos um \textit{workflow} no GitHub Actions
-que, ao receber um \textit{push} na \textit{branch} \texttt{main} do GitHub, replicava o \textit{push} para o GitLab,
+que, ao receber um \textit{push} na \textit{branch} \textit{main} do GitHub, replicava o \textit{push} para o GitLab,
 mantendo o GitLab sempre atualizado com a versão mais nova de produção.
 
   Para fins de manutenção do repositório e qualidade de código, utilizamos
-proteções nas \textit{branches} \texttt{main} e \texttt{develop} e seguimos à risca a definição do GitFlow,
+proteções nas \textit{branches} \textit{main} e \textit{develop} e seguimos à risca a definição do GitFlow,
 que, vale ressaltar, foi um aprendizado de Gerenciamento e Configuração de
 Software, que se provou muito útil mesmo ao passar do tempo com matérias mais
 complexas entrando.
@@ -72,15 +72,15 @@ caso da necessidade de melhorar a performance no futuro.
     \small
     \caption{Banco de Dados do Projeto VanGO}
     \includegraphics[width=0.9\linewidth]{conteudo//4 - ages III//conteudo//figures/vango-db.png}
-    Fonte: Wiki do Projeto
+    \legend{Fonte: Wiki do projeto}
     \label{fig:vango-database}
 \end{figure}
 
   Na modelagem, destaca-se a presença de rastreabilidade em quase todas as
-tabelas, com a presença dos campos \texttt{created\_at} e \texttt{updated\_at}, na maioria das
+tabelas, com a presença dos campos \textit{created\_at} e \textit{updated\_at}, na maioria das
 entidades que permitem criação e edição por parte do usuário. Além disso, campos
-interessantes são o de \texttt{photo\_url} que é usado para sincronizar com o \textit{bucket} que
-guarda os \textit{uploads} e o \texttt{password\_hash} que possui um nome bem descritivo,
+interessantes são o de \textit{photo\_url} que é usado para sincronizar com o \textit{bucket} que
+guarda os \textit{uploads} e o \textit{password\_hash} que possui um nome bem descritivo,
 ressaltando o uso da biblioteca bcrypt na criptografia da senha do usuário.
 
 \urlref{https://tools.ages.pucrs.br/vango/vango-wiki/-/wikis/database}
@@ -99,14 +99,14 @@ camadas para não sobrecarregar os programadores novatos com \textit{UseCases} e
 sistema, a de criar usuário, incluindo a interação com a criptografia e como fizemos
 para abstrair essa parte de \textit{hashing}. Note que, segundo pesquisas dos integrantes da
 equipe, pelo fato do Python não possuir um jeito opinativo de injeção de
-dependências, o método mais adequado é o uso da classe \texttt{UserDependencies}.
+dependências, o método mais adequado é o uso da classe \textit{UserDependencies}.
 
 \begin{figure}[H]
     \centering
     \small
     \caption{Diagrama de uma Feature no Backend do Projeto VanGO}
     \includegraphics[width=0.92\linewidth]{conteudo//4 - ages III//conteudo//figures/vango-backend-fluxo.png}
-    Fonte: Wiki do Projeto
+    \legend{Fonte: Wiki do projeto}
     \label{fig:vango-backend-architecture}
 \end{figure}
 
@@ -122,7 +122,7 @@ tradução ocorre entre as camadas de \textit{Hooks} e \textit{Services}.
 ferramentas como TanStack, zod e react-hook-form com a arquitetura base para
 garantir maior confiabilidade, validação e principalmente o uso devido da \textit{cache},
 entregando melhor performance. Vale notar também a centralização do \textit{Design
-System} visível na pasta \texttt{styles}, responsável por especificar cores e tipografias para
+System} visível na pasta \textit{styles}, responsável por especificar cores e tipografias para
 garantir a padronização ao redor do código.
 
 \begin{figure}[H]
@@ -130,7 +130,7 @@ garantir a padronização ao redor do código.
     \small
     \caption{Diagrama da arquitetura do Frontend do Projeto VanGO}
     \includegraphics[width=0.92\linewidth]{conteudo//4 - ages III//conteudo//figures/vango-frontend-fluxo.png}
-    Fonte: Wiki do Projeto
+    \legend{Fonte: Wiki do projeto}
     \label{fig:vango-frontend-architecture}
 \end{figure}
 
@@ -159,7 +159,7 @@ ações principais, estados de destaque, textos, fundos e mensagens de sucesso.
     \small
     \caption{Identidade Visual - VanGO}
     \includegraphics[width=0.9\linewidth]{conteudo//4 - ages III//conteudo//figures/mockup-vango-identity.png}
-    Fonte: Wiki do Projeto
+    \legend{Fonte: Figma do projeto}
     \label{fig:vango-design-system}
 \end{figure}
 
@@ -177,7 +177,7 @@ sem rotas cadastradas, orientando a criação do primeiro trajeto.
     \small
     \caption{Mockup Tela Inicial - VanGO}
     \includegraphics[width=1\linewidth]{conteudo//4 - ages III//conteudo//figures/mockup-vango-home.png}
-    Fonte: Wiki do Projeto
+    \legend{Fonte: Figma do projeto}
     \label{fig:vango-mockup-home}
 \end{figure}
 
@@ -190,7 +190,7 @@ exclusão, a ação para iniciar a rota e a área de passageiros e solicitaçõe
     \small
     \caption{Mockup Rota do Motorista - VanGO}
     \includegraphics[width=1\linewidth]{conteudo//4 - ages III//conteudo//figures/mockup-vango-rota-motorista.png}
-    Fonte: Wiki do Projeto
+    \legend{Fonte: Figma do projeto}
     \label{fig:vango-mockup-rota-motorista}
 \end{figure}
 
@@ -203,7 +203,7 @@ seleção de quem participará do trajeto e pelo preenchimento do endereço da p
     \small
     \caption{Mockup Entrada em Rota - VanGO}
     \includegraphics[width=1\linewidth]{conteudo//4 - ages III//conteudo//figures/mockup-vango-rota-passageiro.png}
-    Fonte: Wiki do Projeto
+    \legend{Fonte: Figma do projeto}
     \label{fig:vango-mockup-rota-passageiro}
 \end{figure}
 
