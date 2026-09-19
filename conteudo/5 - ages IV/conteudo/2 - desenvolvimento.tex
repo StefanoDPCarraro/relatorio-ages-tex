@@ -1,16 +1,128 @@
 \section[Desenvolvimento do Projeto]{Desenvolvimento do Projeto}
 
-\clearpage
 \subsection{Repositório do Código Fonte do Projeto}
-  Deverão ser apresentados os links da Wiki, com uma breve descrição.
+  Para o desenvolvimento do Hangy, adotamos o GitHub como plataforma primária
+de versionamento e mantemos os repositórios do GitLab da \ac{ages} atualizados
+por meio de \textit{mirrors}. Os \textit{workflows} do GitHub Actions replicam
+para o GitLab as alterações enviadas às \textit{branches} \texttt{main} e
+\texttt{develop}, além das \textit{tags}, preservando uma cópia sincronizada do
+código disponibilizado pela disciplina.
+
+  A \textit{branch} \texttt{main} representa a versão estável do projeto,
+enquanto a \texttt{develop} concentra a integração das funcionalidades em
+desenvolvimento. As atividades são implementadas em \textit{branches} próprias;
+no \textit{back-end}, um \textit{hook} local impede \textit{commits} em ramos
+que não sigam a convenção \texttt{tidXXX/descricao-da-tarefa}. Essa organização
+facilita a rastreabilidade das demandas e a revisão das alterações por meio de
+\textit{pull requests}.
+
+  Para apoiar a qualidade do código, o \textit{back-end} possui automações de
+testes, \textit{linting} e verificação de formatação com Ruff durante a revisão
+dos \textit{pull requests}. Ambos os repositórios também incluem instruções de
+execução e de organização do código, permitindo que novos integrantes preparem
+o ambiente de desenvolvimento de forma padronizada.
+
+Repositório \textit{back-end}:
+
+\urlref{https://tools.ages.pucrs.br/2026-2/2jk-4jk/hangy/hangy-backend}
+
+Repositório \textit{front-end}:
+
+\urlref{https://tools.ages.pucrs.br/2026-2/2jk-4jk/hangy/hangy-frontend}
 
 \clearpage
 \subsection{Banco de Dados Utilizado}
-  Deverão ser apresentados os links da Wiki, com uma breve descrição.
+  Para o Hangy, adotamos o PostgreSQL como sistema gerenciador de banco de
+dados, com a extensão PostGIS para os recursos geoespaciais. A escolha por um
+banco relacional é adequada ao domínio da aplicação, que possui entidades com
+relações bem definidas, como usuários, eventos, tags, participações e
+notificações. O tipo \texttt{geography(Point,4326)} armazena as localizações de
+eventos e de perfis de negócio, possibilitando a evolução de funcionalidades que
+considerem proximidade geográfica. O banco é executado em contêiner durante o
+desenvolvimento, o que padroniza o ambiente da equipe e simplifica a aplicação
+das migrações.
+
+  A entidade \texttt{USER} é o núcleo do modelo e armazena as informações de
+autenticação e o tipo de conta. Os dados específicos de pessoas e de
+organizações ficam, respectivamente, em \texttt{PERSON\_PROFILE} e
+\texttt{BUSINESS\_PROFILE}, evitando campos não aplicáveis a um dos tipos de
+usuário. Os eventos são associados ao seu criador e utilizam as tabelas
+\texttt{EVENT\_TAG} e \texttt{EVENT\_PARTICIPANT} para representar suas
+categorias e participantes. A estrutura também contempla conexões e seguidores
+entre usuários, experiências de eventos, denúncias e notificações, dando suporte
+às interações previstas na plataforma.
+
+  O modelo utiliza identificadores \textit{UUID} como chaves primárias e
+estrangeiras, o que favorece a unicidade dos registros e a integração entre os
+componentes da aplicação. Os tipos enumerados restringem estados importantes,
+como a privacidade e a situação dos eventos, o status das participações e as
+categorias de notificações e denúncias. Além disso, os campos de criação,
+atualização e exclusão lógica presentes nas principais entidades permitem
+rastrear o ciclo de vida dos dados.
+
+\begin{figure}[H]
+    \centering
+    \small
+    \caption{Modelo de dados do projeto Hangy}
+    \includegraphics[width=\linewidth]{conteudo//5 - ages IV//conteudo//figures/hangy-db.png}
+    Fonte: Wiki do Projeto Hangy.
+    \label{fig:hangy-database}
+\end{figure}
+
+\urlref{https://tools.ages.pucrs.br/2026-2/2jk-4jk/hangy/wiki/-/wikis/database}
 
 \clearpage
 \subsection{Arquitetura Utilizada}
-  Deverão ser apresentados os links da Wiki, com uma breve descrição.
+  A arquitetura do Hangy é composta por dois projetos independentes e
+integrados por \ac{http}: um aplicativo móvel multiplataforma, desenvolvido com
+React Native, Expo e TypeScript, e uma \ac{api} desenvolvida em FastAPI. O
+aplicativo é responsável pela apresentação das telas e pela navegação, enquanto
+a \ac{api} concentra as regras de negócio, a autenticação e o acesso aos dados.
+Essa separação permite que as interfaces evoluam sem acoplamento direto às
+decisões de persistência.
+
+\begin{figure}[H]
+    \centering
+    \small
+    \caption{Visão geral da arquitetura do Hangy}
+    \includegraphics[width=\linewidth]{conteudo//5 - ages IV//conteudo//figures/hangy-architecture-general.png}
+    Fonte: Wiki do Projeto Hangy.
+    \label{fig:hangy-architecture-general}
+\end{figure}
+
+  No \textit{back-end}, adotamos uma arquitetura em camadas inspirada nos
+princípios de \textit{Clean Architecture}. A camada \texttt{presentation}
+recebe as requisições \ac{http}, define os contratos de entrada e saída por meio
+de DTOs e realiza as conversões necessárias. A camada \texttt{domain} contém as
+entidades, enumerações e serviços que implementam as regras de negócio. Por fim,
+a camada \texttt{infrastructure} encapsula os detalhes técnicos de persistência,
+como sessões, modelos SQLAlchemy e repositórios que acessam o PostgreSQL. Dessa
+forma, os serviços do domínio dependem de contratos de repositório, e não de uma
+implementação específica de banco de dados.
+
+  O \textit{front-end} organiza o código-fonte em \texttt{src/}. As telas e os
+layouts de navegação ficam em \texttt{src/app}, seguindo as convenções do Expo
+Router; componentes reutilizáveis, \textit{hooks}, constantes e utilitários são
+mantidos em diretórios próprios. Essa estrutura separa a interface e a navegação
+da lógica de cada tela, além de centralizar elementos do \textit{design system}
+e valores compartilhados pela aplicação.
+
+  A comunicação entre os projetos ocorre por requisições \ac{http} no padrão
+\ac{rest}. No fluxo de autenticação, o aplicativo envia as credenciais ao
+endpoint de \textit{login}, recebe um JWT e armazena o token localmente com
+AsyncStorage. Nas requisições protegidas, o cliente encaminha o token no
+cabeçalho \texttt{Authorization: Bearer}; no \textit{back-end}, a assinatura e a
+expiração do JWT são verificadas antes do acesso aos recursos. As senhas são
+persistidas somente como \textit{hashes} Argon2, e as alterações estruturais do
+banco são versionadas com Alembic.
+
+  A combinação de camadas, DTOs, \textit{mappers}, \textit{assemblers},
+repositórios e injeção de dependência do FastAPI favorece a testabilidade e a
+manutenção do sistema. A wiki do projeto complementa essa descrição com
+diagramas da visão geral, das camadas de cada aplicação e da sequência de
+autenticação.
+
+\urlref{https://tools.ages.pucrs.br/2026-2/2jk-4jk/hangy/wiki/-/wikis/arquitetura}
 
 \clearpage
 \subsection{Protótipos das Telas Desenvolvidas}
