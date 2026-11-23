@@ -1,309 +1,354 @@
-\clearpage
 \section[Desenvolvimento do Projeto]{Desenvolvimento do Projeto}
 
 \subsection{Repositório do Código Fonte do Projeto}
-    O código-fonte de minha AGES I foi organizado no grupo do projeto na plataforma AGES,
-com separação entre os repositórios de \textit{front-end} e \textit{back-end}. Essa divisão
-facilitou a manutenção, a evolução paralela das funcionalidades e a definição de
-responsabilidades técnicas ao longo do semestre.
+    O código-fonte do projeto de minha AGES I foi organizado na plataforma AGES,
+em repositórios separados de \textit{frontend} e \textit{backend}. Essa divisão
+permitiu desenvolver funcionalidades em paralelo e definir as responsabilidades
+técnicas de cada parte.
 
 Plataforma do projeto:
 
-\urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novos-colaboradores}
+{\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novos-colaboradores}}
 
-Repositório \textit{front-end} (interface \textit{web}):
+Repositório \textit{frontend} (interface \textit{web}):
 
-\urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novoscolaboradores/decola-frontend}
+{\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novos-colaboradores/decola-frontend}}
 
-Repositório \textit{back-end} (\ac{api} e regras de negócio):
+Repositório \textit{backend} (\ac{api} e regras de negócio):
 
-\urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novoscolaboradores/decola-api}
+{\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novos-colaboradores/decola-api}}
 
-Durante o desenvolvimento, foram adotados \textit{scripts} de \textit{lint} para manter a
-padronização do código e convenções de \textit{commits} para rastreabilidade das entregas
-em cada repositório.
+A equipe adotou \textit{scripts} de \textit{lint} para padronizar o código.
+As mensagens de \textit{commit} deveriam ser curtas, escritas em português e
+descrever a tarefa realizada. A orientação também era incluir apenas os arquivos
+necessários à tarefa em cada alteração.
 
-Além da separação por responsabilidade técnica, a organização dos repositórios
-também contribuiu para a clareza do processo de desenvolvimento. As demandas
-funcionais puderam ser implementadas de forma incremental, com histórico de
-alterações associado a cada entrega e maior facilidade para revisar evoluções do
-produto ao longo das \textit{sprints}.
+As novas \textit{branches} de funcionalidades partiam da \textit{develop},
+conforme o fluxo documentado na wiki. Ao concluir uma tarefa, o desenvolvedor
+abria um \textit{merge request} no GitLab. A integração dependia da aprovação de
+pelo menos um integrante de AGES III ou AGES IV, após a verificação dos critérios
+de aceitação definidos no Trello.
 
-No repositório de \textit{front-end}, foram concentradas as implementações relacionadas à
-experiência do usuário, componentes de interface e integração com os serviços da
-\ac{api}. Já no repositório de \textit{back-end}, ficaram centralizadas as regras de negócio,
-estratégias de autenticação, validações e comunicação com a base de dados. Essa
-distribuição favoreceu a modularidade do projeto e reduziu o acoplamento entre as
-camadas da aplicação.
+As funcionalidades foram implementadas em etapas ao longo das \textit{sprints}.
+O histórico de alterações e os padrões de nomenclatura e versionamento permitiam
+identificar o que havia sido entregue, revisar as mudanças e retomar o trabalho
+de outros colegas.
 
-Como prática de qualidade, as contribuições seguiram padrões de nomenclatura e
-versionamento, permitindo identificar rapidamente o contexto de cada alteração.
-Com isso, foi possível manter um fluxo de trabalho mais previsível, facilitar a
-resolução de inconsistências e apoiar a continuidade do projeto por diferentes
-integrantes da equipe.
+O repositório de \textit{frontend} reuniu os componentes de interface, as
+implementações da experiência do usuário e a integração com os serviços da
+\ac{api}. O de \textit{backend} concentrou as regras de negócio, a autenticação,
+as validações e a comunicação com a base de dados.
 
-\clearpage
 \subsection{Banco de Dados Utilizado}
-    Para o projeto Decola, foi adotado o PostgreSQL \cite{postgresql-docs} como \ac{sgbd} relacional,
-considerando sua robustez, estabilidade e bom suporte a consultas envolvendo
-múltiplos relacionamentos. Como camada de acesso a dados, utilizou-se o TypeORM
-\cite{typeorm-docs},
-que permitiu mapear entidades da aplicação para tabelas relacionais e padronizar
-operações de criação, consulta e atualização no \textit{back-end}.
+    A equipe adotou o PostgreSQL como \ac{sgbd} relacional
+\cite{postgresql-docs} por sua estabilidade e suporte a consultas com múltiplos
+relacionamentos. O TypeORM \cite{typeorm-docs} foi usado para mapear as entidades da aplicação para
+tabelas e padronizar as operações de criação, consulta e atualização no
+\textit{backend}.
 
-    A modelagem foi estruturada para representar os principais domínios da
-plataforma de \textit{onboarding}: contas e usuários, organização de conteúdo formativo e
-acompanhamento de progresso. Nesse contexto, a base contempla entidades como
-Account, User e Area, além do núcleo educacional formado por Course, Module,
-Activity, Quiz, Question e Alternative. Essa organização tornou possível manter uma
-separação clara entre dados cadastrais, conteúdo pedagógico e dados de execução
-das atividades.
+    A modelagem separou os dados cadastrais, o conteúdo formativo e os registros
+de execução das atividades de \textit{onboarding}. As entidades \textit{Account}, \textit{User} e
+\textit{Area} representam as contas, os usuários e as áreas. O conteúdo educacional foi
+organizado nas entidades \textit{Course}, \textit{Module}, \textit{Activity}, \textit{Quiz}, \textit{Question} e \textit{Alternative}.
 
-    Também foram definidas tabelas de associação para suportar relacionamentos e
-controle de evolução do usuário, como UserCourse, UserModule e
-UserModuleActivity, bem como estruturas de composição e ordenação de conteúdo,
-como AreaCourse e ModuleActivity. Com isso, o sistema passou a registrar quais
-cursos, módulos e atividades foram concluídos, permitindo monitoramento contínuo
-do progresso dos colaboradores e maior visibilidade para administradores e equipes
-de \ac{rh}.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+A Figura \ref{fig:database-decola} apresenta as entidades e seus relacionamentos
+na modelagem do banco de dados.
 
-    Por fim, a presença de tipos enumerados para papéis de usuário, tipo de conta,
-grupo de curso e tipo de atividade reforçou as regras de negócio no nível de dados,
-reduzindo inconsistências e facilitando a evolução do esquema ao longo das \textit{sprints}.
+{\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novos-colaboradores/decola-wiki/-/wikis/database}}
 
-\urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novos-colaboradores/decola-wiki/-/wikis/database}
-  \begin{figure}[H]
+\begin{figure}[H]
     \centering
     \small
     \caption{Modelagem do Banco de Dados - Decola}
-    \includegraphics[width=1\linewidth]{conteudo//2 - ages I//conteudo//figures/decola-database.png}
+    \includegraphics[width=0.9\linewidth]{conteudo//2 - ages I//conteudo//figures/decola-database.png}
     \legend{Fonte: Wiki do projeto}
     \label{fig:database-decola}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-\clearpage
+    As tabelas \textit{UserCourse}, \textit{UserModule} e \textit{UserModuleActivity} registram os vínculos
+e o progresso dos usuários nos cursos, módulos e atividades. \textit{AreaCourse} e
+\textit{ModuleActivity} representam a composição e a ordenação dos conteúdos. Esses
+registros permitem que administradores e equipes de \ac{rh} acompanhem o que
+cada colaborador concluiu.
+
+    Os tipos enumerados restringem os valores aceitos para papéis de usuário,
+tipo de conta, grupo de curso e tipo de atividade. Com eles, essas regras de
+negócio também ficam definidas no banco de dados.
+
 \subsection{Arquitetura Utilizada}
-  O modelo de arquitetura escolhido foi o \ac{mvc} \cite{mdn-mvc}, em que o usuário interage com a
-parte de \textit{view}, o banco de dados interage com o \textit{model} e o \textit{controller} integra as duas
-anteriores. Essa separação ajudou a organizar as responsabilidades do sistema,
-mantendo a interface, as regras de negócio e o acesso aos dados em camadas mais
-claras.
+  A arquitetura escolhida foi o \ac{mvc} \cite{mdn-mvc}. O usuário interage com
+a \textit{view}, o \textit{model} se relaciona com o banco de dados e o
+\textit{controller} coordena essas partes. Essa separação organiza a interface,
+as regras de negócio e o acesso aos dados.
 
-    Também faz parte da arquitetura o uso do padrão aberto de segurança \ac{jwt}
-    \cite{jwt-rfc}, que provê mais segurança para aplicativos e sistemas, por meio de sistemas de autenticação e autorização, garantindo que apenas usuários autorizados acessem o site.
+    O sistema também utiliza \ac{jwt} \cite{jwt-rfc} nos mecanismos de
+autenticação e autorização, que controlam o acesso dos usuários ao site.
 
-    A primeira representação arquitetural, apresentada na Figura \ref{fig:mvc-decola},
-    mostra a separação geral do sistema em \ac{mvc}. Ela foi útil para visualizar como
-    as responsabilidades do projeto ficavam distribuídas entre interface, controle da
-    aplicação e acesso aos dados.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+A Figura \ref{fig:mvc-decola} representa essa divisão do sistema em \ac{mvc}.
 
-    \begin{figure}[H]
+\begin{figure}[H]
         \centering
         \small
         \caption{Representação MVC - Decola}
-        \includegraphics[width=0.92\linewidth]{conteudo//2 - ages I//conteudo//figures/decola-mvc.jpg}
+        \includegraphics[width=0.7\linewidth]{conteudo//2 - ages I//conteudo//figures/decola-mvc.jpg}
         \legend{Fonte: Wiki do projeto}
         \label{fig:mvc-decola}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-    A Figura \ref{fig:arch-front-decola} detalha a organização do \textit{front-end},
-    evidenciando a divisão entre páginas, componentes, serviços e demais partes
-    responsáveis pela comunicação e pela apresentação da interface. Essa estrutura
-    ajudou a manter o código visual mais organizado e facilitou a evolução das telas.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+A Figura \ref{fig:arch-front-decola} detalha a organização do \textit{frontend}.
+As páginas e os componentes formam a interface, enquanto os serviços cuidam da
+comunicação com o restante da aplicação.
 
-    \begin{figure}[H]
+\begin{figure}[H]
         \centering
         \small
-        \caption{Arquitetura \textit{Front-end} - Decola}
-        \includegraphics[width=0.82\linewidth]{conteudo//2 - ages I//conteudo//figures/decola-front-arch.png}
+        \caption{Arquitetura \textit{frontend} - Decola}
+        \includegraphics[width=0.65\linewidth]{conteudo//2 - ages I//conteudo//figures/decola-front-arch.png}
         \legend{Fonte: Wiki do projeto}
         \label{fig:arch-front-decola}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-    Por fim, a Figura \ref{fig:jwt-decola} apresenta o fluxo de autenticação com
-    \ac{jwt}, demonstrando como o usuário autenticado recebe um \textit{token} e o utiliza
-    nas requisições seguintes. Essa representação complementa a arquitetura ao mostrar
-    como o controle de acesso foi pensado no sistema.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+A Figura \ref{fig:jwt-decola} apresenta o fluxo de autenticação com
+\ac{jwt}: o usuário autenticado recebe um \textit{token} e o utiliza nas
+requisições seguintes para acessar os recursos do sistema.
 
-    \begin{figure}[H]
+\begin{figure}[H]
         \centering
         \small
         \caption{Fluxo de autenticação com JWT - Decola}
-        \includegraphics[width=0.86\linewidth]{conteudo//2 - ages I//conteudo//figures/decola-jwt-auth.png}
-        \legend{Fonte: Wiki do projeto}
+        \includegraphics[width=0.7\linewidth]{conteudo//2 - ages I//conteudo//figures/decola-jwt-auth.png}
+        \legend{Fonte: \href{https://tools.ages.pucrs.br/plataforma-onboarding-para-novos-colaboradores/decola-wiki/-/wikis/arquitetura}{Wiki do projeto}}
         \label{fig:jwt-decola}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-\urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novos-colaboradores/decola-wiki/-/wikis/arquitetura}
-
-\clearpage
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
 \subsection{Protótipos das Telas Desenvolvidas}
-    Foram desenvolvidas cerca de 20 telas diferentes, todas passando pelo
-    processo de prototipação no Figma \cite{figma-help} e com diferentes versões, incluindo protótipos de
-    baixa, média e alta fidelidade. Além disso, foi utilizada componentização no Figma,
-    além de padrões de fontes, variáveis de cores e outros recursos. A seguir são
-    apresentados alguns protótipos representativos de alta fidelidade.
+    Foram desenvolvidas cerca de 20 telas, prototipadas no Figma
+\cite{figma-help} em versões de baixa, média e alta fidelidade. A equipe utilizou
+componentes reutilizáveis, padrões de fontes e variáveis de cores para manter a
+consistência entre elas. As Figuras \ref{fig:login-mockup-decola} a
+\ref{fig:styling-decola} apresentam os protótipos de alta fidelidade selecionados.
 
-    A tela de \textit{login} foi projetada para simplificar o primeiro contato do colaborador com
-    a plataforma, com foco em clareza visual e baixo atrito de acesso. O layout separa
-    a área ilustrativa da área de autenticação, destacando os campos essenciais e a ação
-    principal de entrada. Também foram previstos ícones de apoio e \textit{feedback} visual para
-    reforçar entendimento rápido do formulário.
+A tela de \textit{login} (Figura \ref{fig:login-mockup-decola}) separa a área
+ilustrativa do formulário de autenticação. Os campos e o botão de entrada recebem destaque para facilitar o
+primeiro acesso do colaborador. Ícones de apoio e \textit{feedback} visual
+orientam o preenchimento do formulário.
 
-    \begin{figure}[H]
+\begin{figure}[H]
         \centering
         \small
         \caption{Mockup Login - Decola}
-        \includegraphics[width=0.92\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-login.png}
+        \includegraphics[width=0.84\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-login.png}
         \legend{Fonte: Figma do projeto}
         \label{fig:login-mockup-decola}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-    A tela de administração foi concebida para centralizar o acompanhamento de
-    colaboradores e facilitar operações de gestão da equipe. A organização por blocos,
-    níveis e estados permite leitura rápida da situação de cada perfil, reduzindo esforço
-    operacional na navegação. Além disso, a interface prioriza ações recorrentes, como
-    expandir detalhes, atualizar status e inserir novos registros.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+Na tela de administração (Figura \ref{fig:admin-dashboard-mockup-decola}),
+as informações dos colaboradores estão organizadas em blocos, níveis e estados
+para facilitar o acompanhamento de cada perfil. A interface
+permite expandir detalhes, atualizar status e inserir novos registros.
 
-    \begin{figure}[H]
+\begin{figure}[H]
         \centering
         \small
         \caption{Mockup Tela Dashboard do Administrador - Decola}
-        \includegraphics[width=0.78\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-admin-dashboard.png}
+        \includegraphics[width=0.72\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-admin-dashboard.png}
         \legend{Fonte: Figma do projeto}
         \label{fig:admin-dashboard-mockup-decola}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-    A página de áreas foi desenhada para permitir ao responsável definir domínios de
-    acesso e organização de conteúdos por contexto de atuação. Cada cartão representa
-    uma área configurável, com ações de entrada, edição e criação para suportar evolução
-    contínua da estrutura. Essa abordagem contribui para segmentar trilhas e manter
-    aderência entre perfil do colaborador e materiais disponíveis.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+A página de áreas permite definir os domínios de acesso e organizar os
+conteúdos conforme a atuação dos colaboradores (Figura
+\ref{fig:rh-areas-mockup-decola}). Cada cartão representa uma área,
+com opções de acesso, edição e criação. Essa divisão permite associar as trilhas
+aos perfis dos colaboradores.
 
-    \begin{figure}[H]
+\begin{figure}[H]
         \centering
         \small
         \caption{Mockup Tela de Áreas do RH - Decola}
-        \includegraphics[width=0.9\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-rh-areas.png}
+        \includegraphics[width=0.7\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-rh-areas.png}
         \legend{Fonte: Figma do projeto}
         \label{fig:rh-areas-mockup-decola}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-    A tela de módulos foi pensada para apresentar o avanço da jornada de aprendizado de
-    forma progressiva e intuitiva. O fluxo visual de etapas e os cartões de módulo
-    facilitam a identificação de conteúdos já concluídos, em andamento e pendentes.
-    Com isso, o colaborador ganha previsibilidade sobre o percurso formativo e o gestor
-    passa a ter uma referência clara de acompanhamento.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+Os cartões da tela de módulos (Figura \ref{fig:rh-modulos-mockup-decola})
+indicam os conteúdos concluídos, em andamento e pendentes. Essa indicação permite
+ao colaborador acompanhar as etapas do aprendizado e ao gestor monitorar o progresso.
 
-    \begin{figure}[H]
+\begin{figure}[H]
         \centering
         \small
         \caption{Mockup Tela de Módulos do RH - Decola}
-        \includegraphics[width=0.9\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-rh-modulos.png}
+        \includegraphics[width=0.7\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-rh-modulos.png}
         \legend{Fonte: Figma do projeto}
         \label{fig:rh-modulos-mockup-decola}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-    O \textit{mockup} de múltipla escolha foi estruturado para atividades objetivas, em que cada
-    pergunta possui apenas uma alternativa correta. A divisão entre lista lateral de
-    atividades e conteúdo principal favorece navegação linear e controle do progresso.
-    Também foram planejados botões de edição e exclusão para apoiar manutenção contínua
-    do material pelos responsáveis.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+A Figura \ref{fig:rh-perguntas-mockup-decola} apresenta os dois formatos
+de perguntas disponíveis ao \ac{rh}. Na opção (a), cada pergunta tem uma única
+alternativa correta. Na opção (b), o colaborador pode marcar várias respostas.
+As telas seguem o mesmo padrão visual, com uma lista lateral de atividades e
+uma área principal de conteúdo. Os responsáveis podem criar e revisar as
+respostas, salvar as alterações e editar ou excluir o material.
 
-    \begin{figure}[H]
+\begin{figure}[H]
         \centering
         \small
-        \caption{Mockup Perguntas de Múltipla Escolha do RH - Decola}
-        \includegraphics[width=0.9\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-rh-single-choice.png}
+        \caption{Perguntas do RH: (a) múltipla escolha e (b) \textit{checkbox} - Decola}
+        \label{fig:rh-perguntas-mockup-decola}
+        (a)\\
+        \includegraphics[width=0.7\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-rh-single-choice.png}\\
+        (b)\\
+        \includegraphics[width=0.7\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-rh-checkbox.png}
         \legend{Fonte: Figma do projeto}
-        \label{fig:rh-single-choice-mockup-decola}
-\end{figure}
+    \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-    A tela de \textit{checkbox} foi modelada para cenários em que o colaborador precisa marcar
-    múltiplas opções na mesma atividade. O padrão visual mantém consistência com a tela
-    de múltipla escolha, reduzindo curva de aprendizado e mantendo previsibilidade de
-    uso. Na perspectiva de gestão de conteúdo, a interface também facilita criação,
-    revisão e salvamento das opções de resposta.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+A página de cursos (Figura \ref{fig:colab-cursos-mockup-decola}) é o ponto
+de entrada do colaborador para a trilha de \textit{onboarding}. Os cartões identificam os percursos formativos e permitem
+acessar os cursos. No topo, um indicador mostra o progresso do usuário.
 
-    \begin{figure}[H]
-        \centering
-        \small
-        \caption{Mockup Perguntas de Checkbox do RH - Decola}
-        \includegraphics[width=0.9\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-rh-checkbox.png}
-        \legend{Fonte: Figma do projeto}
-        \label{fig:rh-checkbox-mockup-decola}
-\end{figure}
-
-    A página de cursos do colaborador foi desenhada como ponto de entrada para a trilha
-    de \textit{onboarding}, com foco em orientação inicial e autonomia de navegação. Os cartões
-    destacam cada percurso formativo e evidenciam a ação principal de acesso ao curso.
-    O indicador de progresso no topo complementa a experiência ao mostrar, de forma
-    imediata, em que etapa da jornada o usuário se encontra.
-
-    \begin{figure}[H]
+\begin{figure}[H]
         \centering
         \small
         \caption{Mockup Página de Cursos do Colaborador - Decola}
-        \includegraphics[width=0.9\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-colab-cursos.png}
+        \includegraphics[width=0.7\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-colab-cursos.png}
         \legend{Fonte: Figma do projeto}
         \label{fig:colab-cursos-mockup-decola}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-    A tela de conteúdo externo foi planejada para concentrar materiais complementares,
-    como vídeos e recursos de apoio vinculados às atividades do módulo. O \textit{mockup} mostra
-    a integração entre progresso da unidade e área de visualização do conteúdo,
-    mantendo continuidade no fluxo de estudo. Esse desenho favorece consumo orientado de
-    informação, sem exigir troca de contexto entre múltiplas páginas.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+Na tela de conteúdo externo (Figura
+\ref{fig:colab-external-content-mockup-decola}), o colaborador acessa materiais
+complementares das atividades do módulo, como vídeos e recursos de apoio. O \textit{mockup} mantém o
+progresso da unidade junto à área de visualização, permitindo consultar o material
+sem alternar entre várias páginas.
 
-    \begin{figure}[H]
+\begin{figure}[H]
         \centering
         \small
         \caption{Mockup Página de Conteúdo Externo do Colaborador - Decola}
-        \includegraphics[width=0.9\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-colab-external-content.png}
+        \includegraphics[width=0.7\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-colab-external-content.png}
         \legend{Fonte: Figma do projeto}
         \label{fig:colab-external-content-mockup-decola}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-    O modal de criação de conta foi proposto para agilizar cadastro de novos membros sem
-    interromper o contexto da tela administrativa principal. A estrutura combina entrada
-    manual de dados com opção de importação por arquivo, atendendo tanto cadastros
-    pontuais quanto cenários de maior volume. Essa solução reduz etapas operacionais e
-    melhora a eficiência de inclusão de colaboradores na plataforma.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+O modal da Figura \ref{fig:popup-create-account-mockup-decola} permite
+cadastrar novos membros sem sair da tela administrativa. O cadastro pode ser feito manualmente ou por importação de
+arquivo, tanto para inclusões pontuais quanto para um volume maior de
+colaboradores.
 
-    \begin{figure}[H]
+\begin{figure}[H]
         \centering
         \small
         \caption{Mockup Modal de Criação de Conta - Decola}
-        \includegraphics[width=0.78\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-popup-create-account.png}
+        \includegraphics[width=0.58\linewidth]{conteudo//2 - ages I//conteudo//figures/mockup-decola-popup-create-account.png}
         \legend{Fonte: Figma do projeto}
         \label{fig:popup-create-account-mockup-decola}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-    Por fim, abaixo segue o \textit{mockup} de estilização, que apresenta a identidade visual da plataforma, com paleta de cores, tipografia e elementos gráficos alinhados à proposta de \textit{onboarding}. O \textit{design} busca transmitir uma atmosfera acolhedora e profissional, reforçando a missão de facilitar a integração dos colaboradores.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+O \textit{mockup} de estilização (Figura \ref{fig:styling-decola}) reúne as
+definições de \textit{design} da plataforma: paleta de cores, tipografia e
+elementos gráficos.
 
-    \begin{figure}[H]
+\begin{figure}[H]
         \centering
         \small
         \caption{Estilização - Decola}
-        \includegraphics[width=0.92\linewidth]{conteudo//2 - ages I//conteudo//figures/styling-decola.png}
+        \includegraphics[width=0.8\linewidth]{conteudo//2 - ages I//conteudo//figures/styling-decola.png}
         \legend{Fonte: Figma do projeto}
         \label{fig:styling-decola}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-\clearpage
 \subsection{Tecnologias Utilizadas}
-  Na parte do \textit{front-end}, foi utilizado TypeScript \cite{typescript-docs} devido à organização e robustez
-que a linguagem oferece em relação ao concorrente JavaScript. Como biblioteca, foi
-utilizado o React \cite{react-docs}, para poder tirar um ótimo proveito dos ganchos que ela proporciona,
-além disso, a organização de código \ac{html} e TypeScript na mesma página facilita a
-compreensão de iniciantes no desenvolvimento \textit{web}.
+  No \textit{frontend}, a equipe utilizou TypeScript \cite{typescript-docs}
+pela organização e confiabilidade que a linguagem oferece em relação ao JavaScript \cite{ecma262}.
+A biblioteca React \cite{react-docs} foi escolhida pelo uso de ganchos.
+A organização da marcação \ac{html} e da lógica em TypeScript nos componentes
+também facilitou a compreensão de iniciantes no desenvolvimento \textit{web}.
 
-  Já para estilização, foi utilizado o Sass \cite{sass-docs}, uma extensão de \ac{css} que simplifica operações lógicas, como criação de
-variáveis e aninhamento hierárquico de código. Do ponto de vista técnico, ele não difere
-em nada do \ac{css}, já que após compilado vira \ac{css}, ainda assim facilita muito a vida de
-iniciantes com sintaxes mais simples.
+  Para a estilização, foi utilizado o Sass \cite{sass-docs}, uma extensão de
+\ac{css} com recursos como variáveis e aninhamento de regras. Sua sintaxe facilitou
+o trabalho dos iniciantes. Após a compilação, o resultado é um arquivo
+\ac{css}.
 
-  Já na parte do \textit{back-end}, foi utilizado o \textit{framework} NestJS \cite{nestjs-docs} com a linguagem
-TypeScript, para a criação de uma \ac{rest} \ac{api}. Além disso, como tecnologia de
-mapeamento relacional foi usado o TypeORM \cite{typeorm-docs}, responsável por facilitar a
-comunicação entre \textit{back-end} e banco de dados.
+  No \textit{backend}, a equipe utilizou o \textit{framework} NestJS
+\cite{nestjs-docs} com TypeScript para criar uma \ac{rest} \ac{api}. O TypeORM
+\cite{typeorm-docs} fez o mapeamento relacional e facilitou a comunicação entre o
+\textit{backend} e o banco de dados.
