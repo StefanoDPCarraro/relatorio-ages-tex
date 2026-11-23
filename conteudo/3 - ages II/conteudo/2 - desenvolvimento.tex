@@ -1,45 +1,46 @@
-\clearpage
 \section[Desenvolvimento do Projeto]{Desenvolvimento do Projeto}
 
 \subsection{Repositório do Código Fonte do Projeto}
-  Os repositórios foram divididos entre \textit{front-end} e \textit{back-end}. Em ambos, foi
-determinado um padrão de \textit{commit} estruturado da seguinte maneira: tipo(id \textit{user story}): descrição, sendo que a mensagem pode conter no máximo 75 caracteres
-para incentivar resumos. O padrão adotado segue o do Conventional Commits que
-busca padronizar e manter relevantes, como histórico, os \textit{commits} de um repositório
-\cite{conventionalcommits}.
-Já as \textit{branches} seguem um padrão inspirado no GitFlow, aprendido na aula
-de Gerenciamento e Configuração de Software, estruturado ao redor das \textit{branches}
-\textit{main} e \textit{develop}, com cada \textit{branch} nova seguindo a estrutura tipo/id-\textit{task}/nome,
-garantindo melhor organização na parte do versionamento \cite{atlassian-gitflow}.
-Além disso, é notório o uso de \textit{linters} para forçar que a equipe siga esses
-padrões, tanto na parte das \textit{branches} quanto dos \textit{commits}.
+  O código foi organizado em repositórios de \textit{frontend} e \textit{backend}.
+Em ambos, as mensagens de \textit{commit} seguiam o formato tipo(id da
+\textit{user story}): descrição, com limite de 75 caracteres. O padrão foi baseado
+no Conventional Commits \cite{conventionalcommits}.
+
+As \textit{branches} seguiam um fluxo inspirado no GitFlow
+\cite{atlassian-gitflow}, estudado em Gerenciamento de Configuração de Software.
+As \textit{branches} principais eram \textit{main} e \textit{develop}, e as novas
+seguiam o formato tipo/id-\textit{task}/nome. A equipe também utilizou
+\textit{linters} para verificar o cumprimento dos padrões de \textit{branches}
+e \textit{commits}.
 
 Plataforma do projeto:
 
-\urlref{https://tools.ages.pucrs.br/industria-digital}
+{\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/industria-digital}}
 
-Repositório \textit{back-end} (\ac{api} e regras de negócio):
+Repositório \textit{backend} (\ac{api} e regras de negócio):
 
-\urlref{https://tools.ages.pucrs.br/industria-digital/industria-digital-backend}
+{\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/industria-digital/industria-digital-backend}}
 
-Repositório \textit{front-end} (interface \textit{web}):
+Repositório \textit{frontend} (interface \textit{web}):
 
-\urlref{https://tools.ages.pucrs.br/industria-digital/industria-digital-frontend}
+{\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/industria-digital/industria-digital-frontend}}
 
-\clearpage
 \subsection{Banco de Dados Utilizado}
-  Por uma soma de fatores, como indicação dos \textit{stakeholders} e
-convencionalidade de iniciar o projeto a partir de um banco de dados relacional já
-existente da Receita, o time optou, de primeira mão, por continuar no caminho dos
-bancos de dados relacionais.
+  A equipe optou por um banco relacional por indicação dos \textit{stakeholders}
+e porque o projeto partiria de uma base relacional já existente da Receita
+Federal.
 
-Dentre eles, o PostgreSQL foi a nossa escolha \cite{postgresql-docs}, sendo influenciado por fatores
-como domínio do mercado, facilidade de escrita e similaridade com as sintaxes
-aprendidas nas matérias de Banco de Dados. Além disso, a robustez e capacidade
-de lidar com volumes imensos de dados são características essenciais para nosso
-projeto, disponibilizadas pelo PostgreSQL.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+Escolhemos o PostgreSQL \cite{postgresql-docs} pela adoção no mercado, pela
+familiaridade com sua sintaxe e pela semelhança com o que havíamos estudado nas
+disciplinas de Banco de Dados. A capacidade de trabalhar com grandes volumes de
+dados também pesou na escolha. A Figura \ref{fig:database-industria-digital}
+apresenta a modelagem utilizada.
 
-  \begin{figure}[H]
+\begin{figure}[H]
     \centering
     \small
     \caption{Modelagem do Banco de Dados - Indústria Digital}
@@ -47,43 +48,43 @@ projeto, disponibilizadas pelo PostgreSQL.
     \legend{Fonte: Wiki do projeto}
     \label{fig:database-industria-digital}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-  Como o trabalho tinha o intuito de ser uma prova de conceito, fizemos grande
-parte com apenas uma parcela do banco de dados da Receita. Portanto, foi fundamental
-que a equipe deixasse salvo todo \textit{script} rodado que modificava o banco de dados, já
-que eles precisavam ser rodados novamente a cada troca de banco. Exemplos de
-modificações que viraram \textit{scripts} são conversões de tipo, como \ac{cnpj} e id, que foram
-passados de número para \textit{string}; criação de campos novos, como uma chave
-primária estabelecimento\_id, para substituir a chave composta que antes era
-utilizada; e remoção de campos irrelevantes para o projeto, como fax e ente
-federativo responsável, para deixar o banco mais leve. Além disso, colocamos uf
-como um atributo da tabela de municípios para facilitar a busca.
+  Como o projeto era uma prova de conceito, trabalhamos durante boa parte do
+desenvolvimento com uma parcela da base da Receita Federal. Cada alteração no
+banco precisava ser salva em um \textit{script} para que pudesse ser repetida
+quando trocássemos de base.
 
-Além disso, para a conversa do \textit{back-end} com o banco de dados, estamos
-utilizando o \ac{orm} SQLAlchemy \cite{sqlalchemy-docs}, responsável por facilitar a comunicação entre os
-dois.
+Entre essas alterações, convertemos campos como \ac{cnpj} e id de número para
+\textit{string}. Criamos a chave primária estabelecimento\_id para substituir a
+chave composta anterior e removemos campos sem uso no projeto, como fax e ente
+federativo responsável, para reduzir o tamanho do banco. Também adicionamos uf
+à tabela de municípios para facilitar as buscas.
 
-\urlref{https://tools.ages.pucrs.br/industria-digital/wiki/-/wikis/Banco\%20de\%20dados}
+Utilizamos o SQLAlchemy \cite{sqlalchemy-docs} como \ac{orm} para mapear os dados
+da aplicação e realizar a comunicação entre o \textit{backend} e o banco.
 
-\clearpage
+{\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/industria-digital/wiki/-/wikis/Banco\%20de\%20dados}}
+
 \subsection{Arquitetura Utilizada}
-  Como mostrado na imagem abaixo, o fluxo de informações no aplicativo
-começa pela parte do usuário, que interage com o \textit{front-end}; ele, por sua vez,
-transforma essa interação em uma requisição \ac{http} que é enviada para o \textit{back-end},
-responsável por tratar o \textit{request} e transformá-lo em uma \textit{query} de \ac{sql} com a ajuda do
-SQLAlchemy, chegando, portanto, no banco de dados. A partir disso é percorrido o
-caminho reverso, com o banco retornando o resultado de uma \textit{query} ao \textit{back-end},
-que transforma essa \textit{query} em um \textit{payload} \ac{json}, recebido pelo \textit{front-end} e
-finalmente atualizando a interface do usuário.
+  A Figura \ref{fig:system-diagram-industria-digital} apresenta o fluxo de
+informações da aplicação. Ao interagir com o \textit{frontend}, o usuário gera
+uma requisição \ac{http} para o \textit{backend}. Este trata o \textit{request}
+e utiliza o SQLAlchemy para executar uma \textit{query} de \ac{sql} no banco.
+No retorno, o \textit{backend} organiza o resultado em um \textit{payload}
+\ac{json}, recebido pelo \textit{frontend} para atualizar a interface.
 
-  A ideia da implementação de tal arquitetura tem como intuito uma separação
-nítida das responsabilidades que cada parte do sistema desempenhará, deixando ao
-Angular \cite{angular-docs}, no \textit{front-end}, a responsabilidade visual; ao FastAPI
-\cite{fastapi-docs}, no \textit{back-end}, as restrições de
-negócios e processamento de dados e finalmente ao PostgreSQL no banco de
-dados, a persistência deles.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+O Angular \cite{angular-docs} ficou responsável pela interface no
+\textit{frontend}. O FastAPI \cite{fastapi-docs}, no \textit{backend}, tratava as
+regras de negócio e o processamento dos dados. O PostgreSQL armazenava esses
+dados.
 
-  \begin{figure}[H]
+\begin{figure}[H]
     \centering
     \small
     \caption{Diagrama de Sistema - Indústria Digital}
@@ -91,112 +92,132 @@ dados, a persistência deles.
     \legend{Fonte: Wiki do projeto}
     \label{fig:system-diagram-industria-digital}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-\urlref{https://tools.ages.pucrs.br/industria-digital/wiki/-/wikis/Arquitetura}
+{\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/industria-digital/wiki/-/wikis/Arquitetura}}
 
-\clearpage
 \subsection{Protótipos das Telas Desenvolvidas}
-  Foi feito um protótipo no Figma \cite{figma-help} para definir o \textit{design} das telas a serem
-desenvolvidas. Nele, houve 3 versões diferentes, apresentadas ao cliente e, por fim,
-atualizadas conforme o \textit{feedback}.
+  A equipe criou no Figma \cite{figma-help} os protótipos que definiram o
+\textit{design} das telas. Foram apresentadas 3 versões ao cliente, com ajustes
+conforme o \textit{feedback} recebido.
 
-  O desenvolvimento dos protótipos começou pela definição de uma identidade
-visual para o projeto. Devido à existência de uma identidade visual no \textit{logo} de
-nossos \textit{stakeholders}, decidimos manter as cores lá presentes, complementando com
-uma variação mais leve de azul.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+A identidade visual manteve as cores do \textit{logo} dos \textit{stakeholders},
+com uma variação mais clara de azul. A Figura
+\ref{fig:mockup-identity-industria-digital} reúne essas definições.
 
-  \begin{figure}[H]
+\begin{figure}[H]
     \centering
     \small
     \caption{Mockup Identidade Visual - Indústria Digital}
-    \includegraphics[width=1\linewidth]{conteudo//3 - ages II//conteudo//figures/mockup-industria-digital-identity.png}
+    \includegraphics[width=0.85\linewidth]{conteudo//3 - ages II//conteudo//figures/mockup-industria-digital-identity.png}
     \legend{Fonte: Figma do projeto}
     \label{fig:mockup-identity-industria-digital}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-  Quanto às telas, foram criadas uma \textit{landing page}, três telas de dados e dois
-modais para filtros. A ideia do fluxo é que, ao chegar, o usuário caia na \textit{landing page},
-onde é obrigado a escolher filtros para iniciar a pesquisa. Ao selecionar os filtros
-desejados, o usuário pode prosseguir para a pesquisa.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+Foram criadas uma \textit{landing page}, três telas de dados e dois modais
+para filtros. Na \textit{landing page} (Figura
+\ref{fig:mockup-landing-industria-digital}), o usuário seleciona os filtros
+necessários para iniciar a pesquisa.
 
-  \begin{figure}[H]
+\begin{figure}[H]
     \centering
     \small
     \caption{Landing Page - Indústria Digital}
-    \includegraphics[width=1\linewidth]{conteudo//3 - ages II//conteudo//figures/mockup-industria-digital-landing.png}
+    \includegraphics[width=0.82\linewidth]{conteudo//3 - ages II//conteudo//figures/mockup-industria-digital-landing.png}
     \legend{Fonte: Figma do projeto}
     \label{fig:mockup-landing-industria-digital}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-  No momento em que o sistema terminar a pesquisa, o usuário cairá, por padrão,
-na página de \textit{dashboard}, onde ele pode visualizar gráficos de tipos diversos, como
-pizza, linhas e barras. A ideia é que esses filtros sejam dinâmicos em relação aos
-dados filtrados. Vale notar que os filtros disponibilizados na \textit{landing page} continuam
-disponíveis para o usuário, mas agora mais compactos no canto esquerdo da tela,
-além disso, é possível notar a presença de uma barra de navegação na parte
-superior da página, permitindo transitar entre esta e outras páginas de dados.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+Após a pesquisa, o usuário é direcionado à página de \textit{dashboard}
+(Figura \ref{fig:mockup-dashboard-industria-digital}), com gráficos de pizza,
+linhas e barras para visualizar os dados filtrados. Os filtros da
+\textit{landing page} permanecem disponíveis à esquerda, em uma área mais
+compacta. A barra de navegação superior permite acessar as outras telas de dados.
 
-  \begin{figure}[H]
+\begin{figure}[H]
     \centering
     \small
     \caption{Mockup Tela de Dashboard - Indústria Digital}
-    \includegraphics[width=1\linewidth]{conteudo//3 - ages II//conteudo//figures/mockup-industria-digital-dashboards.png}
+    \includegraphics[width=0.82\linewidth]{conteudo//3 - ages II//conteudo//figures/mockup-industria-digital-dashboards.png}
     \legend{Fonte: Figma do projeto}
     \label{fig:mockup-dashboard-industria-digital}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-  A partir do momento em que cai na página de \textit{dashboard}, o usuário pode seguir para a
-página do mapa, que fornece uma visualização interativa dos dados filtrados, com
-uma exibição em forma de mapa parecida com uma pesquisa de Google Maps.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+A página de mapas (Figura \ref{fig:mockup-maps-industria-digital}) pode ser
+acessada a partir do \textit{dashboard}. Nela, o usuário consulta os dados
+filtrados em um mapa interativo, de forma semelhante a uma pesquisa no Google
+Maps.
 
-  \begin{figure}[H]
+\begin{figure}[H]
     \centering
     \small
     \caption{Mockup Tela de Mapas - Indústria Digital}
-    \includegraphics[width=1\linewidth]{conteudo//3 - ages II//conteudo//figures/mockup-industria-digital-maps.png}
+    \includegraphics[width=0.82\linewidth]{conteudo//3 - ages II//conteudo//figures/mockup-industria-digital-maps.png}
     \legend{Fonte: Figma do projeto}
     \label{fig:mockup-maps-industria-digital}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-  A outra opção do usuário ao cair na página de \textit{dashboard} é a de ir para a
-página de empresas, que, por meio da técnica de paginação, busca disponibilizar
-todos os dados encontrados sobre as empresas que se encaixam nos filtros, sem
-que o excesso de dados seja um problema visto que apenas os presentes na página
-ficam carregados.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+Outra opção disponível no \textit{dashboard} é a página de empresas (Figura
+\ref{fig:mockup-empresas-industria-digital}). Ela apresenta as empresas que
+atendem aos filtros, com paginação. Assim, apenas os registros da página
+consultada precisam ser carregados.
 
-  \begin{figure}[H]
+\begin{figure}[H]
     \centering
     \small
     \caption{Mockup Tela de Empresas - Indústria Digital}
-    \includegraphics[width=1\linewidth]{conteudo//3 - ages II//conteudo//figures/mockup-industria-digital-empresas.png}
+    \includegraphics[width=0.82\linewidth]{conteudo//3 - ages II//conteudo//figures/mockup-industria-digital-empresas.png}
     \legend{Fonte: Figma do projeto}
     \label{fig:mockup-empresas-industria-digital}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-\clearpage
 \subsection{Tecnologias Utilizadas}
 
-  Era especificação do termo de abertura de projeto que o cliente gostaria que
-fosse usada a linguagem Python \cite{python-docs} para o desenvolvimento do \textit{back-end} do projeto,
-mais especificamente Django \cite{django-docs}. Ainda assim, após votação e pesquisa feitas em sala
-de aula, decidimos que gostaríamos de usar Python, no entanto com o uso da
-FastAPI, considerando aspectos como simplicidade, modernidade e principalmente
-\textit{performance} disponibilizados pelo \textit{framework}. Sendo assim, conversamos com o
-cliente e ele permitiu o uso da tecnologia, principalmente devido ao consenso e à
-convicção que o time tinha quanto à importância do FastAPI.
+  O termo de abertura previa Python \cite{python-docs} no \textit{backend},
+com preferência do cliente pelo Django \cite{django-docs}. Após pesquisar e
+votar em sala de aula, a equipe propôs o FastAPI por sua simplicidade,
+modernidade e \textit{performance}. Apresentamos a escolha ao cliente, que
+aceitou a mudança de \textit{framework}.
 
-Além disso, para realizar \textit{queries}, adicionamos o \ac{orm} SQLAlchemy,
-responsável por facilitar o processo de comunicação entre banco e \textit{back-end}, devido à
-compatibilidade que ele tem com PostgreSQL e Python.
+Para as \textit{queries}, utilizamos o \ac{orm} SQLAlchemy pela compatibilidade
+com Python e PostgreSQL e por facilitar a comunicação entre o banco e o
+\textit{backend}.
 
-Já o \textit{front-end} não era algo de total interesse do cliente, portanto, ele permitiu
-que ficasse a nosso cargo a escolha. Em uma votação acirrada entre Next e
-Angular, decidimos pelo segundo, visto a disparidade de conhecimento em Angular
-por parte dos membros do time, já que muitos não sabiam, mas os poucos que
-sabiam dominavam a linguagem, permitindo uma troca de informações resultante
-em um aprendizado gigantesco por parte dos que não sabiam, combinado com um
-conforto em saber que, em momentos de pânico, temos desenvolvedores com
-conhecimento suficiente para resolver.
+O cliente deixou a escolha do \textit{frontend} a cargo da equipe. Em uma
+votação acirrada entre Next.js \cite{nextjs-docs} e Angular, escolhemos o Angular.
+Poucos colegas conheciam a tecnologia, mas os que a conheciam tinham experiência
+para orientar os demais e ajudar nas dificuldades de implementação.
 
-Por fim, junto com o Angular, utilizamos TypeScript \cite{typescript-docs} para lógica, \ac{html} puro
-para linguagem de marcação e \ac{css} puro para a estilização da página.
+Com o Angular, utilizamos TypeScript \cite{typescript-docs} para a lógica,
+\ac{html} para a marcação e \ac{css} puro para a estilização das páginas.

@@ -1,44 +1,36 @@
 \subsection{\textit{Sprint} 4}
 
-Para esta \textit{sprint}, a equipe havia previsto entregar a tela dos \textit{dashboards} no
-\textit{front-end}, bem como a parte da presença digital, conciliando todo o conhecimento
-obtido das \textit{spikes} passadas e o \textit{deploy} na \ac{aws} do aplicativo. Da minha parte,
-fiquei com o \textit{front-end}, tendo em vista que, de imediato, era a função na qual eu
-mais conseguiria colaborar com o time, já que as \textit{tasks} do \textit{back-end} com FastAPI,
-tecnologia que estudei, já haviam sido finalizadas.
+Na última \textit{sprint}, a equipe planejou entregar os \textit{dashboards}
+do \textit{frontend}, concluir a pesquisa de presença digital com base nas
+\textit{spikes} e fazer o \textit{deploy} da aplicação na \ac{aws}. Fiquei no
+\textit{frontend}, onde poderia ajudar mais naquele momento, pois as tarefas de
+\textit{backend} com FastAPI, tecnologia que eu havia estudado, já estavam
+concluídas.
 
-Da parte da presença digital, a equipe conseguiu entregar um resultado bem
-satisfatório, principalmente na visão do \textit{stakeholder}, que ficou feliz com a prova de
-conceito apresentada. O \textit{deploy} foi feito conforme esperado; no entanto, a integração
-das \ac{ec2} \cite{aws-ec2-docs} estava apresentando falha. Já o \textit{front-end} foi onde estive mais presente
-nesta \textit{sprint}: iniciei a tela de \textit{dashboards}, adicionando os dois primeiros gráficos e
-estruturando o código, deixando os outros dois para meus colegas.
+O \textit{stakeholder} ficou satisfeito com a prova de conceito de presença
+digital. O \textit{deploy} foi realizado, mas a integração entre as instâncias
+\ac{ec2} \cite{aws-ec2-docs} apresentava falhas. Minha principal entrega foi o
+início da tela de \textit{dashboards}: implementei os dois primeiros gráficos
+e organizei o código para que os colegas acrescentassem os outros dois.
 
-Apesar de uma boa entrega, a \textit{sprint} foi conturbada. Houve problemas comuns,
-como provas e trabalhos em paralelo, que, apesar de já não preocuparem tanto,
-ainda eram um fator de complicação a ser levado em conta. Além disso, houve
-problemas mais técnicos, como \textit{memory leaks} descobertos um dia antes da
-apresentação e problemas de integração no \textit{deploy}. Por fim, a \ac{api} utilizada para a
-pesquisa da presença digital tinha um limite de requisições muito baixo,
-ocasionando problemas ao ser chamada muitas vezes no mesmo dia.
+As provas e os trabalhos de outras disciplinas continuaram disputando tempo com
+a AGES. Também apareceram problemas técnicos perto da entrega, como
+\textit{memory leaks} identificados um dia antes da apresentação e falhas na
+integração do \textit{deploy}. A \ac{api} da pesquisa de presença digital tinha
+um limite baixo de requisições, que causava problemas quando era utilizada
+várias vezes no mesmo dia.
 
-Mediante os problemas, é possível concluir que a AGES requer atenção maior do
-que outras cadeiras, até pela carga horária excedente que, apesar de quatro
-créditos, consome algo equivalente a mais horários semanais. Além disso, ficou
-como aprendizado sempre deixar tempo livre antes e depois do \textit{deploy}, pois ao
-redor desse horário é comum surgirem problemas e, quanto maior a importância
-para o time, mais crucial é a presença imediata para resolvê-los. Pensando em uma
-futura AGES III, isso reforça a importância de ter atenção ao \textit{deploy} e trabalhar com
-\textit{code freezes} prévios aos \textit{deadlines}.
+Percebi que precisava reservar mais tempo para a AGES do que a carga de quatro
+créditos sugeria. Também aprendi a deixar uma margem no planejamento antes e
+depois do \textit{deploy}, para conseguir acompanhar e resolver problemas que
+surgissem. Pensando na AGES III, eu pretendia adotar \textit{code freezes} antes
+dos \textit{deadlines} e participar mais de perto das entregas.
 
-Por fim, o problema da \ac{api} não tinha uma solução ótima, tendo em vista que ela
-era a única opção disponível para aquela função e satisfazia a demanda do cliente.
-Para a prova de conceito, isso ficou como uma limitação, mas ao assumir um
-investimento futuro do cliente na \ac{api} do Google, esse problema deixaria de ser um
-bloqueio.
+O limite da \ac{api} permaneceu como uma restrição da prova de conceito. Ela era
+a única opção disponível para aquela função e atendia ao que o cliente precisava.
+Um investimento futuro do cliente na \ac{api} do Google era considerado uma
+forma de superar esse bloqueio.
 
-Após a apresentação para o cliente, recebemos bons \textit{feedbacks}, ressaltamos
-pontos importantes a serem mudados e levantamos ideias do que corrigir, além de
-adicionar mais testes no tempo restante. Com mais uma semana até a apresentação
-geral dos projetos, planejamos encorpar um pouco mais o projeto para entregar algo
-mais polido.
+Após a apresentação, recebemos bons \textit{feedbacks} do cliente e levantamos
+ajustes e ideias de melhoria. Na semana que restava até a apresentação geral
+dos projetos, planejávamos corrigir as pendências e acrescentar testes.

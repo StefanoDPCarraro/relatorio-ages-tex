@@ -1,30 +1,40 @@
 \subsection{\textit{Sprint} 2}
 
-Para esta \textit{sprint} estava previsto que a \textit{spike} fosse finalizada e que houvesse
-respostas definitivas sobre o que seria feito. Além disso, o \textit{front-end} deveria estar
-praticamente pronto, apenas com dados simulados e aguardando as respectivas
-rotas do \textit{back-end}. Por fim, o \textit{back-end} deveria ter pelo menos um \textit{endpoint}
-rodando, conforme as arquiteturas definidas, com testes implementados. Da minha
-parte, fiquei com o \textit{back-end}, portanto estava previsto finalizar o \textit{endpoint} de
-estados, junto com os testes, e apresentá-lo mediante a devida arquitetura.
+A equipe planejava concluir a \textit{spike} e definir como a coleta de dados
+seria feita. O \textit{frontend} deveria ficar quase pronto com dados simulados,
+aguardando as rotas do \textit{backend}. Também estava prevista a entrega de pelo
+menos um \textit{endpoint} conforme a arquitetura definida e com testes. Fiquei
+responsável pelo \textit{endpoint} de estados e pelos testes correspondentes.
 
-O grupo como um todo conseguiu finalizar corretamente as atividades previstas,
-entregando uma apresentação definitiva das tecnologias a serem utilizadas para o
-cliente, além de entregar o \textit{front-end} com alguns detalhes, mas em geral totalmente
-implementado. Por fim, o \textit{back-end} também conseguiu evoluir bem: já tínhamos um
-\textit{endpoint} com \textit{router}, \textit{service} e \textit{repository} configurados e testes de integração
-feitos.
+O grupo concluiu as atividades previstas e apresentou ao cliente as tecnologias
+escolhidas. O \textit{frontend} foi implementado, embora ainda precisasse de alguns
+ajustes. No \textit{backend}, entregamos um \textit{endpoint} organizado em
+\textit{router}, \textit{service} e \textit{repository}, com testes de integração.
 
-Diferente da minha primeira AGES, a tecnologia utilizada, Python, não era de tanto
-conhecimento da equipe e, portanto, passamos por alguns apertos. Práticas como o
-mapeamento correto do banco por meio do SQLAlchemy e a criação de funções
-assíncronas no \textit{back-end} exigiram mais estudo. Além disso, a definição de uma
-arquitetura foi um pouco mais complicada do que o normal, considerando as
-diferentes nomenclaturas que o Python adota e suas diferentes práticas.
+Na minha entrega, trabalhei no \textit{endpoint} de estados seguindo essa
+separação entre a rota, o serviço e o repositório. Também fui responsável por
+configurar os testes do projeto, com a ajuda de Pedro Kinnemann Carlucci, colega
+de AGES IV. Usei como referência os exemplos de testes da documentação do
+FastAPI \cite{fastapi-testing} e utilizei Pytest \cite{pytest-docs} para executar
+os testes unitários e de integração.
 
-Apesar de terem ocorrido problemas, eles foram resolvidos e se tornaram
-aprendizados. Foi possível perceber que utilizar uma linguagem em que ninguém do
-time tinha grande conhecimento era um desafio importante e exigia reflexão sobre
-seu custo. Ao mesmo tempo, cada \textit{bug} resolvido, erro percorrido e problema
-enfrentado desde a configuração até o código virou experiência que, se bem
-absorvida, pode facilitar trabalhos futuros.
+Com o \textit{TestClient}, simulei chamadas aos \textit{endpoints} e verifiquei
+as respostas do \textit{endpoint} de estados. Importei essa classe do módulo
+\mbox{\textit{fastapi.testclient}}. O cliente utiliza HTTPX \cite{httpx-docs} para
+fazer as requisições à aplicação durante os testes, sem iniciar um servidor externo.
+
+Para simular o banco de dados, utilizei \textit{MagicMock}, do módulo
+\mbox{\textit{unittest.mock}} do Python \cite{python-unittest-mock}. Os retornos
+simulados permitiam testar a aplicação sem carregar a base real da Receita
+Federal. Isso ajudou enquanto a equipe ainda ajustava o mapeamento e a execução
+do banco.
+
+Ao contrário do Decola, neste projeto a equipe tinha pouca experiência com a
+tecnologia utilizada no \textit{backend}. O mapeamento do banco com SQLAlchemy
+e a implementação de funções assíncronas em Python exigiram mais estudo. Também
+tivemos dificuldade para definir a arquitetura, considerando as nomenclaturas
+e práticas que ainda estávamos aprendendo.
+
+Conseguimos resolver os problemas de configuração do ambiente e de escrita do
+código. Percebi, porém, que precisava considerar melhor o tempo de aprendizado
+ao escolher uma tecnologia que poucos integrantes da equipe conheciam.
