@@ -1,11 +1,40 @@
 \subsection{Sprint 3}
 
-A equipe tinha 5 US previstas, que incluíam muitas tasks de certa complexidade, em geral integrações como Firebase, Mapbox, Sockets e outras. Além disso, melhorias de infra e DevOps fizeram parte do escopo. Da minha parte, fiquei responsável pelas tarefas de Backend, principalmente DevOps e integrações. Além disso, no final da sprint, tinha a responsabilidade do deploy do Backend.
+A equipe planejou 5 histórias de usuário, com integrações envolvendo Firebase,
+Mapbox e \textit{sockets}, além de melhorias de infraestrutura e
+\textit{DevOps}. Fiquei responsável pelas integrações e tarefas de
+\textit{DevOps} do \textit{backend}, além do \textit{deploy} ao final da
+\textit{sprint}.
 
-Mais uma vez a equipe conseguiu concluir todas as tarefas previstas no escopo. Apesar do final caótico de sprint, o resultado da entrega foi novamente perfeito. Da minha parte, peguei tasks de integração com Mapbox e notificação push, tendo uma leve complicação para fazer as notificações push funcionarem, principalmente no final da sprint, mas, em comunicação com os colegas de equipe, consegui entregar a tarefa de modo perfeito. Por fim, dado o code freeze, assumi a responsabilidade de fazer o deploy do Backend, tendo que contornar problemas como falta de armazenamento na S2, mirror quebrado e outros, mas conseguindo, depois de muita resiliência, entregar.
+Concluímos todas as tarefas previstas. Trabalhei na integração com Mapbox
+\cite{mapbox-docs} e nas notificações \textit{push}. Para o envio, utilizamos
+Firebase Cloud Messaging \cite{firebase-cloud-messaging}. O \textit{backend} enviava as
+mensagens pela biblioteca \textit{firebase\_admin}, utilizando o
+\textit{token} registrado para cada dispositivo. Tive dificuldades para
+fazer as notificações funcionarem perto do fim da \textit{sprint} e precisei
+conversar com os colegas para concluir a integração. Após o
+\textit{code freeze}, assumi o \textit{deploy} do \textit{backend}. Resolvi
+a falta de espaço em disco na instância \ac{ec2} e uma falha no espelhamento
+do repositório antes da entrega.
 
-Por se tratar de uma sprint mais complexa, foi natural o surgimento de diversos problemas conforme o desenvolvimento, até porque vimos na sprint 3 a oportunidade de deixar tudo que era necessário pronto para poder entrar em uma sprint 4 de modo muito mais tranquilo, focando apenas em entregas extras e de qualidade de vida para o sistema. Sendo assim, problemas no deploy, restrições de linter e problemas com notificações push, que requeriam o build oficial de um APK para serem validadas, começaram a aparecer conforme o desenvolvimento. De qualquer jeito, a equipe conseguiu se virar perfeitamente, contornando todos os problemas encontrados. Da minha parte, vi que precisei gastar mais tempo na última semana da sprint para garantir a qualidade das entregas pelas quais fiquei responsável, no entanto, por sorte tive um bom tempo sobrando, que permitiu que a entrega saísse completa.
+Queríamos concluir as funcionalidades necessárias nessa etapa e deixar a
+\textit{sprint} 4 para ajustes e melhorias adicionais. Durante o
+desenvolvimento, surgiram problemas nas verificações do \textit{linter}, no
+\textit{deploy} e nas notificações. A validação das notificações
+\textit{push} exigia gerar um \ac{apk} \cite{android-apk-docs}. Precisei dedicar mais tempo à última semana
+para concluir e verificar minhas entregas. Naquele período, tive
+tempo disponível para esse trabalho adicional.
 
-Imprevistos acontecem e devem ser parte do planejamento, tendo em vista que tendem a surgir cada vez mais ao se aproximar do final da sprint, quando começamos a validar com a régua mais alta. Quanto antes começarmos esta validação de régua alta, maior é a probabilidade de entregarmos um conteúdo completo ao final da sprint. Outra lição foi a importância de um code freeze cedo. Claro que, quanto mais tempo a equipe tiver para desenvolver, melhor; no entanto, estou vendo code freezes com uns 2 dias de antecedência da entrega sendo uma prática frequente e entregando benefícios, dado que é possível revisar problemas e implementar peças faltantes com muito mais calma.
+Alguns problemas só apareciam quando verificávamos a aplicação em condições
+mais próximas da entrega. Eu também vinha percebendo os benefícios de um
+\textit{code freeze} cerca de 2 dias antes da apresentação. Esse intervalo
+permitia revisar a aplicação, corrigir falhas e concluir integrações pendentes
+com mais calma.
 
-Conversando com os Ages 4, muito trabalho poderia ter sido adiantado para esta sprint; no entanto, dado o calendário, optaram por não seguir com isso, senão não teríamos nada para fazer na última sprint. Sendo assim, sobraram tasks de DevOps, algumas nuances no Backend, como a troca para JWT, e muitas tarefas de documentação. Planejo participar muito da parte de documentação, cobrindo arquitetura, infra, tecnologias para estudo e outras áreas em que eu tiver capacidade de colaborar. Além disso, junto com os Ages 4 do Backend, farei questão de garantir que os últimos ajustes deixem o aplicativo funcionando.
+Em conversa com os integrantes de AGES IV, soube que outras tarefas poderiam
+ter sido antecipadas. A equipe preferiu manter parte delas na última
+\textit{sprint}, considerando o calendário. Restaram tarefas de
+\textit{DevOps}, ajustes no \textit{backend}, como a adoção de \ac{jwt}, e
+documentação. Eu pretendia documentar a arquitetura, a infraestrutura e os
+materiais de estudo, além de apoiar os integrantes de AGES IV nos ajustes
+finais da aplicação.

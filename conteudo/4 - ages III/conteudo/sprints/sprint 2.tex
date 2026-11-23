@@ -1,11 +1,38 @@
 \subsection{Sprint 2}
 
-Estavam previstas para esta sprint algumas dezenas de telas e dezenas de endpoints. Da minha parte, fiquei de fiscalizar e implementar algumas tarefas do Backend. Esta sprint estava para ser principalmente mais complicada do ponto de vista do Backend, tendo em vista que, devido ao adiantamento das 2 primeiras sprints do Backend, decidimos deixar apenas 25\% do time com o Backend e os outros 75\% no Front. Sendo assim, era inevitável eu fazer tasks do Backend e estar de plantão para resolver os MRs abertos. Por fim, são sempre previstas algumas tasks de integração entre as telas e os endpoints que fizemos e, como Ages 3, era necessário que eu estivesse presente para isso.
+O escopo previa dezenas de telas e \textit{endpoints}. Como o
+\textit{backend} havia adiantado parte do trabalho nas duas primeiras
+\textit{sprints}, decidimos manter 25\% da equipe nessa área e direcionar os
+outros 75\% ao \textit{frontend}.
 
-Essa foi uma sprint positiva. Mesmo com diversos problemas encontrados na metade, ainda assim foi possível entregar todo o escopo, o que me deixou surpreso com o comprometimento da equipe. Mesmo com todos estes problemas acontecendo, o time ainda assim conseguiu se virar e entregar tudo que foi prometido.
+Implementei os \textit{endpoints} de solicitação de entrada em uma rota e de
+aceite do passageiro pelo motorista (TK08 e TK09). Também desenvolvi o
+controlador de registro de ausências (TK25) e acrescentei a operação de exclusão
+ao contrato do repositório de rotas e à sua implementação (TK17).
 
-Encontramos diversos problemas ao passar da sprint, a começar pelo fato de esta sprint coincidir com a semana de provas, que visivelmente deixou os integrantes da equipe mais lentos e ocupados. Além disso, com a aproximação do final da sprint, passei por uma gripe feia e diria que este é o pior dos problemas, o humano. Não adianta nada todo esforço e detalhismo, com um ótimo planejamento, se no fim das contas uma doença chega e complica o calendário, ainda mais tendo em vista que já era uma sprint em que eu previa uma carga maior da minha parte por ser o único Ages 3 do Backend, responsável por aprovar os PRs e administrar tasks mais complicadas. Essa incapacidade física complicou ainda mais meu planejamento.
+Para a listagem das rotas do passageiro, criei a estrutura de resposta e a
+consulta dos vínculos ativos do usuário (TK13). Implementei o serviço que
+organiza esses dados (TK14) e o \textit{endpoint} GET /routes/me (TK15).
+Também integrei o fluxo de gerenciamento dos passageiros da rota (TK23),
+conectando as telas às operações do \textit{backend}.
 
-Apesar disso, aprendi nesta sprint sobre a ajuda e o acolhimento que uma equipe pode ter com um integrante, tendo em vista que, ao comunicar à equipe que estava mal, muitos integrantes se mostraram dispostos a ajudar, inclusive se oferecendo para pegar a task e me parabenizando por ter continuado fazendo coisas mesmo doente. Me senti muito feliz de pertencer a esta equipe e faço questão de acolher de maneira igual alguém que esteja em situação parecida com a minha no futuro, pois apenas quando se precisa é que se sabe quanto o acolhimento da equipe ajuda no dia da pessoa.
+Revisei e corrigi todos os \acp{pr} do \textit{backend} dos épicos Rota e
+Execução da Rota. Esses épicos abrangiam o cadastro, a edição e a consulta de
+rotas, a participação dos passageiros e o gerenciamento da viagem em andamento.
 
-Apesar da gripe feia, estou de volta às aulas e planejo ajudar meu time com o que precisar. Já voltei a aprovar PRs e estou aos poucos retomando os trabalhos. Ainda não estou completamente bem, mas já estou bem o bastante para conseguir pegar certa carga e facilitar a vida dos meus companheiros de equipe, que me ajudaram tanto quando eu precisei.
+A equipe entregou todo o escopo previsto. A \textit{sprint} coincidiu com a
+semana de provas, o que reduziu a
+disponibilidade dos integrantes. Perto da entrega, também tive uma gripe que
+me impediu de manter o ritmo de trabalho planejado.
+
+Eu era o único integrante de AGES III no \textit{backend} nessa etapa,
+responsável por aprovar os \acp{pr} e conduzir as tarefas mais complexas.
+Já esperava uma carga maior, mas a gripe reduziu minha disponibilidade.
+
+Quando avisei que estava doente, vários colegas se ofereceram para assumir
+minhas tarefas e reconheceram o que eu havia conseguido fazer. Fiquei feliz
+com esse apoio e quis oferecer o mesmo acolhimento a quem precisasse.
+
+Ao retomar as aulas, voltei a revisar os \acp{pr}. Enquanto me recuperava,
+assumia uma carga que conseguisse cumprir para ajudar os colegas que haviam
+me apoiado.
