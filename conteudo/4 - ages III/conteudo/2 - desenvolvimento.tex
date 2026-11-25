@@ -97,9 +97,10 @@ utilizadas por ele.
 \setlength{\parindent}{1.25cm}
 \setlength{\intextsep}{4pt}
 A Figura \ref{fig:vango-backend-architecture} mostra o fluxo de criação de
-usuário e a abstração do cálculo do \textit{hash} da senha. A equipe concentrou
-a composição das dependências dessa funcionalidade na classe
-\textit{UserDependencies}.
+usuário e a abstração do cálculo do \textit{hash} da senha. O diagrama
+representa a composição das dependências como \textit{UserDependencies}.
+No código, essa composição era feita por funções de injeção de dependências
+do FastAPI, em um módulo próprio da infraestrutura.
 
 \begin{figure}[H]
     \centering
@@ -111,6 +112,20 @@ a composição das dependências dessa funcionalidade na classe
 \end{figure}
 \end{minipage}
 \par\addvspace{0.3\baselineskip}
+
+No cadastro, o \textit{controller} recebia os dados validados e chamava o
+\textit{UserService}. O serviço verificava se o e-mail já estava cadastrado,
+solicitava o cálculo do \textit{hash} da senha e salvava o usuário. Essas
+operações dependiam dos contratos \textit{IUserRepository} e
+\textit{IPasswordHasher}. A implementação do repositório usava a sessão do
+SQLAlchemy, enquanto a função que montava o serviço fornecia as duas
+dependências.
+
+Essa separação aparecia nos testes de cadastro. Usávamos objetos simulados
+para o repositório e o cálculo do \textit{hash}, verificando se o serviço
+recusava um e-mail duplicado e se enviava a senha transformada para a
+persistência. Esses testes podiam verificar as regras do serviço sem abrir
+uma conexão com o banco.
 
 No \textit{frontend}, separamos \textit{layouts}, \textit{hooks},
 \textit{services} e acesso à \ac{api}. Os \textit{services} e a comunicação com a
@@ -140,6 +155,29 @@ A pasta \textit{styles} centralizava as cores e tipografias do
 \end{figure}
 \end{minipage}
 \par\addvspace{0.3\baselineskip}
+
+Na infraestrutura, o ambiente local usava Docker Compose para preparar os
+contêineres da aplicação e do PostgreSQL. Na nuvem, a \ac{api} rodava em um
+contêiner na \ac{ec2}, executado com Uvicorn. Na etapa final, o banco passou
+para uma instância RDS de PostgreSQL \cite{aws-rds-postgresql}. Os arquivos
+enviados, como fotos de perfil, ficavam no Amazon S3 \cite{aws-s3-docs},
+e a aplicação guardava a referência à imagem. A configuração em Terraform
+\cite{terraform-docs} descrevia a instância da aplicação, o banco, o
+armazenamento e as regras de acesso entre os serviços.
+
+O fluxo de entrega começava nas verificações do GitHub Actions, que
+incluíam análise de código, migrações e testes com PostgreSQL. Após a
+integração na \textit{main} e o espelhamento, o \textit{pipeline} do GitLab
+construía uma imagem Docker identificada pelo \textit{commit}. Em seguida,
+atualizava a aplicação com Docker Compose. Os dados de conexão e a
+configuração dos serviços eram fornecidos por variáveis do ambiente de
+integração. Ao assumir o \textit{deploy}, precisei acompanhar também essa
+relação entre a versão do código, a imagem e a configuração da aplicação.
+
+Para a observabilidade, a \ac{api} expunha o caminho \textit{/metrics}, com
+contadores de requisições e medidas de duração, separados por método, rota
+e código de resposta. O Prometheus \cite{prometheus-docs} coletava essas
+métricas, e o Grafana \cite{grafana-docs} estava configurado para consultá-las.
 
 {\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/vango/vango-wiki/-/wikis/arquitetura}}
 

@@ -28,6 +28,16 @@ próprio aplicativo. Sem uma sessão ativa, o fluxo preservava o convite para
 retomá-lo depois do \textit{login}. A página de destino atendia a quem
 acessasse o link pelo navegador.
 
+A conclusão dos convites também exigiu delimitar o trabalho entre os
+repositórios. A tarefa da página de destino dependia do domínio com
+conexão segura. A abertura no aplicativo dependia dessa página, dos arquivos
+de verificação e da identidade de assinatura do aplicativo. Essas relações
+estavam registradas no ClickUp e precisavam orientar a ordem das entregas.
+Mantivemos a página simples servida pela \ac{api}, sem acrescentar uma
+hospedagem para uma versão \textit{web} completa do aplicativo. A preservação
+do convite durante a instalação do aplicativo ficou fora do escopo dessa
+tarefa.
+
 A equipe também incluiu uma tarefa de segurança com Trivy
 \cite{trivy-docs}, voltada a verificar vulnerabilidades e impedir a
 implantação quando fossem identificadas falhas de gravidade alta ou crítica.
