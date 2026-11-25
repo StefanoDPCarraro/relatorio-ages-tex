@@ -51,6 +51,33 @@ apresenta a modelagem utilizada.
 \end{minipage}
 \par\addvspace{0.3\baselineskip}
 
+A modelagem separava os dados da empresa dos dados de cada estabelecimento.
+A tabela \textit{empresas} reunia a razão social, o porte e a natureza
+jurídica. Uma empresa podia ter vários registros em
+\textit{estabelecimentos}, vinculados pelo campo cnpj. Nessa segunda tabela,
+guardávamos o nome fantasia, a situação cadastral, o endereço e os contatos,
+além da identificação de matriz ou filial.
+
+A tabela \textit{municipios} continha o nome do município e a unidade
+federativa. Cada estabelecimento se ligava a ela pelo campo municipio\_id.
+As coordenadas ficavam em campos de ponto flutuante de
+\textit{estabelecimentos}. Usávamos latitude e longitude para localizar
+os registros no mapa e apoiar as consultas por raio de distância.
+
+A tabela \textit{cnaes} armazenava os códigos e as descrições das atividades
+econômicas, usados para selecionar os fornecedores e as indústrias de
+materiais de construção. A relação entre estabelecimentos e atividades era
+de muitos para muitos, resolvida pela tabela associativa
+\textit{estabelecimento\_cnaes}. O campo primario indicava se a atividade
+cadastrada era a principal ou uma atividade secundária do estabelecimento.
+
+Na tabela \textit{presenca\_digital}, cada registro se vinculava a um
+estabelecimento por estabelecimento\_id. Guardávamos o endereço do site e
+os perfis encontrados no Instagram e no LinkedIn, com pontuações por canal
+e um índice geral de presença digital. Os contatos e endereços da base da
+Receita Federal serviam de apoio às buscas externas e ao cruzamento dos
+resultados com os estabelecimentos cadastrados.
+
   Como o projeto era uma prova de conceito, trabalhamos durante boa parte do
 desenvolvimento com uma parcela da base da Receita Federal. Cada alteração no
 banco precisava ser salva em um \textit{script} para que pudesse ser repetida
