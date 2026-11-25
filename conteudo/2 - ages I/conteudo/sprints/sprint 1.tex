@@ -12,17 +12,40 @@ protótipo do Figma \cite{figma-help} e criou um componente genérico de
 \textit{input}.
 
 Para construir o componente de \textit{input}, procurei os colegas de AGES III
-e usei como ponto de partida o \textit{workshop} de criação de um botão. Também recorri ao que havia aprendido assistindo a desenvolvedores
-programarem campos de entrada no YouTube.
+e usei como ponto de partida o \textit{workshop} de criação de um botão.
+Também recorri ao que havia aprendido assistindo a desenvolvedores
+programarem campos de entrada no YouTube. Um colega de AGES III me ajudou
+a colocar os arquivos nos diretórios corretos, seguindo a organização do
+projeto.
 
 Consultei ainda os componentes do Material UI \cite{mui-text-field}, tanto como
 referência visual quanto pelo código-fonte. Ao criar um componente
 reutilizável, aprendi a preparar um elemento da página que pudesse servir
 aos colegas e a mim em outras tarefas.
 
-Encontramos poucos problemas. Acredito que a simplicidade da tela ajudou: foram
-necessárias apenas algumas correções para torná-la responsiva e manter seus
-elementos reutilizáveis.
+Minha principal dificuldade foi escrever o CSS, principalmente para manter
+o componente responsivo. Precisava evitar que a aparência se desajustasse
+assim que o campo fosse utilizado em outra tela. A proposta de
+reutilização exigia que eu considerasse como o componente se comportaria
+fora da página em que estava trabalhando.
+
+Para conferir o resultado, instanciava o \textit{input} na página
+\textit{home} e observava sua aparência e seu comportamento. Também usava
+as ferramentas de desenvolvedor do Google Chrome para inspecionar o
+componente e verificar os ajustes. Essa conferência me ajudava a relacionar
+as regras de CSS que escrevia ao resultado exibido no navegador.
+
+Na escolha das cores, reutilizei as variáveis de Sass já importadas e
+definidas na raiz dos estilos, conforme as indicações do Figma. Minha
+participação nessa tarefa se concentrou na aparência e na reutilização do
+campo. Não implementei as mensagens de erro do formulário.
+
+Fiquei orgulhoso de conseguir reproduzir os efeitos visuais ao passar o
+cursor e clicar no componente, seguindo o exemplo apresentado pelo colega
+de AGES III no \textit{workshop}. Utilizei \textit{cubic-bezier} nas
+transições para ajustar esses efeitos. Conseguir aplicar o exemplo ao
+\textit{input} foi uma das partes mais gratificantes dessa entrega, em que
+eu ainda estava aprendendo a trabalhar com a estilização.
 
 
 Para a \textit{sprint} seguinte, a equipe planejava desenvolver cerca de 8 telas
