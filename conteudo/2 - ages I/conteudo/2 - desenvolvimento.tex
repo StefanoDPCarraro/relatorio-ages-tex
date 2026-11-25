@@ -1,6 +1,6 @@
-\section[Desenvolvimento do Projeto]{Desenvolvimento do Projeto}
+\section[Desenvolvimento do projeto]{Desenvolvimento do projeto}
 
-\subsection{Repositório do Código Fonte do Projeto}
+\subsection{Repositório do código-fonte do projeto}
     O código-fonte do projeto de minha AGES I foi organizado na plataforma AGES,
 em repositórios separados de \textit{frontend} e \textit{backend}. Essa divisão
 permitiu desenvolver funcionalidades em paralelo e definir as responsabilidades
@@ -14,7 +14,7 @@ Repositório \textit{frontend} (interface \textit{web}):
 
 {\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novos-colaboradores/decola-frontend}}
 
-Repositório \textit{backend} (\ac{api} e regras de negócio):
+Repositório \textit{backend}:
 
 {\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/plataforma-onboarding-para-novos-colaboradores/decola-api}}
 
@@ -39,7 +39,7 @@ implementações da experiência do usuário e a integração com os serviços d
 \ac{api}. O de \textit{backend} concentrou as regras de negócio, a autenticação,
 as validações e a comunicação com a base de dados.
 
-\subsection{Banco de Dados Utilizado}
+\subsection{Banco de dados utilizado}
     A equipe adotou o PostgreSQL como \ac{sgbd} relacional
 \cite{postgresql-docs} por sua estabilidade e suporte a consultas com múltiplos
 relacionamentos. O TypeORM \cite{typeorm-docs} foi usado para mapear as entidades da aplicação para
@@ -81,7 +81,7 @@ cada colaborador concluiu.
 tipo de conta, grupo de curso e tipo de atividade. Com eles, essas regras de
 negócio também ficam definidas no banco de dados.
 
-\subsection{Arquitetura Utilizada}
+\subsection{Arquitetura utilizada}
   A arquitetura escolhida foi o \ac{mvc} \cite{mdn-mvc}. O usuário interage com
 a \textit{view}, o \textit{model} se relaciona com o banco de dados e o
 \textit{controller} coordena essas partes. Essa separação organiza a interface,
@@ -149,7 +149,7 @@ requisições seguintes para acessar os recursos do sistema.
 \noindent\begin{minipage}{\linewidth}
 \setlength{\parindent}{1.25cm}
 \setlength{\intextsep}{4pt}
-\subsection{Protótipos das Telas Desenvolvidas}
+\subsection{Protótipos das telas desenvolvidas}
     Foram desenvolvidas cerca de 20 telas, prototipadas no Figma
 \cite{figma-help} em versões de baixa, média e alta fidelidade. A equipe utilizou
 componentes reutilizáveis, padrões de fontes e variáveis de cores para manter a
@@ -336,10 +336,11 @@ elementos gráficos.
 \end{minipage}
 \par\addvspace{0.3\baselineskip}
 
-\subsection{Tecnologias Utilizadas}
+\subsection{Tecnologias utilizadas}
   No \textit{frontend}, a equipe utilizou TypeScript \cite{typescript-docs}
 pela organização e confiabilidade que a linguagem oferece em relação ao JavaScript \cite{ecma262}.
-A biblioteca React \cite{react-docs} foi escolhida pelo uso de ganchos.
+A biblioteca React \cite{react-docs} foi escolhida pelos recursos de
+\textit{hooks}.
 A organização da marcação \ac{html} e da lógica em TypeScript nos componentes
 também facilitou a compreensão de iniciantes no desenvolvimento \textit{web}.
 
@@ -349,6 +350,6 @@ o trabalho dos iniciantes. Após a compilação, o resultado é um arquivo
 \ac{css}.
 
   No \textit{backend}, a equipe utilizou o \textit{framework} NestJS
-\cite{nestjs-docs} com TypeScript para criar uma \ac{rest} \ac{api}. O TypeORM
+\cite{nestjs-docs} com TypeScript para criar uma \ac{api} no padrão \ac{rest}. O TypeORM
 \cite{typeorm-docs} fez o mapeamento relacional e facilitou a comunicação entre o
 \textit{backend} e o banco de dados.

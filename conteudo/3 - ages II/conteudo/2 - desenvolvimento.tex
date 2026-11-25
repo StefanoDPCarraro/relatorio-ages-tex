@@ -1,6 +1,6 @@
-\section[Desenvolvimento do Projeto]{Desenvolvimento do Projeto}
+\section[Desenvolvimento do projeto]{Desenvolvimento do projeto}
 
-\subsection{Repositório do Código Fonte do Projeto}
+\subsection{Repositório do código-fonte do projeto}
   O código foi organizado em repositórios de \textit{frontend} e \textit{backend}.
 Em ambos, as mensagens de \textit{commit} seguiam o formato tipo(id da
 \textit{user story}): descrição, com limite de 75 caracteres. O padrão foi baseado
@@ -25,7 +25,7 @@ Repositório \textit{frontend} (interface \textit{web}):
 
 {\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/industria-digital/industria-digital-frontend}}
 
-\subsection{Banco de Dados Utilizado}
+\subsection{Banco de dados utilizado}
   A equipe optou por um banco relacional por indicação dos \textit{stakeholders}
 e porque o projeto partiria de uma base relacional já existente da Receita
 Federal.
@@ -67,13 +67,13 @@ da aplicação e realizar a comunicação entre o \textit{backend} e o banco.
 
 {\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/industria-digital/wiki/-/wikis/Banco\%20de\%20dados}}
 
-\subsection{Arquitetura Utilizada}
+\subsection{Arquitetura utilizada}
   A Figura \ref{fig:system-diagram-industria-digital} apresenta o fluxo de
 informações da aplicação. Ao interagir com o \textit{frontend}, o usuário gera
-uma requisição \ac{http} para o \textit{backend}. Este trata o \textit{request}
-e utiliza o SQLAlchemy para executar uma \textit{query} de \ac{sql} no banco.
-No retorno, o \textit{backend} organiza o resultado em um \textit{payload}
-\ac{json}, recebido pelo \textit{frontend} para atualizar a interface.
+uma requisição \ac{http} para o \textit{backend}. Este processa a requisição
+e utiliza o SQLAlchemy para executar uma consulta em \ac{sql} no banco.
+O resultado é devolvido em \ac{json} ao \textit{frontend}, que atualiza
+a interface.
 
 \par\addvspace{0.3\baselineskip}
 \noindent\begin{minipage}{\linewidth}
@@ -97,7 +97,7 @@ dados.
 
 {\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/industria-digital/wiki/-/wikis/Arquitetura}}
 
-\subsection{Protótipos das Telas Desenvolvidas}
+\subsection{Protótipos das telas desenvolvidas}
   A equipe criou no Figma \cite{figma-help} os protótipos que definiram o
 \textit{design} das telas. Foram apresentadas 3 versões ao cliente, com ajustes
 conforme o \textit{feedback} recebido.
@@ -202,7 +202,7 @@ consultada precisam ser carregados.
 \end{minipage}
 \par\addvspace{0.3\baselineskip}
 
-\subsection{Tecnologias Utilizadas}
+\subsection{Tecnologias utilizadas}
 
   O termo de abertura previa Python \cite{python-docs} no \textit{backend},
 com preferência do cliente pelo Django \cite{django-docs}. Após pesquisar e
