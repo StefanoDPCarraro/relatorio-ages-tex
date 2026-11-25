@@ -17,8 +17,9 @@ próprias. No \textit{backend}, um \textit{hook} local bloqueava
 \textit{branch} ajudava a relacionar as alterações à demanda durante a revisão
 dos \acp{pr}.
 
-O \textit{backend} executava testes e verificações de estilo e formatação com
-Ruff \cite{ruff-docs} durante a revisão dos \acp{pr}. Os dois repositórios
+Durante a revisão dos \acp{pr}, os \textit{workflows} do \textit{backend}
+executavam os testes com Pytest \cite{pytest-docs} e as verificações de
+estilo e formatação com Ruff \cite{ruff-docs}. Os dois repositórios
 também tinham instruções de execução e de organização do código para orientar
 a configuração do ambiente pelos integrantes da equipe.
 
@@ -32,37 +33,59 @@ Repositório \textit{frontend}:
 
 \subsection{Banco de Dados Utilizado}
 
-Usamos PostgreSQL \cite{postgresql-docs} com a extensão PostGIS
-\cite{postgis-docs}. Escolhemos um banco relacional pelas relações entre
-usuários, eventos, categorias, participações e notificações. As localizações
-dos eventos e dos perfis de negócio eram armazenadas com o tipo
-\textit{geography(Point,4326)}, que permitia trabalhar com a proximidade
-geográfica. Durante o desenvolvimento, executávamos o banco em contêiner e
-aplicávamos as migrações nesse ambiente.
+Usamos PostgreSQL \cite{postgresql-docs}. Escolhemos um banco relacional
+pelas relações entre usuários, eventos, categorias, participações e
+notificações. Durante o desenvolvimento, executávamos o banco em contêiner
+e aplicávamos as migrações nesse ambiente. Usamos \ac{uuid} como
+identificadores, inclusive nas chaves compostas das tabelas associativas.
 
-A entidade \mbox{\textit{USER}} armazenava os dados de autenticação e o tipo
-de conta. Usamos \mbox{\textit{PERSON\_PROFILE}} para os perfis pessoais e
-\mbox{\textit{BUSINESS\_PROFILE}} para os dados das organizações. Cada evento
-era vinculado ao seu criador. As tabelas \mbox{\textit{EVENT\_TAG}} e
-\mbox{\textit{EVENT\_PARTICIPANT}} associavam os eventos a suas categorias e
-participantes. O modelo também previa conexões e seguidores entre usuários,
-experiências de eventos, denúncias e notificações.
+A entidade \mbox{\textit{USER}} reunia os dados de autenticação, o tipo de
+conta e o papel de acesso. Os perfis pessoais e de negócio tinham tabelas
+próprias, ligadas ao usuário pela mesma chave primária. A conta também
+registrava a versão e a data de aceite dos termos, a troca de senha e
+as informações de banimento ou suspensão. O e-mail era único entre contas
+ativas, permitindo sua reutilização após a exclusão lógica de uma conta.
 
-Usamos \ac{uuid} nas chaves primárias e estrangeiras. Os tipos enumerados
-delimitavam os valores aceitos para privacidade e situação dos eventos,
-participações, notificações e denúncias. Nas principais entidades, campos de
-criação, atualização e exclusão lógica registravam o ciclo de vida dos dados.
+Armazenávamos latitude e longitude dos eventos e dos perfis de negócio em
+campos numéricos separados, com restrições para os intervalos aceitos.
+Nos perfis de negócio, ambas as coordenadas deveriam estar preenchidas ou
+nulas. Os eventos tinham também coordenadas aproximadas para quem não
+pudesse acessar o endereço exato. A busca por proximidade filtrava as
+coordenadas no banco e calculava a distância no código da aplicação.
+
+Cada evento era vinculado ao seu criador. Tabelas associativas relacionavam
+usuários e eventos às categorias, além de registrar favoritos e
+participações. Uma restrição impedia mais de uma participação do mesmo
+usuário no mesmo evento. Cada participante podia registrar uma experiência,
+com imagens associadas. As conexões entre pessoas, os seguidores de
+negócios e os bloqueios entre usuários também tinham tabelas próprias.
+
+As notificações eram ligadas ao usuário e, conforme o tipo, a uma conexão,
+a uma participação ou a um evento. Os dispositivos cadastrados armazenavam
+a plataforma e o \textit{token} para envio de notificações. A recuperação
+de senha tinha registros próprios, com o \textit{hash} do código, o número
+de tentativas e as datas de expiração, verificação e uso.
+
+Na moderação, cada denúncia tinha um único alvo, usuário ou evento, e
+registrava o administrador responsável pela resolução. O histórico de
+auditoria guardava o autor da ação, seu tipo, o alvo e os dados adicionais.
+Os tipos enumerados delimitavam os estados dos eventos, das participações,
+das conexões e das denúncias, além das ações de moderação. Campos de
+criação, atualização e exclusão lógica acompanhavam os registros nas
+entidades em que essas informações eram necessárias.
 
 \par\addvspace{0.3\baselineskip}
 \noindent\begin{minipage}{\linewidth}
 \setlength{\parindent}{1.25cm}
 \setlength{\intextsep}{4pt}
-A Figura \ref{fig:hangy-database} apresenta o modelo de dados.
+A Figura \ref{fig:hangy-database} registra uma versão anterior do modelo,
+que previa campos geográficos para as localizações. Na estrutura atual,
+eles foram substituídos pelos campos numéricos descritos acima.
 
 \begin{figure}[H]
     \centering
     \small
-    \caption{Modelo de dados do projeto Hangy}
+    \caption{Versão anterior do modelo de dados do projeto Hangy}
     \includegraphics[width=\linewidth]{conteudo//5 - ages IV//conteudo//figures/hangy-db.png}
     \legend{Fonte: Wiki do projeto}
     \label{fig:hangy-database}
@@ -182,8 +205,7 @@ documentação da \ac{api} pela especificação OpenAPI. O Uvicorn
 \cite{pydantic-docs} validava os dados recebidos.
 
 O SQLAlchemy \cite{sqlalchemy-docs} fazia o mapeamento dos dados para o
-PostgreSQL. O PostGIS acrescentava os recursos geoespaciais, e o Alembic
-\cite{alembic-docs} versionava as migrações. Para a autenticação, utilizamos
+PostgreSQL. O Alembic \cite{alembic-docs} versionava as migrações. Para a autenticação, utilizamos
 \ac{jwt} \cite{jwt-rfc}, com PyJWT \cite{pyjwt-docs} para gerar e validar os
 \textit{tokens} e \textit{pwdlib} \cite{pwdlib-docs} com Argon2 para calcular
 os \textit{hashes} das senhas.
