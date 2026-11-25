@@ -1,3 +1,44 @@
 \subsection{Sprint 4}
 
-No mínimo uma página contendo tudo que o aluno fez na Sprint 4.
+A última \textit{sprint} reuniu ajustes do aplicativo e funcionalidades de
+busca, moderação e denúncias. A equipe trabalhou nas telas administrativas,
+na consulta de usuários e estabelecimentos, no tratamento de denúncias e na
+gestão de categorias. Também havia pendências de configuração para o uso do
+aplicativo fora do ambiente de desenvolvimento, como domínio da \ac{api},
+notificações e links de convite. Concluímos as atividades previstas para a
+etapa final.
+
+No \textit{backend}, implementei a exclusão administrativa de
+\textit{tags} e categorias. A operação verificava se a categoria ainda
+continha outras \textit{tags} e se o item estava associado a eventos ou
+usuários. Para uma \textit{tag} em uso, a remoção exigia confirmação explícita.
+Também era registrado quem havia realizado a ação, mantendo o histórico da
+alteração para auditoria.
+
+Trabalhei ainda nos links de convite para eventos. No \textit{backend},
+preparei a página de destino e os arquivos que associavam o domínio ao
+aplicativo. No \textit{frontend}, completei o suporte à abertura desses links
+no iOS e no Android, por meio de \textit{universal links} e
+\textit{app links} \cite{apple-universal-links,android-app-links}.
+
+Essas tarefas complementavam o compartilhamento de convites que já existia.
+O link precisava funcionar ao ser enviado por outros aplicativos e conduzir
+o usuário ao evento. Com o Hangy instalado, a abertura deveria ocorrer no
+próprio aplicativo. Sem uma sessão ativa, o fluxo preservava o convite para
+retomá-lo depois do \textit{login}. A página de destino atendia a quem
+acessasse o link pelo navegador.
+
+A equipe também incluiu uma tarefa de segurança com Trivy
+\cite{trivy-docs}, voltada a verificar vulnerabilidades e impedir a
+implantação quando fossem identificadas falhas de gravidade alta ou crítica.
+
+A semana de provas e as demais demandas de fim de semestre limitaram o
+tempo disponível. Precisei conciliar as implementações com as
+responsabilidades de gestão e com as avaliações. Nesse período, a atenção
+às dependências continuava necessária, pois uma configuração de domínio ou
+do aplicativo podia impedir o uso de uma funcionalidade já implementada.
+
+O trabalho com os convites exigiu verificar a relação entre o link
+compartilhado, a página servida pelo \textit{backend} e a configuração nativa
+do aplicativo. Passei a considerar também as condições de instalação e de
+autenticação ao avaliar se o fluxo estava completo.

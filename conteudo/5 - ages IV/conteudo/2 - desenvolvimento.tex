@@ -1,64 +1,63 @@
 \section[Desenvolvimento do Projeto]{Desenvolvimento do Projeto}
 
 \subsection{Repositório do Código Fonte do Projeto}
-  Para o desenvolvimento do Hangy, adotamos o GitHub como plataforma primária
-de versionamento e mantemos os repositórios do GitLab da \ac{ages} atualizados
-por meio de \textit{mirrors}. Os \textit{workflows} do GitHub Actions replicam
-para o GitLab as alterações enviadas às \textit{branches} \textit{main} e
-\textit{develop}, além das \textit{tags}, preservando uma cópia sincronizada do
-código disponibilizado pela disciplina.
 
-  A \textit{branch} \textit{main} representa a versão estável do projeto,
-enquanto a \textit{develop} concentra a integração das funcionalidades em
-desenvolvimento. As atividades são implementadas em \textit{branches} próprias;
-no \textit{back-end}, um \textit{hook} local impede \textit{commits} em ramos
-que não sigam a convenção \textit{tidXXX/descricao-da-tarefa}. Essa organização
-facilita a rastreabilidade das demandas e a revisão das alterações por meio de
-\textit{pull requests}.
+Adotamos o GitHub \cite{github-docs} como plataforma principal de
+versionamento. Os repositórios do GitLab \cite{gitlab-docs} da AGES recebiam
+as alterações por espelhamento. Os \textit{workflows} do GitHub Actions
+\cite{github-actions-docs} replicavam as \textit{branches main} e
+\textit{develop}, além das \textit{tags}, mantendo uma cópia sincronizada
+do código na plataforma da disciplina.
 
-  Para apoiar a qualidade do código, o \textit{back-end} possui automações de
-testes, \textit{linting} e verificação de formatação com Ruff durante a revisão
-dos \textit{pull requests}. Ambos os repositórios também incluem instruções de
-execução e de organização do código, permitindo que novos integrantes preparem
-o ambiente de desenvolvimento de forma padronizada.
+A \textit{branch main} reunia a versão estável, e a \textit{develop}, as
+funcionalidades em integração. Desenvolvíamos as tarefas em \textit{branches}
+próprias. No \textit{backend}, um \textit{hook} local bloqueava
+\textit{commits} em ramos que não seguissem a convenção
+\textit{tidXXX/descricao-da-tarefa}. O identificador da tarefa no nome da
+\textit{branch} ajudava a relacionar as alterações à demanda durante a revisão
+dos \acp{pr}.
 
-Repositório \textit{back-end}:
+O \textit{backend} executava testes e verificações de estilo e formatação com
+Ruff \cite{ruff-docs} durante a revisão dos \acp{pr}. Os dois repositórios
+também tinham instruções de execução e de organização do código para orientar
+a configuração do ambiente pelos integrantes da equipe.
 
-\urlref{https://tools.ages.pucrs.br/2026-2/2jk-4jk/hangy/hangy-backend}
+Repositório \textit{backend}:
 
-Repositório \textit{front-end}:
+{\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/2026-2/2jk-4jk/hangy/hangy-backend}}
 
-\urlref{https://tools.ages.pucrs.br/2026-2/2jk-4jk/hangy/hangy-frontend}
+Repositório \textit{frontend}:
 
-\clearpage
+{\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/2026-2/2jk-4jk/hangy/hangy-frontend}}
+
 \subsection{Banco de Dados Utilizado}
-  Para o Hangy, adotamos o PostgreSQL como sistema gerenciador de banco de
-dados, com a extensão PostGIS para os recursos geoespaciais. A escolha por um
-banco relacional é adequada ao domínio da aplicação, que possui entidades com
-relações bem definidas, como usuários, eventos, tags, participações e
-notificações. O tipo \textit{geography(Point,4326)} armazena as localizações de
-eventos e de perfis de negócio, possibilitando a evolução de funcionalidades que
-considerem proximidade geográfica. O banco é executado em contêiner durante o
-desenvolvimento, o que padroniza o ambiente da equipe e simplifica a aplicação
-das migrações.
 
-  A entidade \textit{USER} é o núcleo do modelo e armazena as informações de
-autenticação e o tipo de conta. Os dados específicos de pessoas e de
-organizações ficam, respectivamente, em \textit{PERSON\_PROFILE} e
-\textit{BUSINESS\_PROFILE}, evitando campos não aplicáveis a um dos tipos de
-usuário. Os eventos são associados ao seu criador e utilizam as tabelas
-\textit{EVENT\_TAG} e \textit{EVENT\_PARTICIPANT} para representar suas
-categorias e participantes. A estrutura também contempla conexões e seguidores
-entre usuários, experiências de eventos, denúncias e notificações, dando suporte
-às interações previstas na plataforma.
+Usamos PostgreSQL \cite{postgresql-docs} com a extensão PostGIS
+\cite{postgis-docs}. Escolhemos um banco relacional pelas relações entre
+usuários, eventos, categorias, participações e notificações. As localizações
+dos eventos e dos perfis de negócio eram armazenadas com o tipo
+\textit{geography(Point,4326)}, que permitia trabalhar com a proximidade
+geográfica. Durante o desenvolvimento, executávamos o banco em contêiner e
+aplicávamos as migrações nesse ambiente.
 
-  O modelo utiliza identificadores \ac{uuid} como chaves primárias e
-estrangeiras, o que favorece a unicidade dos registros e a integração entre os
-componentes da aplicação. Os tipos enumerados restringem estados importantes,
-como a privacidade e a situação dos eventos, o status das participações e as
-categorias de notificações e denúncias. Além disso, os campos de criação,
-atualização e exclusão lógica presentes nas principais entidades permitem
-rastrear o ciclo de vida dos dados.
+A entidade \mbox{\textit{USER}} armazenava os dados de autenticação e o tipo
+de conta. Usamos \mbox{\textit{PERSON\_PROFILE}} para os perfis pessoais e
+\mbox{\textit{BUSINESS\_PROFILE}} para os dados das organizações. Cada evento
+era vinculado ao seu criador. As tabelas \mbox{\textit{EVENT\_TAG}} e
+\mbox{\textit{EVENT\_PARTICIPANT}} associavam os eventos a suas categorias e
+participantes. O modelo também previa conexões e seguidores entre usuários,
+experiências de eventos, denúncias e notificações.
+
+Usamos \ac{uuid} nas chaves primárias e estrangeiras. Os tipos enumerados
+delimitavam os valores aceitos para privacidade e situação dos eventos,
+participações, notificações e denúncias. Nas principais entidades, campos de
+criação, atualização e exclusão lógica registravam o ciclo de vida dos dados.
+
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+A Figura \ref{fig:hangy-database} apresenta o modelo de dados.
 
 \begin{figure}[H]
     \centering
@@ -68,18 +67,22 @@ rastrear o ciclo de vida dos dados.
     \legend{Fonte: Wiki do projeto}
     \label{fig:hangy-database}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-\urlref{https://tools.ages.pucrs.br/2026-2/2jk-4jk/hangy/wiki/-/wikis/database}
+{\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/2026-2/2jk-4jk/hangy/wiki/-/wikis/database}}
 
-\clearpage
 \subsection{Arquitetura Utilizada}
-  A arquitetura do Hangy é composta por dois projetos independentes e
-integrados por \ac{http}: um aplicativo móvel multiplataforma, desenvolvido com
-React Native, Expo e TypeScript, e uma \ac{api} desenvolvida em FastAPI. O
-aplicativo é responsável pela apresentação das telas e pela navegação, enquanto
-a \ac{api} concentra as regras de negócio, a autenticação e o acesso aos dados.
-Essa separação permite que as interfaces evoluam sem acoplamento direto às
-decisões de persistência.
+
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+A Figura \ref{fig:hangy-architecture-general} apresenta a comunicação entre
+o aplicativo e a \ac{api}. O aplicativo móvel foi desenvolvido com React
+Native, Expo e TypeScript. A \ac{api}, em FastAPI, recebia as requisições
+\ac{http} e tratava as regras de negócio, a autenticação e o acesso aos dados.
+O aplicativo cuidava das telas e da navegação.
 
 \begin{figure}[H]
     \centering
@@ -89,107 +92,110 @@ decisões de persistência.
     \legend{Fonte: Wiki do projeto}
     \label{fig:hangy-architecture-general}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-  No \textit{back-end}, adotamos uma arquitetura em camadas inspirada nos
-princípios de \textit{Clean Architecture}. A camada \textit{presentation}
-recebe as requisições \ac{http}, define os contratos de entrada e saída por meio
-de \ac{dto}s e realiza as conversões necessárias. A camada \textit{domain} contém as
-entidades, enumerações e serviços que implementam as regras de negócio. Por fim,
-a camada \textit{infrastructure} encapsula os detalhes técnicos de persistência,
-como sessões, modelos SQLAlchemy e repositórios que acessam o PostgreSQL. Dessa
-forma, os serviços do domínio dependem de contratos de repositório, e não de uma
-implementação específica de banco de dados.
+No \textit{backend}, seguimos uma arquitetura em camadas inspirada na
+\textit{Clean Architecture} \cite{martin-clean-architecture}. A camada
+\textit{presentation} recebia as requisições e definia os contratos de entrada
+e saída por meio de \acp{dto}. A camada \textit{domain} reunia as entidades,
+enumerações e serviços com as regras de negócio. A camada
+\textit{infrastructure} continha as sessões, os modelos SQLAlchemy e os
+repositórios de acesso ao PostgreSQL. Os serviços dependiam de contratos de
+repositório, enquanto os detalhes de persistência ficavam nas implementações
+desses contratos.
 
-  O \textit{front-end} organiza o código-fonte em \textit{src/}. As telas e os
-layouts de navegação ficam em \textit{src/app}, seguindo as convenções do Expo
-Router; componentes reutilizáveis, \textit{hooks}, constantes e utilitários são
-mantidos em diretórios próprios. Essa estrutura separa a interface e a navegação
-da lógica de cada tela, além de centralizar elementos do \textit{design system}
-e valores compartilhados pela aplicação.
+No \textit{frontend}, as telas e os \textit{layouts} de navegação ficavam em
+\textit{src/app}, conforme as convenções do Expo Router. Componentes
+reutilizáveis, \textit{hooks}, constantes e utilitários tinham diretórios
+próprios dentro de \textit{src/}. Essa organização separava a interface da
+lógica de cada tela e centralizava os elementos do \textit{design system}.
 
-  A comunicação entre os projetos ocorre por requisições \ac{http} no padrão
-\ac{rest}. No fluxo de autenticação, o aplicativo envia as credenciais ao
-endpoint de \textit{login}, recebe um \ac{jwt} e armazena o token localmente com
-AsyncStorage. Nas requisições protegidas, o cliente encaminha o token no
-cabeçalho \textit{Authorization: Bearer}; no \textit{back-end}, a assinatura e a
-expiração do \ac{jwt} são verificadas antes do acesso aos recursos. As senhas são
-persistidas somente como \textit{hashes} Argon2, e as alterações estruturais do
-banco são versionadas com Alembic.
+A comunicação seguia o padrão \ac{rest}. No \textit{login}, o aplicativo
+enviava as credenciais à \ac{api}, recebia um \ac{jwt} e o guardava no
+AsyncStorage \cite{asyncstorage-docs}. Depois, enviava o \textit{token} no
+cabeçalho \textit{Authorization: Bearer} das requisições protegidas. O
+\textit{backend} verificava a assinatura e a expiração antes de permitir o
+acesso. Armazenávamos as senhas como \textit{hashes} Argon2
+\cite{argon2-reference}, e as mudanças de estrutura do banco eram
+versionadas com Alembic.
 
-  A combinação de camadas, \ac{dto}s, \textit{mappers}, \textit{assemblers},
-repositórios e injeção de dependência do FastAPI favorece a testabilidade e a
-manutenção do sistema. A wiki do projeto complementa essa descrição com
-diagramas da visão geral, das camadas de cada aplicação e da sequência de
-autenticação.
+Os \textit{mappers} convertiam as entradas, e os \textit{assemblers}
+montavam as respostas. O FastAPI injetava os repositórios nos serviços.
 
-\urlref{https://tools.ages.pucrs.br/2026-2/2jk-4jk/hangy/wiki/-/wikis/arquitetura}
+{\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/2026-2/2jk-4jk/hangy/wiki/-/wikis/arquitetura}}
 
-\clearpage
 \subsection{Protótipos das Telas Desenvolvidas}
-  Os protótipos do Hangy foram elaborados para representar os principais fluxos
-do aplicativo e manter uma experiência visual consistente. A tela inicial
-organiza os eventos em seções de interesse, como bem-estar, esportes e cafeteria,
-e apresenta cartões com informações de visibilidade, data, local e categorias. A
-barra de navegação inferior fornece acesso rápido às áreas centrais do aplicativo.
+
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+A Figura \ref{fig:hangy-mockup-home} mostra a tela inicial, que agrupava os
+eventos por interesses, como bem-estar, esportes e cafeteria. Os cartões
+apresentavam visibilidade, data, local e categorias. A barra inferior dava
+acesso às principais áreas do aplicativo.
 
 \begin{figure}[H]
     \centering
     \small
     \caption{Tela inicial do aplicativo Hangy}
-    \includegraphics[height=0.62\textheight]{conteudo//5 - ages IV//conteudo//figures/hangy-mockup-home.png}
+    \includegraphics[height=0.33\textheight]{conteudo//5 - ages IV//conteudo//figures/hangy-mockup-home.png}
     \legend{Fonte: Figma do projeto}
     \label{fig:hangy-mockup-home}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-  A tela de detalhes apresenta as informações completas de um evento, incluindo
-capa, categorias, data, local, descrição e a ação disponível ao usuário. Já o
-fluxo de criação orienta o preenchimento do nome, descrição, imagem de capa e
-tags do evento, agrupadas por categorias. Dessa maneira, as telas tornam claros
-os dados necessários tanto para a descoberta quanto para a publicação de eventos.
+\par\addvspace{0.3\baselineskip}
+\noindent\begin{minipage}{\linewidth}
+\setlength{\parindent}{1.25cm}
+\setlength{\intextsep}{4pt}
+A Figura \ref{fig:hangy-mockup-event-flows} apresenta as telas de detalhes e
+criação de evento. A primeira exibia capa, categorias, data, local, descrição
+e a ação disponível ao usuário. A segunda orientava o preenchimento do nome,
+descrição e imagem de capa, além da escolha de \textit{tags} agrupadas por
+categorias.
 
 \begin{figure}[H]
     \centering
     \small
     \caption{Telas de detalhes e criação de evento do Hangy}
-    \includegraphics[height=0.62\textheight]{conteudo//5 - ages IV//conteudo//figures/hangy-mockup-event-details.png}
+    \includegraphics[height=0.33\textheight]{conteudo//5 - ages IV//conteudo//figures/hangy-mockup-event-details.png}
     \hfill
-    \includegraphics[height=0.62\textheight]{conteudo//5 - ages IV//conteudo//figures/hangy-mockup-create-event.png}
+    \includegraphics[height=0.33\textheight]{conteudo//5 - ages IV//conteudo//figures/hangy-mockup-create-event.png}
     \legend{Fonte: Figma do projeto}
     \label{fig:hangy-mockup-event-flows}
 \end{figure}
+\end{minipage}
+\par\addvspace{0.3\baselineskip}
 
-\urlref{https://tools.ages.pucrs.br/2026-2/2jk-4jk/hangy/wiki/-/wikis/mockups}
+{\footnotesize\urlstyle{same}\urlref{https://tools.ages.pucrs.br/2026-2/2jk-4jk/hangy/wiki/-/wikis/mockups}}
 
-\clearpage
 \subsection{Tecnologias Utilizadas}
-  O Hangy preserva tecnologias que já se mostraram adequadas no projeto
-anterior, ao mesmo tempo que amplia o conjunto de ferramentas de desenvolvimento
-e de recursos móveis. A solução é dividida entre um \textit{back-end} em Python e
-um aplicativo móvel em TypeScript, conectados por uma \ac{rest} \ac{api}.
 
-  No \textit{back-end}, utilizamos Python 3.14 \cite{python-docs} e FastAPI
-\cite{fastapi-docs} para construir a \ac{api} e disponibilizar sua documentação
-\ac{openapi}. O Uvicorn executa a aplicação no padrão \ac{asgi}, enquanto o Pydantic
-valida os dados recebidos. A persistência é realizada no PostgreSQL
-\cite{postgresql-docs} por meio do \ac{orm} SQLAlchemy
-\cite{sqlalchemy-docs}; a extensão PostGIS \cite{postgis-docs} complementa o
-banco com recursos geoespaciais. As migrações são versionadas com Alembic
-\cite{alembic-docs}, garantindo que a estrutura do banco possa acompanhar a
-evolução do código.
+Mantivemos tecnologias que já havíamos utilizado no VanGO, como Python,
+FastAPI, TypeScript, React Native e Expo. No \textit{backend}, usamos Python
+3.14 \cite{python-docs} e FastAPI \cite{fastapi-docs}, que disponibilizava a
+documentação da \ac{api} pela especificação OpenAPI. O Uvicorn
+\cite{uvicorn-docs} executava a aplicação no padrão \ac{asgi}, e o Pydantic
+\cite{pydantic-docs} validava os dados recebidos.
 
-  Para a autenticação, o projeto utiliza o fluxo \ac{oauth} 2.0 Password, \ac{jwt}
-\cite{jwt-rfc}, PyJWT e \textit{pwdlib} com Argon2 para proteger as senhas. Os
-testes automatizados são executados com pytest e HTTPX, e o Ruff
-\cite{ruff-docs} é empregado para \textit{linting} e formatação. Docker,
-Docker Compose e Dev Containers \cite{docker-docs} padronizam a execução local
-da \ac{api}, do PostgreSQL e das ferramentas de desenvolvimento.
+O SQLAlchemy \cite{sqlalchemy-docs} fazia o mapeamento dos dados para o
+PostgreSQL. O PostGIS acrescentava os recursos geoespaciais, e o Alembic
+\cite{alembic-docs} versionava as migrações. Para a autenticação, utilizamos
+\ac{jwt} \cite{jwt-rfc}, com PyJWT \cite{pyjwt-docs} para gerar e validar os
+\textit{tokens} e \textit{pwdlib} \cite{pwdlib-docs} com Argon2 para calcular
+os \textit{hashes} das senhas.
 
-  No \textit{front-end}, usamos TypeScript \cite{typescript-docs}, React Native
-\cite{react-native-docs} e Expo \cite{expo-docs} para desenvolver um único
-aplicativo compatível com Android, iOS e \textit{web}. O Expo Router organiza a
-navegação a partir da estrutura de arquivos, enquanto o AsyncStorage mantém o
-\ac{jwt} localmente. Bibliotecas do ecossistema Expo oferecem suporte a arquivos,
-imagens, seleção de mídia e ligações externas; os ícones são providos por
-Lucide React Native. Dessa forma, o aplicativo reúne os recursos necessários
-para as telas, a navegação, a autenticação e as integrações móveis planejadas
-pelo projeto.
+Executávamos os testes automatizados com Pytest \cite{pytest-docs} e HTTPX
+\cite{httpx-docs}. O Ruff fazia a análise e a formatação do código. Docker,
+Docker Compose e Dev Containers \cite{docker-docs} organizavam a execução
+local da \ac{api}, do PostgreSQL e das ferramentas de desenvolvimento.
+
+No \textit{frontend}, usamos TypeScript \cite{typescript-docs}, React Native
+\cite{react-native-docs} e Expo \cite{expo-docs} para desenvolver um aplicativo
+compatível com Android, iOS e \textit{web}. O Expo Router organizava a
+navegação por arquivos, e o AsyncStorage mantinha o \ac{jwt} localmente.
+Bibliotecas do Expo davam acesso a arquivos, imagens, seleção de mídia e
+ligações externas. Os ícones eram do Lucide React Native \cite{lucide-docs}.
