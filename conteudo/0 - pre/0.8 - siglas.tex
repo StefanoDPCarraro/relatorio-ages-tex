@@ -1,64 +1,42 @@
-% Exemplo de uso no texto:
-% \ac{sigla}
-
 \begin{center}
   \uppercase{\bfseries lista de siglas}\\[3em]
 \end{center}
 
+\begin{SingleSpace}
+\small
 \begin{acronym}[XXXXXXXX]
-  % Só aparecerá no texto se for utilizado
-  % \acro{sigla}[abreviação]{nome completo}
-  
-  % Siglas Organizacionais e Institucionais
-  \acro{ages} [AGES] {Agência Experimental de Software}
-  \acro{pet} [PET] {Programa de Educação Tutorial}
-  \acro{rh} [RH] {Recursos Humanos}
-  \acro{pucrs} [PUCRS] {Pontifícia Universidade Católica do Rio Grande do Sul}
-  \acro{mec} [MEC] {Ministério da Educação}
-  \acro{davint} [DAVINT] {Laboratório DAVINT}
-  \acro{grin} [GRIN] {Grupo de Pesquisa em Redes, Infraestrutura e Computação em Nuvem}
-  \acro{famecos} [FAMECOS] {Escola de Comunicação, Artes e Design}
-  
-  % Siglas Tecnológicas - Front-end
-  \acro{html} [HTML] {\textit{HyperText Markup Language}}
-  \acro{css} [CSS] {\textit{Cascading Style Sheets}}
-  \acro{ui} [UI] {User Interface}
-  \acro{ux} [UX] {User Experience}
-  
-  % Siglas Tecnológicas - Back-end e Banco de Dados
-  \acro{api} [API] {Application Programming Interface}
-  \acro{ide} [IDE] {Integrated Development Environment}
-  \acro{ti} [TI] {Tecnologia da Informação}
-  \acro{rest} [REST] {\textit{Representational State Transfer}}
-  \acro{sql} [SQL] {\textit{Structured Query Language}}
-  \acro{sgbd} [SGBD] {Sistema de Gerenciamento de Banco de Dados}
-  \acro{orm} [ORM] {\textit{Object-Relational Mapping}}
-  \acro{http} [HTTP] {\textit{HyperText Transfer Protocol}}
-  \acro{json} [JSON] {\textit{JavaScript Object Notation}}
-  \acro{cors} [CORS] {\textit{Cross-Origin Resource Sharing}}
-  \acro{poo} [POO] {Programação Orientada a Objetos}
-  
-  % Siglas Arquiteturais e de Padrões
-  \acro{mvc} [MVC] {\textit{Model-View-Controller}}
-  \acro{jwt} [JWT] {\textit{JSON Web Token}}
-
-  % Siglas de Domínio e Infraestrutura
-  \acro{cnae} [CNAE] {Classificação Nacional de Atividades Econômicas}
-  \acro{cnpj} [CNPJ] {Cadastro Nacional da Pessoa Jurídica}
-  \acro{gis} [GIS] {\textit{Geographic Information System}}
-  \acro{aws} [AWS] {\textit{Amazon Web Services}}
-  \acro{ec2} [EC2] {\textit{Elastic Compute Cloud}}
-  \acro{ci-cd} [CI/CD] {\textit{Continuous Integration e Continuous Delivery}}
-  \acro{apk} [APK] {pacote de instalação do aplicativo Android}
-  \acro{asgi} [ASGI] {\textit{Asynchronous Server Gateway Interface}}
-  \acro{dto} [DTO] {\textit{Data Transfer Object}}
+  \setlength{\itemsep}{0pt}
+  \setlength{\parsep}{0pt}
+  \acro{ages}[AGES]{Agência Experimental de Engenharia de Software}
+  \acro{api}[API]{\textit{Application Programming Interface}}
+  \acro{apk}[APK]{pacote de instalação do aplicativo Android}
+  \acro{asgi}[ASGI]{\textit{Asynchronous Server Gateway Interface}}
+  \acro{aws}[AWS]{\textit{Amazon Web Services}}
+  \acro{ci-cd}[CI/CD]{\textit{Continuous Integration e Continuous Delivery}}
+  \acro{cnae}[CNAE]{Classificação Nacional de Atividades Econômicas}
+  \acro{cnpj}[CNPJ]{Cadastro Nacional da Pessoa Jurídica}
+  \acro{cors}[CORS]{\textit{Cross-Origin Resource Sharing}}
+  \acro{css}[CSS]{\textit{Cascading Style Sheets}}
+  \acro{dto}[DTO]{\textit{Data Transfer Object}}
   \acroplural{dto}[DTOs]{\textit{Data Transfer Objects}}
-  \acro{mr} [MR] {Merge Request}
-  \acro{oauth} [OAuth] {\textit{Open Authorization}}
-  \acro{pr} [PR] {\textit{Pull Request}}
-  \acro{rs} [RS] {Rio Grande do Sul}
-  \acro{tdd} [TDD] {\textit{Test-Driven Development}}
-  \acro{us} [US] {\textit{User Story}}
-  \acro{uuid} [UUID] {\textit{Universally Unique Identifier}}
-  \acro{wsl} [WSL] {\textit{Windows Subsystem for Linux}}
+  \acro{ec2}[EC2]{\textit{Elastic Compute Cloud}}
+  \acro{gis}[GIS]{\textit{Geographic Information System}}
+  \acro{html}[HTML]{\textit{HyperText Markup Language}}
+  \acro{http}[HTTP]{\textit{HyperText Transfer Protocol}}
+  \acro{json}[JSON]{\textit{JavaScript Object Notation}}
+  \acro{jwt}[JWT]{\textit{JSON Web Token}}
+  \acro{mvc}[MVC]{\textit{Model-View-Controller}}
+  \acro{orm}[ORM]{\textit{Object-Relational Mapping}}
+  \acro{pet}[PET]{Programa de Educação Tutorial}
+  \acro{poo}[POO]{Programação Orientada a Objetos}
+  \acro{pr}[PR]{\textit{Pull Request}}
+  \acro{pucrs}[PUCRS]{Pontifícia Universidade Católica do Rio Grande do Sul}
+  \acro{rest}[REST]{\textit{Representational State Transfer}}
+  \acro{rh}[RH]{Recursos Humanos}
+  \acro{sgbd}[SGBD]{Sistema de Gerenciamento de Banco de Dados}
+  \acro{sql}[SQL]{\textit{Structured Query Language}}
+  \acro{tdd}[TDD]{\textit{Test-Driven Development}}
+  \acro{uuid}[UUID]{\textit{Universally Unique Identifier}}
+  \acro{wsl}[WSL]{\textit{Windows Subsystem for Linux}}
 \end{acronym}
+\end{SingleSpace}
